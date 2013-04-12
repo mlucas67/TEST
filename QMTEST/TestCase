@@ -1,0 +1,44 @@
+    private label, reporter, observers, shouldSkip
+    
+    public sub TestCase(newLabel='') var.args
+        label = if (newLabel) then newLabel else me->className()
+        shouldSkip = @false
+    end
+    
+    public function getLabel() var.args
+        return label
+    end
+    
+    **
+    ** public sub skip() var.args
+    ** end
+    **
+    
+    public sub skipIf(newShouldSkip=false, message='') var.args
+        if (newShouldSkip & not(shouldSkip)) then
+            shouldSkip = @true
+            message = "Skipping [" : me->className() : "]"
+            reporter->paintSkip(message : me->getAssertionLine())
+        end
+    end
+    
+    public function shouldSkip()
+        return shouldSkip
+    end
+    
+    public sub skipUnless(shouldntSkip='', message='') var.args
+        me->skipIf(not(shouldntSkip), message)
+    end
+
+    public function createInvoker()
+        return new("ErrorTrappingInvoker", new("ExceptionTrappingInvoker", new("Invoker", me)))
+    end
+    
+    public function run(reporter)
+        context = 
+        return reporter->getStatus()
+    end
+
+    public function className()
+        return objinfo(me, 1)
+    end

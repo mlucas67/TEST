@@ -1,0 +1,19 @@
+deffun rotl(x, n) local
+a = -1
+crt oconv(a, "MCDX")'r%8'
+crt shift(a, 24)
+crt oconv(shift(a, 24), "MCDX")'r%8'
+a = 0x8990536D
+crt a : " " : oconv(a, "MCDX")'r%8'
+crt oconv(shift(a, -5), "MCDX")'r%8'
+crt oconv(shift(a, (32-5)), "MCDX")'r%8'
+crt oconv(rotl(a, 5), "MCDX")'r%8'
+stop
+
+local function rotl(x, n)
+    ls = shift(x, -n)
+    rs = shift(x, (32 - n))
+    return bitor(ls, rs)
+end
+
+end

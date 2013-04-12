@@ -1,0 +1,10 @@
+$catalog catch local
+function catch(exceptionToCatch)
+    common /Exceptions/ exception
+    
+    if (exception->getClass() == exceptionToCatch->getClass()) then
+        exception->setCaught()  
+        return @true
+    end
+    return @false
+end

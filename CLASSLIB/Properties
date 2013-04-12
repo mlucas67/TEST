@@ -1,0 +1,32 @@
+$catalog Properties global
+class Properties inherits HashTable
+
+    public sub create.object(propFile='', propID='') var.args
+        if (propFile # '') then
+            open propFile to fileVar else return
+            read propItem from fileVar, propID else return
+            me->parse(propItem)
+        end
+        return
+    end
+    
+    public sub parse(propItem)
+        loop
+            remove pair from propItem setting more
+            pair = trim(pair)
+            key = upcase(trim(pair['=',1,1]))
+            value = trim(pair['=',2,*])
+            me->put(key, value)
+        while more
+        repeat
+    end
+    
+    public sub undefined(key, value)
+        me->put(key, value)
+    end
+    
+    public function undefined(key)
+        return me->get(key)
+    end
+
+end

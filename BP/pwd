@@ -1,0 +1,4 @@
+$catalog pwd global
+program pwd
+    crt @path
+end

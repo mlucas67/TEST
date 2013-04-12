@@ -1,0 +1,42 @@
+$catalog git global
+program git
+    equ bang to '!'
+    equ git.program.path to "c:\devel\git\bin\"
+    equ git.program.name to "git"
+    
+    command = downcase(@sentence[' ', 2, 1])
+    begin case
+        case (command = "add")
+            gosub add()
+        case (command = "status")
+            gosub status()
+    end case
+    
+    stop
+
+    local subroutine add()
+        params = @sentence[' ', 3, *]
+        cmd = bang : git.program.path : git.program.name : " add " : params
+        execute cmd capturing output
+        gosub display()
+        return
+    end
+
+    local subroutine status()
+        cmd = bang : git.program.path : git.program.name : " status"
+        execute cmd capturing output
+        gosub display()
+        return
+    end
+
+    local subroutine display()
+        dc = dcount(output, @fm)
+        for i = 1 to dc
+            line = output<i>
+            line = change(line, char(9), "       ")
+            crt line
+        next i
+        return
+    end
+
+end

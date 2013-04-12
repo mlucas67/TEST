@@ -1,0 +1,52 @@
+$catalog Throwable local
+class Throwable
+
+    private detailMessage, stacktrace, className, caught
+    
+    public sub create.object(message='') var.args
+        className = ''
+        me->fillInStackTrace()
+        detailMessage = message
+        caught = @false
+    end
+    
+    get getMessage()
+        return detailMessage
+    end
+    
+    set setMessage(message)
+        detailMessage = message
+    end
+    
+    set setClass(clazz)
+        className = objinfo(clazz,1)
+    end
+    
+    get getClass()
+        return className
+    end
+    
+    get getCaught()
+        return caught
+    end
+    
+    set setCaught()
+        caught = @true
+    end
+
+    public sub fillInStackTrace()
+        stacktrace = system(1002)
+    end
+    
+    public sub printStackTrace()
+        fc = dcount(stacktrace, @fm)
+        crt className
+        for f = 1 to fc
+            pgm = stacktrace<f,1>
+            addr = stacktrace<f,2,1>
+            line = stacktrace<f,2,2>
+            crt "   --> " : pgm : "@" : addr : ", line=" : line
+        next f
+    end
+
+end

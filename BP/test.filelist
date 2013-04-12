@@ -1,0 +1,3 @@
+program test.filelist
+    fileList = object("FileList", @path)
+end

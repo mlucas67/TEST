@@ -1,0 +1,43 @@
+$catalog HashTable global
+class HashTable
+
+    private keys, values
+    
+    public sub create.object()
+        keys = ''
+        values = ''
+    end
+    
+    get isEmpty(); return (keys = ''); end;
+    
+    get containsKey(key)
+        locate key in keys<1> by 'al' setting pos then
+            return @true
+        end
+        return @false
+    end
+    
+    get containsValue(value)
+        locate value in values<1> by 'al' setting pos then
+            return @true
+        end
+        return @false
+    end
+    
+    get get(key)
+        locate key in keys<1> by 'al' setting pos then
+            return values<pos>
+        end
+        return ''
+    end
+    
+    set put(key, value)
+        locate key in keys<1> by 'al' setting pos then
+            values<pos> = value
+        end else
+            keys = insert(keys, pos; key)
+            values = insert(values, pos; value)
+        end
+    end
+
+end

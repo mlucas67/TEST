@@ -1,0 +1,7 @@
+$catalog throw local
+subroutine throw(newException)
+    common /Exceptions/ exception
+    
+    exception = newException
+    return
+end

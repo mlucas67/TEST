@@ -1,0 +1,13 @@
+deffun catch(exceptionToCatch)
+
+common /Exceptions/ exception
+
+call throw(object("AssertionError", "Test of AssertionError"))
+if (catch(object("AssertionError"))) then
+    crt objinfo(exception,0)
+    crt objinfo(exception,1)
+    crt objinfo(exception,2)
+    exception->printStackTrace()
+end
+
+end

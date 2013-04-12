@@ -1,0 +1,6 @@
+deffun sha1(string)
+
+string = "blob 6" : char(0) : "sweet" : char(10)
+hash = sha1(string)
+crt hash'r%8 %8 %8 %8 %8'
+end

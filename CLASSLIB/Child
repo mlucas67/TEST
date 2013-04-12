@@ -1,0 +1,22 @@
+$catalog Child local
+class Child inherits Parent
+
+    public sub create.object()
+        crt "Child->create.object()"
+        Parent->setThis(me)
+    end
+
+    public sub childDemo()
+        crt "Child->childDemo()"
+    end
+    
+    public sub parentDemo()
+        crt "Child->parentDemo()"
+        Parent->parentDemo()
+    end
+    
+    public sub destroy.object()
+        crt "Child->destroy.object()"
+    end
+
+end

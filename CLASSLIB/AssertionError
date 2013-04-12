@@ -1,0 +1,10 @@
+$catalog AssertionError local
+$* Team(1, "Italiano", "Marshall Lucas")
+class AssertionError inherits Error
+
+    public sub create.object(message='') var.args
+        Error->setClass(me)
+        Error->setMessage(message)
+    end
+
+end
