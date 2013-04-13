@@ -1,0 +1,62 @@
+teststr = ''
+teststr<1> = "((a=1)&((b)!(c=3))!(d))"
+teststr<2> = "(a=1)&(b!(c=3))!d"
+teststr<3> = "a=1&(b!c=3)!d"
+teststr<4> = "a=1"
+teststr<5> = "(a=1)"
+teststr<6> = "a=1&b=2"
+teststr<7> = "(a=1)&(b=2)"
+teststr<8> = "((a=1)&(b=2))"
+
+i = 0
+for each cond in teststr
+    i += 1
+    display "test " : i : ": " :
+    gosub parsecond
+next cond
+stop
+
+parsecond:
+    P = count( cond, '(' )
+    L = count( cond, '&' ) + count( cond, '!' ) + count( cond, ' and ' ) + count( cond, ' or ' )
+    cc = P - (P - 2 * L)
+    display "cc = " : cc
+    return
+
+parsecond2:
+    stack = ''
+    top = 0
+    cc = 0
+    if (cond matches "'('0X')'") then
+        cond = matchfield( cond, "'('0X')'", 2 )
+    end
+    display cond'l#23' : ": " :
+    for l = 1 to len(cond)
+        c = cond[l,1]
+        begin case
+            case (c = '(')
+                if (top > 0) then
+                    t = stack<top>
+                    if (t = '(') then cc -= 1
+                end
+                top += 1
+                stack<top> = c
+            case (c = ')')
+                t = stack<top>
+                top -= 1
+                if (t = '(') then cc += 1
+                top += 1
+                stack<top> = c
+            case ((c = '&') or (c = '!'))
+                cc += 1
+                t = stack<top>
+                top -= 1
+                if (t = '(') then
+                    top += 1
+                    stack<top> = t
+                end
+        end case
+    next l
+    display "cc = " : cc
+return
+end

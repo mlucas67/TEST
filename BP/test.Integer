@@ -1,0 +1,12 @@
+i = object( "Integer", 1 )
+j = object( "Integer", 4 )
+k = object( "Integer" )
+k = i->Add( j )
+
+display k->Value()
+ltv = i->LessThan(j)
+display i->Value() : " < " : j->Value() : " = " : ltv->ToString()
+gtv = i->GreaterThan(j)
+display i->Value() : " > " : j->Value() : " = " : gtv->ToString()
+
+end

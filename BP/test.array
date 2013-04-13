@@ -1,0 +1,4 @@
+$include util:include arrays.h
+
+arr = array( array( "a", array( "b", "c" ) ), array( array( "d", "e" ), "f" ))
+crt join( arr )

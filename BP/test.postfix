@@ -1,0 +1,12 @@
+$debug
+deffun postfix( infix, OPERATORS, ASSOCIATIVITY, PRECEDENCE )
+
+loop
+    input infix
+while (infix)
+    if (infix = "debug") then 
+        debug
+    end else
+        crt postfix( infix, "=+-*/%^!", "12233344", "RLLLLLRR" )
+    end
+repeat

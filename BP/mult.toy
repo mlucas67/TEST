@@ -1,0 +1,27 @@
+program Multiply
+// Input:    integers a and b stored in mem[0A], mem[0B]
+// Output:   integer c = a * b stored in mem[0C]
+// Remarks:  Inefficient
+// -----------------------------------------------------------------------------
+
+0A: 0003   (0000 0000 0000 0111,      3) 
+0B: 0009   (0000 0000 0000 1001,      9) 
+0C: 0000   (0000 0000 0000 0000,      0) 
+
+0D: 0000   (0000 0000 0000 0000,      0) 
+0E: 0001   (0000 0000 0000 0001,      1) 
+
+
+10: 8A0A   RA <- mem[0A] 		a
+11: 8B0B   RB <- mem[0B] 		b
+12: 8C0D   RC <- mem[0D]		c = 0;
+
+13: 810E   R1 <- mem[0E]		always 1
+
+14: CA18   if (RA == 0) pc goto 18	while (a != 0) {
+15: 1CCB   RC <- RC + RB		   c = c + b;
+16: 2AA1   RA <- RA - R1		   a = a - 1;
+17: C014   pc <- 14			}
+
+18: 9C0C   mem[0C] <- RC
+19: 0000   halt

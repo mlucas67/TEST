@@ -1,0 +1,11 @@
+c = object( "SimpleCoffee.class" )
+display "Cost: " : c->getCost() : "; Ingredients: " : c->getIngredients()
+c = object( "Milk.class", c )
+display "Cost: " : c->getCost() : "; Ingredients: " : c->getIngredients()
+c = object( "Sprinkles.class", c )
+display "Cost: " : c->getCost() : "; Ingredients: " : c->getIngredients()
+c = object( "Whip.class", c )
+display "Cost: " : c->getCost() : "; Ingredients: " : c->getIngredients()
+c = object( "Sprinkles.class", c )
+display "Cost: " : c->getCost() : "; Ingredients: " : c->getIngredients()
+end

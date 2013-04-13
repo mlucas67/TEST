@@ -1,0 +1,99 @@
+$catalog precompile local
+
+$define endprogram end
+$define endif end
+
+program precompile
+
+    filename = @sentence[' ',2,1]
+    itemname = @sentence[' ',3,1]
+    
+    open filename to filevar else abort "Unable to open file " : filename
+    read item from filevar, itemname else abort "Unable to read item " : itemname
+    
+    newitem = ''
+    deffuns = ''
+    defsubs = ''
+    defabs = ''
+    isAbstract = @false
+    loop
+        line = remove( item, more )
+    while (more)
+        dt_line = downcase( trim( line ) )
+        begin case
+            case (dt_line matches "'abstract class '0X")
+                classname = line[' ',3,1]
+                newline = trimf( line )
+                spacs = len( line ) - len( newline )
+                newline = space( spacs ) : newline[' ',2,*]
+                newitem<-1> = newline
+                newitem<-1> = "*deffuns*"
+                isAbstract = @true
+            case (dt_line matches "'abstract '0X")
+                newline = trimf( line )
+                spacs = len( line ) - len( newline )
+                if (isAbstract) then
+                    newitem<-1> = "$*" : space(spacs) : dt_line
+                endif
+                if (downcase( newline[' ',1,1] ) = "private") then
+                    newline = "local " : newline[' ',2,*]
+                endif
+                newline = space( spacs ) : newline[' ',2,*]
+                newitem<-1> = newline
+                if (dt_line[' ',2,1] matches "'private'ý'local'") then
+                    if (dt_line[' ',3,1] = "function") then
+                        deffuns<-1> = "deffun " : dt_line[' ',4,*] : " local"
+                    end else
+                        defsubs<-1> = dt_line[' ',4,1]['(',1,1]
+                    endif
+                endif
+                newitem<-1> = space( spacs) : "end"
+            case (dt_line matches "'rem '0Xý'remark '0Xý'*'0Xý'!'0Xý'$'0X")
+                newitem<-1> = line
+            case (dt_line matches "0X' extends '0X")
+                classname = matchfield( dt_line, "0X' extends '0X", 3 )
+                newline = matchfield( dt_line,  "0X' extends '0X", 1 )
+                newitem<-1> = newline
+                newitem<-1> = "*privates*"
+                call !findprog( defabs, classname )
+            case 1
+                if (isAbstract and dt_line) then newitem<-1> = "$*" : line
+                newitem<-1> = line
+        end case
+    repeat
+    if (defabs) then 
+        privates = ''
+        publics = ''
+        abstracts = ''
+        for each defab in defabs<4>
+            dt_defab = downcase( trimf( defab ) )
+            inPrivate = @false
+            begin case
+                case (dt_defab matches "'private '0X")
+                    privates<-1> = defab
+                    inPrivate = @true
+                case (dt_defab matches "'public '0Xý'get '0Xý'set '0X")
+                    publics<-1> = defab
+                    inPrivate = @false
+                case (dt_defab matches "'abstract '0X")
+                    abstracts<-1> = defab
+                    inPrivate = @false
+                case (inPrivate)
+                    privates<-1> = defab
+                case 1
+                    publics<-1> = defab
+            end case
+        next defab
+        locate "*privates*" in newitem<1> setting pos then
+            newitem<pos> = privates
+        end
+        newitem<-1> = publics
+    endif
+    newitem<-1> = line
+    write newitem on filevar, itemname:"$"
+    write newitem on filevar, itemname
+    cmd = "basic " : filename : " " : itemname
+    execute cmd
+    write item on filevar, itemname
+    
+endprogram

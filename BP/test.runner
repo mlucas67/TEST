@@ -1,0 +1,7 @@
+program test.runner
+
+    runner = object( "!TestRunner" )
+    runner->SuiteName( "TestFoo" )
+    results = runner->Run()
+
+end

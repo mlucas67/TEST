@@ -1,0 +1,9 @@
+program test.abstract
+
+    display "Instantiate abstract.class:"
+    inst1 = object("abstract.class")
+
+    display "Instantiate concrete.class:"
+    inst2 = object("concrete.class")
+
+end

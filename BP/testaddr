@@ -1,0 +1,72 @@
+saveItem = ''
+item = ''
+remAddress = ''
+workAddresses = "12/42-44ý12 42-44ý12A/42ý12 42Aý1002-1006ý10025A"
+for each workAddress in workAddresses
+    workAddress := \ "New-Old Regret" Rd, Midwest City, OK  73130\
+    matchStr = ''
+    item = ''
+    matchStr<1,1> = "1-3N0-1A'/'1-5N'-'1-5N' '0X"
+    matchStr<1,-1> = "1-3N0-1A' '1-5N'-'1-5N' '0X"
+    remAddress = matchfield( workAddress, matchStr, 8 )
+    if (remAddress) then
+        qt = remAddress[1,1]
+        if (qt = "'") then qt = '"' else qt = "'"
+        matchStr = "0X" : qt : remAddress : qt
+        temp = matchfield( workAddress, matchStr, 1 )
+        item<-1> = temp
+        workAddress = remAddress
+    end
+    matchStr = ''
+    matchStr<1,-1> = "1-3N0-1A'/'1-5N0-1A' '0X"
+    matchStr<1,-1> = "1-3N0-1A' '1-5N0-1A' '0X"
+    remAddress = matchfield( workAddress, matchStr, 7 )
+    if (remAddress) then
+        qt = remAddress[1,1]
+        if (qt = "'") then qt = '"' else qt = "'"
+        matchStr = "0X" : qt : remAddress : qt
+        temp = matchfield( workAddress, matchStr, 1 )
+        item<-1> = temp
+        workAddress = remAddress
+    end
+    matchStr = "1-5N'-'1-5N' '0X"
+    remAddress = matchfield( workAddress, matchStr, 5 )
+    if (remAddress) then
+        qt = remAddress[1,1]
+        if (qt = "'") then qt = '"' else qt = "'"
+        matchStr = "0X" : qt : remAddress : qt
+        temp = matchfield( workAddress, matchStr, 1 )
+        item<-1> = temp
+        workAddress = remAddress
+    end
+    matchStr = "1-5N0-1A' '0X"
+    remAddress = matchfield( workAddress, matchStr, 4 )
+    if (remAddress) then
+        qt = remAddress[1,1]
+        if (qt = "'") then qt = '"' else qt = "'"
+        matchStr = "0X" : qt : remAddress : qt
+        temp = matchfield( workAddress, matchStr, 1 )
+        item<-1> = temp
+        workAddress = remAddress
+    end
+    crt item
+    crt workAddress
+    crt "------------------------------------------"
+    matchStr = ''
+    matchStr<1,1> = \'"'2-99X' '2-99X'"'' '0X\
+    matchStr<1,-1> = \"'"2-99X" "2-99X"'"" "0X\
+    remAddress = matchfield( workAddress, matchStr, 7 )
+    if (remAddress) then
+        qt = matchfield( workAddress, matchStr, 1 )
+        if (qt = "'") then qt = '"' else qt = "'"
+        matchStr = "0X" : qt : remAddress : qt
+        temp = matchfield( workAddress, matchStr, 1 )
+        workAddress = remAddress
+        item<-1> = temp
+    end
+    crt item
+    crt workAddress
+    crt "=========================================="
+next workAddress
+
+end

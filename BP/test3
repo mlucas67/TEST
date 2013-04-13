@@ -1,0 +1,34 @@
+deffun iskeyword( word ) local
+
+local function iskeyword( word )
+    lword = downcase( word ) ;* lower case the word
+    begin case
+        case (lword in "abort")
+            return @true
+        case (lword in "beginýbreak")
+            return @true
+        case (lword in "callýcaseýchainýclassýclearýclearcommonýcleardata")
+            return @true
+        case (lword in "clearfileýclearinputýclearselectýcloseýclose.socket")
+            return @true
+        case (lword in "closeseqýcommonýcontinueýconvertýcreateýcreate.file")
+            return @true
+        case (lword in "create.server.socketýcsv.mode")
+            return @true
+        case (lword in "dataýdebugýdeffunýdelýdeleteýdeleteseqýdimýdimension")
+            return @true
+        case (lword in "disinheritýdisplayýdisplay.widthýdparseýdparse.csv")
+            return @true
+        case (lword in "eachýechoýendýenterýequýequateýerrmsgýevaluate")
+            return @true
+        case (lword in "executeýexit")
+            return @true
+        case (lword in "fileýfile.eventýfilelockýfileunlockýfindýfindstr")
+            return @true
+        case (lword in "flushýflush.dh.cacheýfootingýforýformlistýformlistv")
+            return @true
+        case (lword in "function")
+            return @true
+    end case
+end
+end

@@ -1,0 +1,152 @@
+      SUBROUTINE PARSE.XML2(CFG.ID,CFG,R.ERR)
+
+      * Copyright (c) 2005-2006 Doug Dumitru, All Rights Reserved
+      * 
+      * This program is free software; you can redistribute it and/or modify
+      * it under the terms of the GNU General Public License as published by
+      * the Free Software Foundation; either version 2, or (at your option)
+      * any later version.
+      * 
+      * This program is distributed in the hope that it will be useful,
+      * but WITHOUT ANY WARRANTY; without even the implied warranty of
+      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      * GNU General Public License for more details.
+      *
+      * See http://dougdumitru.openqm.com for more information
+      * and contact information.
+
+* Routine to convert an XML template into an inverted CTRL
+* variable.
+*
+* PARAMETERS:  CFG.ID - Item-ID of template record in XML.LAYOUTS
+*              CFG    - Resulting dynamic array
+*              R.ERR  - Chained error variable
+
+$catalog local
+
+      equate yes to 1
+      equate no  to 0
+      equate am  to char(254)
+      equate vm  to char(253)
+      equate svm to char(252)
+
+      if system(31) <> '0' or system(32) = '' then
+         display 'This subroutine is licensed under the terms of the GPL.'
+         display 'Modification and distribution of this software for use'
+         display 'with a commercial MultiValue database is not permitted'
+         display 'under the derivative works definition of the GPL.'
+         stop
+      end
+
+      OPEN 'XML.LAYOUTS'       TO LAYOUTS.FD ELSE STOP 201,'XML.LAYOUTS'
+      OPEN 'XML.LAYOUTS,CACHE' TO CACHE.FD   ELSE STOP 201,'XML.LAYOUTS,CACHE'
+      OPEN 'XML.LAYOUTS,OBJ'   TO OBJ.FD     ELSE STOP 201,'XML.LAYOUTS,OBJ'
+*
+      CFG = ''
+*
+      READ S.REC FROM LAYOUTS.FD , CFG.ID ELSE
+         R.ERR<-1> = 'Config record is not on file'
+         RETURN
+      END
+      READU CFG FROM OBJ.FD , CFG.ID THEN
+         READ S.REC.CACHE FROM CACHE.FD , CFG.ID THEN
+            IF S.REC = S.REC.CACHE THEN
+               RELEASE OBJ.FD , CFG.ID
+               RETURN
+            END
+         END
+      END
+*
+      CFG = ''
+      I.LST = ''
+*
+      CUR.PTH = ''
+*
+      I1 = DCOUNT(S.REC,AM)
+      FOR I = 1 TO I1
+         L = S.REC<I>
+         LC = TRIM(L)
+         C1 = LC[1,1]
+         W1 = FIELD(LC,' ',1)
+         W2 = FIELD(LC,' ',2)
+         IF W1 = '/' THEN W2 = '*'
+*
+         BEGIN CASE
+            CASE C1 = ''
+            CASE C1 = '#'
+            CASE C1 = '$'
+            CASE YES
+               N.SPC = INDEX(L,C1,1)
+               IF I.LST = '' THEN
+                  I.LST = N.SPC
+                  CUR.PTH<1> = W1
+                  IF W2 <> '' THEN
+                     T = W1
+                     GOSUB 100
+                  END
+               END ELSE
+                  LOCATE(N.SPC,I.LST;LL;'AR') THEN
+                     CUR.PTH<LL> = W1
+                     FOR J = DCOUNT(CUR.PTH,AM) TO LL+1 STEP -1
+                        CUR.PTH = DELETE(CUR.PTH,J,0,0)
+                        I.LST = DELETE(I.LST,J,0,0)
+                     NEXT J
+                     IF W2 <> '' THEN
+                        T = ''
+                        FOR J = 1 TO DCOUNT(CUR.PTH,AM)
+                           T<1,1,-1> = CUR.PTH<J>
+                        NEXT J
+                        GOSUB 100
+                     END
+                  END ELSE
+                     IF N.SPC > I.LST<DCOUNT(I.LST,AM)> THEN
+                        I.LST<-1> = N.SPC
+                        CUR.PTH<-1> = W1
+                        IF W2 <> '' THEN
+                           T = ''
+                           FOR J = 1 TO DCOUNT(CUR.PTH,AM)
+                              T<1,1,-1> = CUR.PTH<J>
+                           NEXT J
+                           GOSUB 100
+                        END
+                     END ELSE
+                        R.ERR = 'Invalid indent amount'
+                        RELEASE OBJ.FD , CFG.ID
+                        RETURN
+                     END
+                  END
+               END
+         END CASE
+      NEXT I
+*
+      WRITE S.REC ON CACHE.FD , CFG.ID
+      WRITE CFG ON OBJ.FD , CFG.ID
+*
+      RETURN
+*
+100   REM Add a CFG line
+*
+      BEGIN CASE
+         CASE W1 = '/'
+            TP = '/'
+            W2 = ''
+         CASE W2[1,1] = '"'
+            TP = 'C'
+            T1 = INDEX(L,'"',1)
+            T2 = INDEX(L,'"',2)
+            IF T1 = 0 OR T2 = 0 THEN
+               R.ERR = 'Invalid quote'
+               RETURN
+            END
+            W2 = L[T1+1,T2-T1-1]
+         CASE W2[1,1] = '*'
+            TP = 'T'
+            W2 = W2[2,999]
+         CASE YES
+            TP = 'V'
+      END CASE
+*
+      CFG<-1> = T : VM : TP : VM : W2
+*
+      RETURN
+   end

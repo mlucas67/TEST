@@ -1,0 +1,10 @@
+logger.DEBUG = 7
+logger.NOTICE = 5
+logger.ERR = 3
+logger = object( "StdoutLogger.class",  logger.DEBUG )
+logger1 = logger->setNext( object( "EmailLogger.class", logger.NOTICE ) )
+logger2 = logger1->setNext( object( "StderrLogger.class", logger.ERR ) )
+logger->message( "Entering function y.", logger.DEBUG )
+logger->message( "Step1 completed.", logger.NOTICE )
+logger->message( "An error has occurred.", logger.ERR )
+end

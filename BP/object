@@ -1,0 +1,8 @@
+subroutine object( returnVal, className )
+    dim parameters(99)
+    mat parameters = ''
+    returnVal = ''
+    call @className( returnVal, myObj, "CREATE.OBJECT", 0, mat parameters )
+    returnVal = myObj
+    return
+end

@@ -1,0 +1,27 @@
+class Logger.class
+*deffuns*
+$*    private mask, nextLogger
+    private mask, nextLogger
+ 
+$*    public function setNext( log )
+    public function setNext( log )
+$*        nextLogger = log
+        nextLogger = log
+$*        return log
+        return log
+$*    end
+    end
+ 
+$*    public sub message( msg, priority )
+    public sub message( msg, priority )
+$*        if (priority <= mask) then me->writeMessage( msg )
+        if (priority <= mask) then me->writeMessage( msg )
+$*        if (assigned( nextLogger )) then nextLogger->message( msg, priority )
+        if (assigned( nextLogger )) then nextLogger->message( msg, priority )
+$*    end
+    end
+ 
+$*    abstract public sub writemessage( msg )
+    public sub writeMessage( msg )
+    end
+end

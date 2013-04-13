@@ -1,0 +1,16 @@
+myTest = object( "MyTest.class" )
+crt "myTest instance id = " : myTest->id()
+myTest->run( myTest )
+*
+myTest->privVar = "Private Variable"
+myTest->pubVar = "Public Variable"
+*
+newTest = myTest->clone()
+crt myTest->id()
+crt myTest->privVar()
+crt myTest->pubVar
+crt newTest->id()
+crt newTest->privVar()
+crt newTest->pubVar
+*
+end

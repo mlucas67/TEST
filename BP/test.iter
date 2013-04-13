@@ -1,0 +1,26 @@
+$debug 
+
+deffun iterFirst() local
+deffun iterNext() local
+
+arrayPos = 0
+array = "1ý2ý3ý4ý5ý6ý7ý8ý9ý10"
+
+for i = iterFirst() to iterNext()
+    crt array<i>
+next i
+
+local function iterFirst()
+    arrayPos = 1
+    return arrayPos
+end
+
+local function iterNext()
+    if (array<1,arrayPos+1>) then 
+        arrayPos += 1
+        return arrayPos
+    end
+    return 0
+end
+
+end

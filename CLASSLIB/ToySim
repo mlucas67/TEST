@@ -1,0 +1,305 @@
+$catalog ToySim local
+class ToySim
+    private pc, R, mem, opcodes, running, stdin, stdout, inputNeeded
+    private codeData
+
+    public sub create.object()
+        me->reset()
+    end
+
+    public sub reset()
+        mem = str( '0':@fm, 255 ) : '0'
+        R = str( '0':@fm, 15 ) : '0'
+        pc = 0x10
+        me->load_opcodes()
+        running = @false
+        inputNeeded = @false
+        stdin = ''
+        stdout = ''
+        codeData = ''
+    end
+
+    public sub Execute()
+        loop
+        while (running)
+            me->Step()
+        repeat
+    end
+
+    public sub Step()
+        stdout = ''
+        !! fetch and parse
+        inst = mem<pc+1>
+        pc += 1
+        op = bitand( shift( inst, 12 ), 15 )
+        d = bitand( shift( inst, 8 ), 15 )+1
+        s = bitand( shift( inst, 4 ), 15 )+1
+        t = bitand( inst, 15 )+1
+        addr = bitand( inst, 255 )
+
+        !! halt
+        if (op = 0) then 
+            running = @false
+            return
+        end
+
+        !! stdin
+        if (((addr = 255) & (op = 8)) ! ((R<t> = 255) & (op = 10))) then
+            if (stdin = '') then
+                inputNeeded = @true
+                pc -= 1
+                return
+            end
+            inputNeeded = @false
+            mem<256> = me->fromHex( stdin )
+            stdin = ''
+        end
+
+        !! execute
+        begin case
+            case (op = 1)
+                !! add
+                R<d> = R<s> + R<t>
+            case (op = 2)
+                !! subtract
+                R<d> = R<s> - R<t>
+            case (op = 3)
+                !! bitwise and
+                R<d> = bitand( R<s>, R<t> )
+            case (op = 4)
+                !! bitwise xor
+                R<d> = bitxor( R<s>, R<t> )
+            case (op = 5)
+                !! shift left
+                R<d> = shift( R<s>, -1 * R<t> )
+            case (op = 6)
+                !! shift right
+                R<d> = shift( R<s>, R<t> )
+            case (op = 7)
+                !! load address
+                R<d> = addr
+            case (op = 8)
+                !! load
+                R<d> = mem<addr+1>
+            case (op = 9)
+                !! store
+                mem<addr+1> = R<d>
+                source = me->toHex( addr )'r%2' : ": " : me->toHex( R<d> )
+                me->parse( source )
+            case (op = 10)
+                !! load indirect
+                R<d> = mem<bitand( R<t>, 255 )+1>
+            case (op = 11)
+                !! store indirect
+                mem<bitand( R<t>, 255 )+1> = R<d>
+                source = me->toHex( bitand( R<t>, 255 ) )'r%2' : ": " : me->toHex( R<d> )
+                me->parse( source )
+            case (op = 12)
+                !! branch if zero
+                if (bitand( R<d>, 0x7FFF ) = 0) then pc = addr
+            case (op = 13)
+                !! branch if positive
+                if ((R<d> > 0) & (R<d> < 8000)) then pc = addr
+            case (op = 14)
+                !! jump indirect
+                pc = R<d>
+            case (op = 15)
+                !! jump and link
+                R<d> = pc
+                pc = addr
+        end case
+
+        R<1> = 0
+        R<d> = bitand( R<d>, 0xFFFF )
+        pc = bitand( pc, 0xFF )
+        
+        !! stdout
+        if (((addr = 255) & (op = 9)) ! ((R<t> = 255) & (op = 11))) then
+            stdout = me->toHex( mem<256> )
+        end
+        !display me->toHex( pc ) : ": R[" : me->toHex( d ) : "] = " : me->toHex( R<d> )
+    end
+
+    public sub load_opcodes()
+        opcodes = ''
+        opcodes<1> =  "addýR[%d] <- R[%s] + R[%t]"
+        opcodes<2> =  "subtractýR[%d] <- R[%s] - R[%t]"
+        opcodes<3> =  "andýR[%d] <- R[%s] & R[%t]"
+        opcodes<4> =  "xorýR[%d] <- R[%s] ^ R[%t]"
+        opcodes<5> =  "left shiftýR[%d] <- R[%s] << R[%t]"
+        opcodes<6> =  "right shiftýR[%d] <- R[%s] >> R[%t]"
+        opcodes<7> =  "load addressýR[%d] <- %addr"
+        opcodes<8> =  "loadýR[%d] <- mem[%addr]"
+        opcodes<9> =  "storeýmem[%addr] <- R[%d]"
+        opcodes<10> = "load indirectýR[%d] <- mem[R[%t]]"
+        opcodes<11> = "store indirectýmem[R[%t]] <- R[%d]"
+        opcodes<12> = "branch zeroýif (R[%d] == 0) goto %addr"
+        opcodes<13> = "branch positiveýif (R[%d] > 0) goto %addr"
+        opcodes<14> = "jump registerýgoto R[%d]"
+        opcodes<15> = "jump and linkýR[%d] <- pc && goto %addr"
+    end
+
+    public function show_inst( inst )
+        op = bitand( shift( inst, 12 ), 15 )
+        d = bitand( shift( inst, 8 ), 15 )
+        s = bitand( shift( inst, 4 ), 15 )
+        t = bitand( inst, 15 )
+        addr = bitand( inst, 255 )
+        if (op = 0) then
+            output = "halt"
+        end else
+            begin case
+                case ((op = 8) and (addr = 255))
+                    template = "read R[%d]"
+                case ((op = 9) and (addr = 255))
+                    template = "write R[%d]"
+                case 1
+                    template = opcodes<op,2>
+            end case
+            begin case
+                case (template matches "0X'%d'0X'%s'0X'%t'0X")
+                    output = parse( template, "0X'%d'0X'%s'0X'%t'0X", @fm )
+                    output<2> = me->toHex( d )'r%1'
+                    output<4> = me->toHex( s )'r%1'
+                    output<6> = me->toHex( t )'r%1'
+                case (template matches "0X'%d'0X'%t'0X")
+                    output = parse( template, "0X'%d'0X'%t'0X", @fm )
+                    output<2> = me->toHex( d )'r%1'
+                    output<4> = me->toHex( t )'r%1'
+                case (template matches "0X'%t'0X'%d'0X")
+                    output = parse( template, "0X'%t'0X'%d'0X", @fm )
+                    output<2> = me->toHex( t )'r%1'
+                    output<4> = me->toHex( d )'r%1'
+                case (template matches "0X'%d'0X'%addr'0X")
+                    output = parse( template, "0X'%d'0X'%addr'0X", @fm )
+                    output<2> = me->toHex( d )'r%1'
+                    output<4> = me->toHex( addr )'r%2'
+                case (template matches "0X'%addr'0X'%d'0X")
+                    output = parse( template, "0X'%addr'0X'%d'0X", @fm )
+                    output<2> = me->toHex( addr )'r%2'
+                    output<4> = me->toHex( d )'r%1'
+                case (template matches "0X'%d'0X")
+                    output = parse( template, "0X'%d'0X", @fm )
+                    output<2> = me->toHex( d )'r%1'
+            end case
+            output = convert( @fm, '', output )
+        end
+        return output
+    end
+
+    public function Load( filename, itemname )
+        open filename to f.file else stop 201, filename
+        read source from f.file, itemname else stop 202, itemname
+
+        codeData = ''
+        me->parse( source )
+        codeData<1,1,1> = "->"
+        running = @true
+        return codeData
+    end
+    
+    public sub parse( source )
+        source.length = dcount( source, @fm )
+        for i = 1 to source.length
+            line = trim( source<i> )
+            begin case
+                case (line matches "2X': '4X0X")
+                    addr = me->fromHex( matchfield( line, "2X': '4X0X", 1 ) )
+                    inst = me->fromHex( trim( matchfield( line, "2X': '4X0X", 3 ) ) )
+                    mem<addr+1> = inst
+                    codeData<1,addr+1> = @svm : me->toHex( addr )'r%2' : @svm : me->toHex( inst )'r%4' : @svm : me->show_inst( inst )
+                case (line matches "2X':'4X0X")
+                    addr = me->fromHex( matchfield( line, "2X':'4X0X", 1 ) )
+                    inst = me->fromHex( trim( matchfield( line, "2X':'4X0X", 3 ) ) )
+                    mem<addr+1> = inst
+                    codeData<1,addr+1> = @svm : me->toHex( addr )'r%2' : @svm : me->toHex( inst )'r%4' : @svm : me->show_inst( inst )
+            end case
+        next i
+    end
+
+    public function toHex( n )
+        return oconv( n, "MCDX" )'r%4'
+    end
+
+    public function fromHex( s )
+        return oconv( s, "MCXD" )
+    end
+
+    !
+    ! Getters/Setters
+    !
+    set pc( newPC )
+        pc = newPC
+    end
+
+    get pc()
+        return pc
+    end
+
+    set R( reg, value = '' ) var.args
+        if (value = '') then
+            if (dcount( reg, @fm ) > 1) then
+                values = reg
+                reg = 0
+                for each value in values
+                    me->r( reg, value )
+                    reg += 1
+                next value
+            end
+        end else
+            R<reg+1> = value
+        end
+    end
+
+    get R( reg = '' ) var.args
+        if (reg = '') then
+            return R
+        end else
+            return R<reg+1>
+        end
+    end
+
+    set mem( addr, value = '' ) var.args
+        if (value = '') then
+            if (dcount( addr, @fm ) > 1) then
+                values = addr
+                addr = 0
+                for each value in values
+                    me->mem( addr, value )
+                    addr += 1
+                next value
+            end
+        end else
+            mem<addr+1> = value
+        end
+    end
+
+    get mem( addr = '' ) var.args
+        if (addr = '') then
+            return mem
+        end else
+            return mem<addr+1>
+        end
+    end
+
+    get running()
+        return running
+    end
+    
+    set stdin( value )
+        stdin = value
+    end
+    
+    get stdout()
+        return stdout
+    end
+    
+    get inputNeeded()
+        return inputNeeded
+    end
+    
+    get codeData()
+        return codeData
+    end
+
+end

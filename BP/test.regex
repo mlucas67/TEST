@@ -1,0 +1,60 @@
+$debug
+regex = object( "!Regex" )
+
+test1.re = "abcdefg"
+test1.str = "abcdefg"
+code = regex->study( test1.re )
+if (regex->re_execute( code, test1.str )) then
+    display test1.str : " ~ " : test1.re
+end else
+    display test1.str : " !~ " : test1.re
+end
+
+test2.re = "(a|b)*a"
+test2.str = "ababababab"
+code = regex->study( test2.re )
+if (regex->re_execute( code, test2.str )) then
+    display test2.str : " ~ " : test2.re
+end else
+    display test2.str : " !~ " : test2.re
+end
+
+test3.re = "(a|b)*a"
+test3.str = "aaaaaaaaba"
+code = regex->study( test3.re )
+if (regex->re_execute( code, test3.str )) then
+    display test3.str : " ~ " : test3.re
+end else
+    display test3.str : " !~ " : test3.re
+end
+
+test4.re = "(a|b)*a"
+test4.str = "aaaaaabac"
+code = regex->study( test4.re )
+regex->dump_code( code )
+input tst,1
+if (regex->re_execute( code, test4.str )) then
+    display test4.str : " ~ " : test4.re
+end else
+    display test4.str : " !~ " : test4.re
+end
+
+test5.re = "a(b|c)*d"
+test5.str = "abccbcccd"
+code = regex->study( test5.re )
+if (regex->re_execute( code, test5.str )) then
+    display test5.str : " ~ " : test5.re
+end else
+    display test5.str : " !~ " : test5.re
+end
+
+test6.re = "a(b|c)*d"
+test6.str = "abccbcccde"
+code = regex->study( test6.re )
+if (regex->re_execute( code, test6.str )) then
+    display test6.str : " ~ " : test6.re
+end else
+    display test6.str : " !~ " : test6.re
+end
+
+end

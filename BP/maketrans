@@ -1,0 +1,13 @@
+$catalog maketrans global
+function maketrans( intab, outtab )
+
+    tab = ''
+    
+    for i = 1 to 255
+        c = char( i )
+        p = index( intab, c, 1 )
+        tab := if (p) then outtab[p,1] else c
+    next i    
+
+    return tab
+end

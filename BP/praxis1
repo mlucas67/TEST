@@ -1,0 +1,17 @@
+crt "enter array " :; input array
+convert ' ' to @fm in array
+newArray = ''
+for each i in array
+    newArray<1> = i
+    for each j in array
+        newArray<2> = j
+        for each k in array
+            newArray<3> = k
+            for each l in array
+                newArray<4> = l
+                s = sum( newArray )
+                if (s = 0) then crt newArray : ' ' : s
+            next l
+        next k
+    next j
+next i

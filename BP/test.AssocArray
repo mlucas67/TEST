@@ -1,0 +1,44 @@
+array = object( "!AssocArray", "'name' => 'My Name','description' => 'My Description','Version' => '1.0.0.0'" )
+
+display array->Keys()
+display array->Values()
+for each key in array->Keys()
+    display key : " => " : array->GetValue( key )
+next key
+
+display
+
+array2 = object( "!AssocArray" )
+array2->Add( "C" )
+array2->Add( "A" )
+array2->Add( "E" )
+array2->Add( "B" )
+array2->Add( "D" )
+array2->Add( "F" )
+
+itr = array2->iterator()
+loop
+while (itr->HasNext())
+    element = itr->next()
+    display element
+repeat
+
+itr = array2->iterator()
+loop
+while (itr->HasNext())
+    element = itr->next()
+    itr->set( element : '+' )
+repeat
+
+display
+
+loop
+while (itr->HasPrevious())
+    element = itr->prev()
+    display element
+repeat
+
+array->dispose
+array2->dispose
+
+end

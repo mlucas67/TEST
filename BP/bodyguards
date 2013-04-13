@@ -1,0 +1,18 @@
+program bodyguards
+
+    open "bp" to fBP else stop 201, "bp"
+    read bgdata from fBP, "bodyguards.data" else stop 202, "bodyguards.data"
+    
+    outval = ''
+    bgdata = convert( "ABCDEFGHIJKLMNOPQRSTUVWXYZ":@FM, "--------------------------", bgdata )
+    display bgdata
+    loop
+    while (bgdata)
+        c = matchfield( bgdata, "0X1A'---'1A'---'1A0X", 4 )
+        outval := c
+        bgdata = matchfield( bgdata, "0X1A'---'1A'---'1A0X", 7 )
+    repeat
+
+    display outval
+
+end

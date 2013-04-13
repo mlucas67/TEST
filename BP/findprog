@@ -1,0 +1,15 @@
+$catalog findprog global
+program findprog
+
+    progname = field( @sentence, ' ', 2 )
+    call !findprog( results, progname )
+    instances = dcount( results<1>, @VM )
+    for i = 1 to instances
+        dc = dcount( results, @FM )
+        for j = 1 to dc
+            display results<j,i> : ' ' :
+        next j
+        display ''
+    next i
+    
+end

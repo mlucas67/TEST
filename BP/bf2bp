@@ -1,0 +1,39 @@
+open "bp" to f.bp else stop 201, "bp"
+crt "bf progie name " :; input bfname
+read bf from f.bp, bfname else stop 202 bfname
+newprog = ''
+newprog<1> = "array = ''"
+newprog<2> = "for i = 1 to 30000"
+newprog<3> = "   array<i> = 0"
+newprog<4> = "next i"
+newprog<5> = "ptr = 1"
+newprog<6> = "!!!!!!!!!!Start!!!!!!!!!!!!!!"
+indent = 0
+l = len( bf )
+for i = 1 to l
+    cmd = bf[i,1]
+    begin case
+        case (cmd = '>')
+            newprog := @fm : space(indent*4) : "if (ptr < 30000) then ptr += 1"
+        case (cmd = '<')
+            newprog := @fm : space(indent*4) : "if (ptr > 1) then ptr -= 1"
+        case (cmd = '+')
+            newprog := @fm : space(indent*4) : "if (array<ptr> < 256) then array<ptr> += 1"        
+        case (cmd = '-')
+            newprog := @fm : space(indent*4) : "if (array<ptr> > 0) then array<ptr> -= 1"
+        case (cmd = '.')
+            newprog := @fm : space(indent*4) : "crt char( array<ptr> ) :"
+        case (cmd = ',')
+            newprog := @fm : space(indent*4) : "array<ptr> = keyin()"
+        case (cmd = '[')
+            newprog := @fm : space(indent*4) : "loop"
+            newprog := @fm : space(indent*4) : "while (array<ptr>)"
+            indent += 1
+        case (cmd = ']')
+            indent -= 1
+            newprog := @fm : space(indent*4) : "repeat"
+    end case
+next i
+newprog := @fm : "end"
+write newprog on f.bp, bfname : ".bp"
+end

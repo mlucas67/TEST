@@ -1,0 +1,8 @@
+SUBROUTINE ASSERT( RET, B, MSG )
+    
+    RET = MSG
+    IF (B) THEN RET := " passed!" ELSE RET := " failed!"
+    
+    RETURN 
+    
+END

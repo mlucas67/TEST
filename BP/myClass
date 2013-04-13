@@ -1,0 +1,92 @@
+*class myClass
+$debug
+subroutine myClass( returnVal, me, methodName, isGet, parameters(99) )
+    dim parameters(99), methodParameters(99)
+    
+*    public myData1
+    if (not( assigned( me ) )) then
+        if (methodName = "CREATE.OBJECT") then
+            gosub CREATE.OBJECT
+            return
+        end else
+            crt "Must create instance of myClass before access it!"
+            stop
+        end
+    end
+    
+    getMethodNum = 0
+    setMethodNum = 0
+    variableNum = 0
+    if (isGet) then
+        locate methodName in me<1,2,1> setting getMethodNum else
+            locate methodName in me<1,4,1> setting variableNum else
+                locate "UNDEFINED" in me<1,2,1> setting getMethodNum else
+                    crt "Undefined Property or Method " : methodName : " in myClass!"
+                    stop
+                end
+            end
+        end
+    end else
+        locate methodName in me<1,3,1> setting setMethodNum else
+            locate methodName in me<1,4,1> setting variableNum else
+                locate "UNDEFINED" in me<1,3,1> setting setMethodNum else
+                    crt "Undefined Property or Method " : methodName : " in myClass!"
+                    stop
+                end
+            end
+        end
+    end
+    
+    begin case
+        case (getMethodNum)
+            on getMethodNum gosub GET.MYDATA1
+        case (setMethodNum)
+            mat methodParameters = mat parameters
+            on setMethodNum gosub SET.MYDATA1, DESTROY.OBJECT
+        case (variableNum)
+            if isGet then
+                returnVal = me<3,variableNum>
+            end else
+                me<3,variableNum> = parameters(1)
+            end
+    end case
+        
+    return
+    
+*    public sub create.object()
+CREATE.OBJECT:
+    if not( assigned( me ) ) then
+        me = ''
+        me<1,1> = "MYCLASS"
+        me<1,2> = "GET.MYDATA1"
+        me<1,3> = "SET.MYDATA1" : @SVM : "DESTROY.OBJECT"
+        me<1,4> = "MYDATA1"
+    end
+    methodParameters(1) = 1
+    gosub SET.MYDATA1
+    return
+    
+* get mydata1()    
+GET.MYDATA1:
+    locate "MYDATA1" in me<1,4,1> setting variableNum else
+        crt "Oops! Property went missing in myClass!"
+        stop
+    end
+    returnVal = me<1,5,variableNum>
+    return
+    
+* set mydata1( inVal )    
+SET.MYDATA1:
+    locate "MYDATA1" in me<1,4,1> setting variableNum else
+        crt "Oops! Property went missing in myClass!"
+        stop
+    end
+    me<1,5,variableNum> = methodParameters(1)
+    return
+    
+* public sub destroy.object()    
+DESTROY.OBJECT:
+    me = ''    
+    return
+    
+end

@@ -1,0 +1,12 @@
+myFile = object( "QMRecord" )
+myFile->openFile( "BP" )
+myFile->Record(2) = "attr2"
+myFile->Record(4,2) = "attr4,val2"
+myFile->Record(8,3,2) = "attr8,val3,sub2"
+myFile->Write( "QMRecord.testdata" )
+myFile->New
+crt "Record = " : myFile->Record()
+crt "Read = " : myFile->Read( "QMRecord.testdata" )
+crt myFile->Record(2)
+crt myFile->Record(4,2)
+crt myFile->Record(8,3,2)

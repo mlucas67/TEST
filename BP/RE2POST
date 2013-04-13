@@ -1,0 +1,86 @@
+SUBROUTINE RE2POST( RET, RE )
+
+    BUF = ''
+    PAREN = ''
+    P = 1
+    NALT = 0
+    NATOM = 0
+    FOR I = 1 TO LEN( RE )
+        C = RE[I,1]
+        BEGIN CASE
+            CASE (C = '(')
+                IF (NATOM > 1) THEN
+                    NATOM -= 1
+                    BUF := '.'
+                END
+                PAREN<P,1> = NALT
+                PAREN<P,2> = NATOM
+                P += 1
+                NALT = 0
+                NATOM = 0
+            CASE (C = '|')
+                IF (NATOM = 0) THEN
+                    RET = ''
+                    RETURN
+                END
+                BUF := STR( '.', NATOM-1 )
+                *LOOP
+                    *NATOM -= 1
+                *WHILE (NATOM > 0)
+                    *BUF := '.'
+                *REPEAT
+                NALT += 1
+            CASE (C = ')')
+                IF ((P = 1) OR (NATOM = 0)) THEN
+                    RET = ''
+                    RETURN
+                END
+                BUF := STR( '.', NATOM-1 )
+                NATOM = 0
+                *LOOP
+                    *NATOM -= 1
+                *WHILE (NATOM > 0)
+                    *BUF := '.'
+                *REPEAT
+                BUF := STR( '|', NALT )
+                NALT = 0
+                *LOOP
+                *WHILE (NALT > 0)
+                    *BUF := '|'
+                    *NALT -= 1
+                *REPEAT
+                P -= 1
+                NALT = PAREN<P,1>
+                NATOM = PAREN<P,2>
+                NATOM += 1
+            CASE (C = '*') OR (C = '+') OR (C = '?')
+                IF (NATOM = 0) THEN
+                    RET = ''
+                    RETURN
+                END
+                BUF := C
+            CASE 1
+                IF (NATOM > 1) THEN
+                    NATOM -= 1
+                    BUF := '.'
+                END
+                BUF := C
+                NATOM += 1
+        END CASE
+    NEXT I
+    BUF := STR( '.', NATOM-1 )
+    *LOOP
+        *NATOM -= 1
+    *WHILE (NATOM > 0)
+        *BUF := '.'
+    *REPEAT
+    BUF := STR( '|', NALT )
+    *LOOP
+    *WHILE (NALT > 0)
+        *BUF := '|'
+        *NALT -= 1
+    *REPEAT
+    RET = BUF
+    
+    RETURN
+END

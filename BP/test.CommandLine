@@ -1,0 +1,13 @@
+display "Initialize:"
+cmdline = object( "!CommandLine", "'name' = 'Test Command Line', 'description' = 'Test of Command Line Class', 'Version' = '1.0.0.0', 'ForcePosix' = 'T'" )
+display cmdline->ToString()
+display
+display "From File:"
+cmdline->FromFile( "bp", "cmdline.params" )
+display cmdline->ToString()
+display
+display "Adding Argument test1:"
+cmdline->AddArgument( "test1", "'description' = 'Description of Argument test1'" )
+display cmdline->ToString()
+display
+end

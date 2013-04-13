@@ -1,0 +1,59 @@
+QSTRINGS = ''
+QSTRINGS<1,1> = \0X'"'0X'"'0X\ ;* Double Quoted String
+QSTRINGS<1,2> = \0X"'"0X"'"0X\ ;* Single Quoted String
+QSTRINGS<1,3> = "0X'\'0X'\'0X" ;* Slash QUoted String
+SEMICOLON = \0X';'0X\          ;* Semicolon separated statments
+!
+indent = 0
+stmt = ''
+semi = ''
+!
+loop
+    input line
+while (line)
+    crt space(indent*4) : "LINE"
+    indent += 1
+    loop
+    while (line)
+        begin case
+            case ((line matches SEMICOLON) and (line matches QSTRINGS))
+                loop
+                while (line matches QSTRINGS)
+                    qline = parse( line, QSTRINGS, @fm )
+                    if (qline<1> matches SEMICOLON) then
+                        stmts = parse( line, SEMICOLON, @fm )
+                        stmt = stmts<1>
+                        semi = stmts<2>
+                        line = stmts<3>
+                    end else
+                        stmt := qline<1> : qline<2> : qline<3> : qline<4>
+                        line = qline<5>
+                        if (trim(line)[1,1] = ';') then
+                            semi = ';'
+                            line = matchfield( line, SEMICOLON, 3 )
+                        end
+                    end
+                until ((stmt) and (semi))
+                repeat
+            case (line matches SEMICOLON)
+                stmts = parse( line, SEMICOLON, @fm )
+                stmt = stmts<1>
+                semi = stmts<2>
+                line = stmts<3>
+            case 1
+                stmt = line
+                line = ''
+        end case
+        if (stmt) then
+            crt space(indent*4) : "STATEMENT"
+            indent += 1
+            crt space(indent*4) : stmt
+            indent -= 1
+            if (semi) then crt space(indent*4) : "SEMICOLON"
+            semi = ''
+            stmt = ''
+        end
+    repeat
+    if (indent > 0) then indent -= 1
+repeat
+end

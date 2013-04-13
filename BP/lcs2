@@ -1,0 +1,19 @@
+$catalog lcs2 local
+function lcs2( xs, ys )
+    deffun lcs2( xs, ys )
+    if (xs and ys) then
+        xb = xs[1,len(xs)-1]
+        xe = xs[len(xs),1]
+        yb = ys[1,len(ys)-1]
+        ye = ys[len(ys),1]
+        if (xe = ye) then
+            return lcs2( xb, yb ) : xe
+        end else
+            l1 = lcs2( xs, yb )
+            l2 = lcs2( xb, ys )
+            if (len( l1 ) > len(l2)) then return l1 else return l2
+        end
+    end else
+        return ''
+    end
+end ;* function

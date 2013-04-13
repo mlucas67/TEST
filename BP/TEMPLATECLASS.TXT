@@ -1,0 +1,213 @@
+[Info]
+Type=Template
+Style=4
+Name=Class
+Desc=Code template for GUI class applications
+
+[Code]
+<<1>>
+* AccuTerm GUI Application Skeleton
+*
+* Add your equates and code to open files here...
+$include GUIBP ATGUIEQUATES
+
+$catalog %%APP%% local
+
+class %%APP%%
+
+private~
+    GUIAPP, GUIFRM, GUIEVT, GUICTL, GUIARGS, GUIERRORS, GUISTATE, NUM.FORMS,
+    TemplateFileName, TemplateName, TemplateFile, Template,
+    AppName, FormName
+    
+    public sub create.object()
+        TemplateFileName = "%%PROJFILE%%"
+        TemplateName = "%%PROJID%%"
+        open TemplateFileName to TemplateFile else 
+            GUIERRORS = 4
+            return
+        end ;* open
+        read Template from TemplateFile, TemplateName else
+            GUIERRORS = 5
+            return
+        end ;* read
+        me->Init
+    end ;* sub create.object
+    
+<<2>>
+*-->BEGIN GUI HEADER<--*
+    public sub Init()
+        call ATGUIINIT2( Template<2,2>, '', GUIERRORS, GUISTATE )
+        if (GUIERRORS<1> >= 3) then 
+            me->GUI.ERROR
+            return
+        end ;* if
+        call ATGUIRUNMACRO( Template, '', GUIERRORS, GUISTATE )
+        if (GUIERRORS<1> >= 3) then 
+            me->GUI.ERROR
+            return
+        end ;* if
+        AppName = "%%APP%%"
+        FormName = "%%FORM%%"
+        me->Show
+        me->WaitEvent
+    end ;* sub Init
+*-->END GUI HEADER<--*
+
+<<3>>
+*-->BEGIN GUI STARTUP<--*
+    public sub Show()
+        call ATGUISHOW( AppName, FormName, '', '', GUIERRORS, GUISTATE )
+        if (GUIERRORS<1> >= 2) then 
+            me->GUI.ERROR
+            return
+        end ;* if
+    end ;* sub Show
+*-->END GUI STARTUP<--*
+
+<<4>>
+*-->BEGIN EVENT LOOP<--*
+    public sub WaitEvent()
+        loop
+            call ATGUIWAITEVENT( GUIAPP, GUIFRM, GUICTL, GUIEVT, GUIARGS, GUIERRORS, GUISTATE )
+            if (GUIERRORS<1> >= 2) then 
+                me->GUI.ERROR
+                return
+            end ;* if
+        until (GUIEVT = GEQUIT)
+            GUIAPP = oconv( GUIAPP, 'MCU' )
+            GUIFRM = oconv( GUIFRM, 'MCU' )
+            GUICTL = oconv( GUICTL, 'MCU' )
+            me->GUI.DECODE.EVENT
+        repeat
+        me->Shutdown
+    end ;* sub WaitEvent
+*-->END EVENT LOOP<--*
+
+
+<<5>>
+*-->BEGIN GUI TRAILER<--*
+    public sub Shutdown()
+        call ATGUISHUTDOWN
+        return
+    end ;* sub Shutdown
+*-->END GUI TRAILER<--*
+
+
+<<6>>
+*-->BEGIN EVENT DECODER<--*
+    public sub GUI.DECODE.EVENT()
+        if num(GUIEVT) then
+            %%decode%%
+            begin case                                                          __begin__
+                case GUIAPP = "%%APP%%"                                         __app__
+                    begin case                                                  __begin__
+                        case GUIFRM = "%%FORM%%"                                __form__
+                            begin case                                          __begin__
+                                case Guictl = "%%CONTROL%%"                     __control__
+                                    begin case                                  __begin__
+                                        case GUIEVT = GE%%EVENT%%               __event__
+                                            me->GUI.%%target.%%;GUIEVT=0        __action__
+                                    end case                                    __end__
+                                case GUICTL = "%%CONTROL%%"                     __control__
+                                    GUIMNU = oconv( GUIARGS<1,1>, 'MCU' )       __menuvar__
+                                    begin case                                  __begin__
+                                        case GUIMNU = "%%MENU%%"                __menu__
+                                            me->GUI.%%target.%%;GUIEVT=0        __action__
+                                    end case                                    __end__
+                            end case                                            __end__
+                    end case                                                    __end__
+            end case                                                            __end__
+            if guievt then
+                * unhandled event - may be dynamic
+                gosub gui.dynamic.events
+            end ;* if
+        end else
+            gosub gui.custom.events
+        end ;* if
+        return
+    end ;* sub GUI.DECODE.EVENT
+*-->END EVENT DECODER<--*
+
+
+<<7>>
+*-->BEGIN EVENT HANDLER<--*
+    public sub GUI.%%TARGET.%%()
+        * Add your event code here...
+        return
+    end ;* sub GUI.%%TARGET.%%
+*-->END EVENT HANDLER<--*
+
+
+<<8>>
+*-->BEGIN CLOSE EVENT HANDLER<--*
+    public sub GUI.%%TARGET.%%()
+        * Default form close event handler
+        call ATGUIHIDE( GUIAPP, GUIFRM, '', '', GUIERRORS, GUISTATE )
+        if (GUIERRORS<1> >= 2) then
+            me->GUI.ERROR
+            return
+        end ;* if
+        call ATGUIGETPROP( GUIAPP, '', '', GPSTATUS, 0, 0, NUM.FORMS, GUIERRORS, GUISTATE )
+        if (GUIERRORS<1> >= 2) then
+            me->GUI.ERROR
+            return
+        end ;* if
+        if (NUM.FORMS = 0) then
+            call ATGUIDELETE( GUIAPP, '', '', GUIERRORS, GUISTATE )
+            if (GUIERRORS<1> >= 3) then
+                me->GUI.ERROR
+                return
+            end ;* if
+        end ;* if
+        return
+    end ;* sub GUI.%%TARGET.%%
+*-->END CLOSE EVENT HANDLER<--*
+
+
+<<9>>
+*-->BEGIN MDICLOSE EVENT HANDLER<--*
+    public sub GUI.%%TARGET.%%()
+        * Default MDI app close event handler
+        call ATGUIDELETE( GUIAPP, '', '', GUIERRORS, GUISTATE )
+        if (GUIERRORS<1> >= 3) then
+            me->GUI.ERROR
+            return
+        end ;* if
+        return
+    end ;* sub GUI.%%TARGET.%%
+*-->END MDICLOSE EVENT HANDLER<--*
+
+
+<<10>>
+*-->BEGIN ERROR HANDLER<--*
+    public sub GUI.ERROR()
+        call ATGUISHUTDOWN
+        display "The following errors have been reported by the GUI system:"
+        for each GUIERROR in GUIERRORS
+            display GUIERROR<1,6>
+        next GUIERROR
+        return
+    end ;* sub GUI.ERROR
+*-->END ERROR HANDLER<--*
+
+end ;* class %%APP%%  
+
+<<11>>
+*-->BEGIN DYNAMIC EVENTS<--*
+    public sub GUI.DYNAMIC.EVENTS()
+        * Add any dynamic event handling code here. The GUIEVT, GUIAPP, GUIFRM,
+        * GUICTL and GUIARGS variables are valid and availble for your use.
+        return
+    end ;* sub GUI.DYNAMIC.EVENTS
+*-->END DYNAMIC EVENTS<--*
+
+
+<<12>>
+*-->BEGIN CUSTOM EVENTS<--*
+    public sub GUI.CUSTOM.EVENTS()
+        * Add any custom event handling code here. The GUIEVT, GUIAPP, GUIFRM,
+        * GUICTL and GUIARGS variables are valid and availble for your use.
+        return
+    end ;* sub GUI.CUSTOM.EVENTS
+*-->END CUSTOM EVENTS<--*

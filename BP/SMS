@@ -1,0 +1,70 @@
+SUBROUTINE SMS( RET, DATAA, LOWERA, UPPERA, DATAB, LOWERB, UPPERB, DOWNVECTOR, UPVECTOR )
+
+    DATAA.LENGTH = DATAA<1>
+    DATAA.MODIFIED = RAISE( DATAA<2> )
+    DATAA.DATA = RAISE( DATAA<3> )
+    DATAB.LENGTH = DATAB<1>
+    DATAB.MODIFIED = RAISE( DATAB<2> )
+    DATAB.DATA = RAISE( DATAB<3> )
+    MAX = DATAA.LENGTH + DATAB.LENGTH + 1
+    DOWNK = LOWERA - LOWERB
+    UPK = UPPERA - UPPERB
+    DELTA = (UPPERA - LOWERA) - (UPPERB - LOWERB)
+    ODDDELTA = BITAND( DELTA, 1 )
+    DOWNOFFSET = MAX - DOWNK
+    UPOFFSET = MAX - UPK
+    MAXD = ((UPPERA - LOWERA + UPPERB - LOWERB) // 2) + 1
+    DOWNVECTOR<DOWNOFFSET + DOWNK + 1> = LOWERA
+    UPVECTOR<UPOFFSET + UPK - 1> = UPPERA
+    FOR D = 0 TO MAXD
+        FOR K = (DOWNK - D) TO (DOWNK + D) STEP 2
+            IF (K = (DOWNK - D)) THEN
+                X = DOWNVECTOR<DOWNOFFSET + K + 1>
+            END ELSE
+                X = DOWNVECTOR<DOWNOFFSET + K - 1> + 1
+                IF ((K < (DOWNK + D) & (DOWNVECTOR<DOWNOFFSET + K + 1> >= X))) THEN
+                    X = DOWNVECTOR<DOWNOFFSET + K + 1>
+                END
+            END
+            Y = X - K
+            LOOP
+            WHILE ((X < UPPERA) & (Y < UPPERB) & (DATAA.DATA<X> = DATAB.DATA<Y>))
+                X += 1
+                Y += 1
+            REPEAT
+            DOWNVECTOR<DOWNOFFSET + K> = X
+            IF (ODDDELTA & ((UPK - D) < K) & (K < (UPK + D))) THEN
+                IF (UPVECTOR<UPOFFSET + K> <= DOWNVECTOR<DOWNOFFSET + K>) THEN
+                    RET = DOWNVECTOR<DOWNOFFSET + K> : @FM : (DOWNVECTOR<DOWNOFFSET + K> - K)
+                    RETURN
+                END
+            END
+        NEXT K
+        FOR K = (UPK - D) TO (UPK + D) STEP 2
+            IF (K = (UPK + D)) THEN
+                X = UPVECTOR<UPOFFSET + K - 1>
+            END ELSE
+                X = UPVECTOR<UPOFFSET + K + 1> - 1
+                IF ((K > (UPK - D)) & (UPVECTOR<UPOFFSET + K - 1> < X)) THEN
+                    X = UPVECTOR<UPOFFSET + K - 1>
+                END
+            END
+            Y = X - K
+            LOOP
+            WHILE ((X > LOWERA) & (Y > LOWERB) & (DATAA.DATA<X-1> = DATAB.DATA<Y-1>))
+                X = X - 1
+                Y = Y - 1
+            REPEAT
+            UPVECTOR<UPOFFSET + K> = X
+            IF (NOT(ODDDELTA) & ((DOWNK - D) <= K) & (K <= (DOWNK + D))) THEN
+                IF (UPVECTOR<UPOFFSET + K> <= DOWNVECTOR<DOWNOFFSET + K>) THEN
+                    RET = DOWNVECTOR<DOWNOFFSET + K> : @FM : (DOWNVECTOR<DOWNOFFSET + K> - K)
+                    RETURN
+                END
+            END
+        NEXT K
+    NEXT D
+
+    ABORT "We should never get here!"
+
+END ;* SMS

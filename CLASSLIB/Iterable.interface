@@ -1,0 +1,5 @@
+class Iterable.interface
+    get iterator()
+        return Object( "Iterator.interface" )
+    end
+end

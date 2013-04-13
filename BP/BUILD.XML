@@ -1,0 +1,163 @@
+      SUBROUTINE BUILD.XML(CTRL.ID,DTA,RES,R.ERR)
+
+      * Copyright (c) 2005-2006 Doug Dumitru, All Rights Reserved
+      * 
+      * This program is free software; you can redistribute it and/or modify
+      * it under the terms of the GNU General Public License as published by
+      * the Free Software Foundation; either version 2, or (at your option)
+      * any later version.
+      * 
+      * This program is distributed in the hope that it will be useful,
+      * but WITHOUT ANY WARRANTY; without even the implied warranty of
+      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      * GNU General Public License for more details.
+      *
+      * See http://dougdumitru.openqm.com for more information
+      * and contact information.
+
+* Routine to BUILD an XML document using a template.
+*
+* Parameters:  CTRL.ID - Item-ID of template in XML.LAYOUTS
+*              DTA     - Inbound data
+*              RES     - Outbound XML document
+*              R.ERR   - Chained error variable
+
+$catalog local
+
+      equate yes to 1
+      equate no  to 0
+      equate am  to char(254)
+      equate vm  to char(253)
+      equate svm to char(252)
+
+      EQUATE BIG.STR TO 999999999
+
+      if system(31) <> '0' or system(32) = '' then
+         display 'This subroutine is licensed under the terms of the GPL.'
+         display 'Modification and distribution of this software for use'
+         display 'with a commercial MultiValue database is not permitted'
+         display 'under the derivative works definition of the GPL.'
+         stop
+      end
+*
+      RES = ''
+*
+      RES<-1> = "<?xml version='1.0' encoding='utf-8'?>"
+*
+      CUR.TAG = ''
+*
+      CALL PARSE.XML2(CTRL.ID,CTRL,R.ERR)
+      IF R.ERR <> '' THEN RETURN
+*
+      DTA1 = DTA
+      CALL PARSE.XML3(CTRL,DTA1,RR)
+*
+      FOR X1 = 1 TO DCOUNT(RR,VM)
+         V.FLG = YES
+         MV.FLG = 0
+         FOR X2 = 1 TO 999999 WHILE V.FLG
+            IF X2 > 1 THEN
+               FOR I = 2 TO MV.FLG
+                  J = DCOUNT(CUR.TAG,SVM)
+                  RES<-1> = SPACE(J*2) : '</' : CUR.TAG<1,1,J> : '>'
+                  CUR.TAG = DELETE(CUR.TAG,1,1,J)
+               NEXT I
+            END
+            V.FLG = 0
+            FOR X3 = 1 TO DCOUNT(RR<1,X1>,SVM)
+               I = RR<1,X1,X3>
+               W1 = CTRL<I,1>
+               W2 = CTRL<I,2>
+               W3 = CTRL<I,3>
+               N = DCOUNT(W1,SVM)
+*
+               N1 = FIELD(W3,',',1)
+               N2 = FIELD(W3,',',2)
+               N3 = FIELD(W3,',',3)
+               IF N1 = '' THEN N1 = 1
+               IF N2 = '' THEN N2 = 1
+               IF N3 = '' THEN N3 = 1
+*
+               MV.FLG = NO
+               IF N1[1,1] = 'M' THEN
+                  MV.FLG = N1[2,999]
+                  N1 = X2
+               END
+               IF N2[1,1] = 'M' THEN
+                  MV.FLG = N2[2,999]
+                  N2 = X2
+               END
+               IF N3[1,1] = 'M' THEN
+                  MV.FLG = N3[2,999]
+                  N3 =X2
+               END
+*
+               IF W2 = '/' THEN
+                  J = DCOUNT(CUR.TAG,SVM)
+                  RES<-1> = SPACE(J*2) : '</' : CUR.TAG<1,1,J> : '>'
+                  CUR.TAG = DELETE(CUR.TAG,1,1,J)
+               END
+               XX = DTA1<N1,N2,N3>
+               IF XX <> '' THEN
+*
+*        Output tag heierarchy
+*
+                  IF CUR.TAG = '' THEN
+                     N1 = 0
+                  END ELSE
+                     J1 = DCOUNT(CUR.TAG,SVM)
+                     N1 = J1
+                     FOR J = 1 TO J1 WHILE N1 = J1
+                        IF CUR.TAG<1,1,J> <> W1<1,1,J> THEN N1 = J-1
+                     NEXT J
+                     IF DCOUNT(CUR.TAG,SVM) > N1 THEN
+                        FOR J = DCOUNT(CUR.TAG,SVM) TO (N1+1) STEP -1
+                           RES<-1> = SPACE(J*2) : '</' : CUR.TAG<1,1,J> : '>'
+                           CUR.TAG = DELETE(CUR.TAG,1,1,J)
+                        NEXT J
+                     END
+                  END
+                  IF DCOUNT(W1,SVM)-1 > N1 THEN
+                     FOR J = N1+1 TO DCOUNT(W1,SVM)-1
+                        RES<-1> = SPACE(J*2) : '<' : W1<1,1,J> : '>'
+                        CUR.TAG<1,1,J> = W1<1,1,J>
+                     NEXT J
+                  END
+*
+                  GOSUB 100
+               END
+               IF MV.FLG AND XX <> '' THEN
+                  V.FLG = MV.FLG
+               END
+*
+            NEXT X3
+         NEXT X2
+      NEXT X1
+*
+      FOR J = DCOUNT(CUR.TAG,SVM) TO 1 STEP -1
+         RES<-1> = SPACE(J*2) : '</' : CUR.TAG<1,1,J> : '>'
+      NEXT J
+*
+      RETURN
+*
+100   REM Output a record
+*
+      BEGIN CASE
+         CASE INDEX(XX,'!NOCDATA',1)
+            XX = change(XX,'!NOCDATA','')
+         CASE INDEX(XX,'&',1)
+            XX = '<![CDATA[' : XX : ']]>'
+         CASE INDEX(XX,'<',1)
+            XX = '<![CDATA[' : XX : ']]>'
+         CASE INDEX(XX,'>',1)
+            XX = '<![CDATA[' : XX : ']]>'
+         CASE INDEX(XX,']]>',1)
+            XX = change(XX,']]>',']] >')
+            XX = '<![CDATA[' : XX : ']]>'
+         CASE YES
+      END CASE
+*
+      RES<-1> = SPACE(N*2) : '<' : W1<1,1,N> : '>' : XX : '</' : W1<1,1,N> : '>'
+*
+      RETURN
+   end

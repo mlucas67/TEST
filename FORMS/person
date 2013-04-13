@@ -1,0 +1,65 @@
+TEMPLATEı41198.82263ıXPERTıBPüGUIDRIVERü0ü0
+0ı1.4ı4
+2ıXPERTıı1ıautoıautoı60ı20ı1073741825
+4ıı22ıııExpert System GUI Version 2.0
+4ıı7ııı4
+4ıı59ııı0
+4ıı44ııı2.0
+4ıı24ııı1
+4ıı61ıııProcessing... please wait
+4ıı60ııı2
+4ıı43ııı(c)Copyright 2012, Doxgroup, Inc.
+4ıı42ıııMarshall Lucas
+4ıı46ııı1
+2ıXPERT*PERSONıı7ıautoıautoı80ı25ı1
+4ıı22ıııMaintain Person Record
+4ıı48ııı0
+4ıı9ııı0
+4ıı16ıııSegoe UI
+4ıı17ııı9
+4ıı18ııı0
+4ıı19ııı0
+4ıı68ııı0
+2ıXPERT*PERSON*LBL$IDıı15ı1ı.5ı8ı1.25ı0
+4ıı0ıııRecord ID
+4ıı25ııı1
+4ıı67ııı0
+2ıXPERT*PERSON*TXT$IDıı16ı10ı.5ı8ı1.25ı0
+4ıı12ııı1
+4ıı54ııı1
+2ıXPERT*PERSON*LBL$FULLNAMEıı15ı1ı2ı8ı1.25ı0
+4ıı0ıııFull Name
+4ıı25ııı1
+4ıı67ııı0
+2ıXPERT*PERSON*TXT$FULLNAMEıı16ı10ı2ı25ı1.25ı0
+4ıı54ııı1
+2ıXPERT*PERSON*LBL$TITLEıı15ı1ı3.5ı8ı1.25ı0
+4ıı0ıııTitle
+4ıı25ııı1
+4ıı67ııı0
+2ıXPERT*PERSON*LST$TITLEıı24ı10ı3.5ı15ı1.25ı0
+4ıı27ııı2
+4ıı38ııı0ı0
+4ıı37ııı15ı15
+4ıı26ııı1üMr.ı2üMrs.ı3üDr.
+4ıı39ııı2
+4ıı53ııı8
+2ıXPERT*PERSON*LBL$SALUTATIONıı15ı1ı5ı8ı1.25ı0
+4ıı0ıııSalutation
+4ıı25ııı1
+4ıı67ııı0
+2ıXPERT*PERSON*LST$SALUTATIONıı24ı10ı5ı25ı1.25ı0
+4ıı27ııı1
+4ıı38ııı0
+4ıı37ııı15
+2ıXPERT*PERSON*LBL$SUFFIXıı15ı27ı3.5ı8ı1.25ı0
+4ıı0ıııSuffix
+4ıı25ııı1
+4ıı67ııı0
+2ıXPERT*PERSON*LST$SUFFIXıı24ı36ı3.5ı15ı1.25ı0
+4ıı27ııı2
+4ıı38ııı0ı0
+4ıı37ııı15ı15
+4ıı26ııı1üJr.ı2üSr.ı3üIII
+4ıı39ııı2
+0ı-1

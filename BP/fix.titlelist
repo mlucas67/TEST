@@ -1,0 +1,14 @@
+open "bp" to fbp else stop
+read titles from fbp, "titleList" else stop
+temp = titles<1>
+titles<1> = ''
+for each title in temp
+    locate title in titles<1,1> by "al" setting pos else
+        titles = insert( titles, 1, pos; title )
+    end
+next title
+dc = dcount( titles<1>, @vm )
+for i = 1 to dc
+    titles<2,i> = i
+next i
+write titles on fbp, "titleList"

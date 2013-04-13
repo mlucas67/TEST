@@ -1,0 +1,16 @@
+x = 1
+
+if (x = 1)
+    then
+        display "x is one!"
+        end
+    else
+        display "x is not one!"
+        end
+
+begin case
+    case (x = 1)
+        display "x is one!"
+    case 1
+        display "x is not one!"
+end case

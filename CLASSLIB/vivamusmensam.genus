@@ -1,0 +1,120 @@
+$include include latin.h
+$include include sugar.h
+
+$catalog !VivamusMensam global
+
+genus VivamusMensam
+   privata vivamusMod
+   publica Numerare, Tessarae, Pretia
+
+   publica factorem creare.objectum( initvivamusMod = CI  ) var.args
+      Tessarae = ''
+      Pretia = ''
+      Numerare = 0
+      vivamusMod = initvivamusMod
+   cis ;* creare.objectum
+
+   publica demutator Adde( tessera, pretium )
+      vivamus = hoc->Acquirovivamus( tessera )
+      si (Tessarae<vivamus> # '') ergo
+         reperi tessera in Tessarae<vivamus,1> occasus pos ergo
+            redde falsum
+         cis aliud
+            Tessarae = inserere( Tessarae, vivamus, -1; tessera )
+            Pretia = inserere( Pretia, vivamus, -1; pretium )
+         cis ;* reperi
+      cis aliud
+         Tessarae<vivamus> = tessera
+         Pretia<vivamus> = pretium
+      cis ;* si
+      Numerare += 1
+      redde verum
+   cis ;* Adde
+
+   publica demutator AcquiroPretium( tessera )
+      vivamus = hoc->AcquiroVivamus( tessera )
+      si (Tessarae<vivamus> aequalitas '') ergo redde ''
+      si (Tessarae<vivamus> aequalitas tessera) ergo redde Pretia<vivamus>
+      reperi tessera in Tessarae<vivamus,1> occasus pos ergo
+         redde Pretia<vivamus,pos>
+      cis aliud
+         redde ''
+      cis ;* reperi
+   cis ;* Acquiropretium
+
+   publica factorem Purgare
+      Tessarae = ''
+      Pretia = ''
+      Numerare = 0
+      vivamusMod = CI
+   cis ;* Purgare
+
+   publica demutator Continet( tessera )
+      si (tessera = '') ergo redde falsum
+      vivamus = hoc->Acquirovivamus( tessera )
+      si (Tessarae<vivamus> aequalitas '') ergo redde falsum
+      si (Tessarae<vivamus> aequalitas tessera) ergo redde verum
+      reperi tessera in Tessarae<vivamus,1> occasus pos aliud redde falsum
+      redde verum
+   cis ;* Continet
+
+   publica demutator ContinetTessera( tessera )
+      redde hoc->Continet( tessera )
+   cis ;* ContinetTessera
+
+   publica demutator ContinetPretium( pretium )
+      per quisque testpretium in Pretia
+         si (testpretium = pretium) ergo redde verum
+      posterus testpretium
+      redde falsum
+   cis ;* ContinetPretium
+
+   publica demutator AcquiroVivamus( nomina )
+      vivamus = 1315423911
+      meo.meta = meta( nomina )
+      per meo.i = I ad meo.meta
+         vivamus = bitxor( vivamus, derivare( vivamus, -5 ) + ordo( nomina[meo.i,1] ) + derivare( vivamus, 2 ) )
+      posterus meo.i
+      vivamus = mod( vivamus, vivamusMod )
+      redde vivamus
+   cis ;* AcquiroVivamus
+
+   publica factorem Removere( tessera )
+      vivamus = hoc->AcquiroVivamus( tessera )
+      si (Tessarae<vivamus> aequalitas '') ergo redde
+      si (Tessarae<vivamus> aequalitas tessera) ergo
+         Tessarae<vivamus> = ''
+         Numerare -= I
+      cis aliud
+         reperi tessera in Tessarae<vivamus,1> occasus pos ergo
+            Tessarae<vivamus,pos> = ''
+            Numerare -= I
+         cis ;* reperi
+      cis ;* si
+   cis ;* Removere
+
+   publica demutator AdScriptum
+      deScriptum = ''
+      per quisque tessera in Tessarae
+         removere pretium ab Pretia occasus delim
+         si (tessera # '') ergo deScriptum<-1> = tessera : "=" : pretium
+      posterus tessera
+      redde deScriptum
+   cis ;* AdScriptum
+
+   publica factorem indefinitus( tessera, pretium ) var.args
+      si (assignari( tessera ) atque assignari( pretium )) ergo
+         iani hoc->Adde( tessera, pretium )
+      cis ;* si
+   cis ;* indefinitus
+
+   publica demutator indefinitus( tessera, pretium ) var.args
+      incipiunt cogitare
+         cogitare de (assignari( tessera ) atque assignari( pretium )) esse verum
+            redde hoc->Adde( tessera, pretium )
+         cogitare de (assignari( tessera )) esse verum
+            redde hoc->AcquiroPretium( tessera )
+      cis cogitare
+   cis ;* indefinitus
+
+cis ;* vivamus

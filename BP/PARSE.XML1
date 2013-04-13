@@ -1,0 +1,200 @@
+      SUBROUTINE PARSE.XML1(SRC.DOC,RES,R.ERR)
+
+      * Copyright (c) 2005-2006 Doug Dumitru, All Rights Reserved
+      * 
+      * This program is free software; you can redistribute it and/or modify
+      * it under the terms of the GNU General Public License as published by
+      * the Free Software Foundation; either version 2, or (at your option)
+      * any later version.
+      * 
+      * This program is distributed in the hope that it will be useful,
+      * but WITHOUT ANY WARRANTY; without even the implied warranty of
+      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      * GNU General Public License for more details.
+      *
+      * See http://dougdumitru.openqm.com for more information
+      * and contact information.
+
+* Subroutine to parse an XML inbound document into a set of tags
+* that are returned in RES.
+*
+*    Parameters:    SRC.DOC - Source XML Document
+*                   RES     - Result array
+*                   R.ERR   - Chained error variable
+*
+* Note about R.ERR:  R.ERR is chained from subroutine to subroutine
+*                    so this routine does not initialize this variable.
+*                    Make sure that you initialize this variable to null
+*                    before you call this routine.
+*
+* Output RES variable is a 2-attribute array with the following
+* values:
+*
+*     Attr1 : multi-sub-value elements in the form:
+*                'XML Element Name' : '*' : OccuranceCounter
+*     Attr2 : element value
+
+$catalog local
+
+      equate yes to 1
+      equate no  to 0
+      equate am  to char(254)
+      equate vm  to char(253)
+      equate svm to char(252)
+*
+* Parse and XML string into controlling/dependent results
+*
+      EQUATE BIG.STR TO 999999999
+
+      if system(31) <> '0' or system(32) = '' then
+         display 'This subroutine is licensed under the terms of the GPL.'
+         display 'Modification and distribution of this software for use'
+         display 'with a commercial MultiValue database is not permitted'
+         display 'under the derivative works definition of the GPL.'
+         stop
+      end
+*
+      RES = ''
+      RESA = ''
+*
+      S.DOC = SRC.DOC
+      GOSUB 100
+      IF RT <> 'Markup' THEN
+         R.ERR<-1> = 'Document beginning is not markup'
+         RETURN
+      END
+      IF RRL[1,4] <> '?xml' THEN
+         R.ERR = 'Document does not appear to be XML'
+         RETURN
+      END
+*
+      CUR.TAG = ''
+      N = 0
+      LOOP WHILE S.DOC <> '' DO
+         GOSUB 100
+         BEGIN CASE
+            CASE RT = 'Whitespace'
+            CASE RT = 'Markup' AND RRL[LEN(RRL),1] = '/'
+            CASE RT = 'Markup' AND RRL[1,1] <> '/'
+               IF CUR.TAG = '' THEN
+                  T = RR
+               END ELSE
+                  T = CUR.TAG : SVM : RR
+               END
+               FLG = NO
+               FOR I = 1 TO 99999 UNTIL FLG
+                  TT = T : '*' : I
+                  LOCATE(TT,RESA;L) ELSE
+                     CUR.TAG = TT
+                     RESA<-1> = TT
+                     FLG = YES
+                  END
+               NEXT I
+            CASE RT = 'Markup' AND RRL[1,1] = '/'
+               CUR.TAG = DELETE(CUR.TAG,1,1,DCOUNT(CUR.TAG,SVM))
+            CASE RT = 'Value' OR RT = 'Comment'
+               GOSUB 200
+               N = N + 1
+               RES<1,N> = CUR.TAG
+               RES<2,N> = RR
+            CASE YES
+               R.ERR<-1> = 'Invalid XML parse substring'
+               RETURN
+         END CASE
+      REPEAT
+*
+      RETURN
+*
+100   REM Get an element
+*
+* Inbound string in S.DOC
+* Element in RR   (lowercased in RRL)
+* Element type in RT
+*
+      BEGIN CASE
+         CASE S.DOC[1,9] = '<![CDATA['
+            T = INDEX(S.DOC,']]>',1)
+            IF NOT(T) THEN
+               RR = S.DOC[2,BIG.STR]
+               S.DOC = ''
+               RT = 'Fragment'
+            END ELSE
+               RR = S.DOC[10,T-10]
+               S.DOC = S.DOC[T+3,BIG.STR]
+               RT ='Value'
+            END
+            RR = change(RR,AM," ") ;* Added by RHU to handle Manual uploads
+         CASE S.DOC[1,1] = '<'
+            T = INDEX(S.DOC,'>',1)
+            IF NOT(T) THEN
+               RR = S.DOC[2,BIG.STR]
+               S.DOC = ''
+               RT = 'Fragment'
+            END ELSE
+               RR = S.DOC[2,T-2]
+               RR = FIELD(RR,' ',1)
+               S.DOC = S.DOC[T+1,BIG.STR]
+               RT = 'Markup'
+            END
+         CASE YES
+            T = INDEX(S.DOC,'<',1)
+            IF NOT(T) THEN
+               RR = S.DOC
+               S.DOC = ''
+               RT = 'Value'
+            END ELSE
+               RR = S.DOC[1,T-1]
+               S.DOC = S.DOC[T,BIG.STR]
+               RT = 'Value'
+            END
+      END CASE
+*
+      RRL = downcase(RR)
+*
+      IF LEN(RR) = COUNT(RR,' ') + COUNT(RR,AM) + COUNT(RR,CHAR(9)) + COUNT(RR,CHAR(10)) + COUNT(RR,CHAR(13)) THEN
+         RT = 'Whitespace'
+      END
+*
+      RETURN
+*
+200   REM De-quote an element
+*
+* Element in RR
+*
+      S.RR = RR
+      RR = ''
+*
+      LOOP WHILE S.RR <> '' DO
+         T = INDEX(S.RR,'&',1)
+         IF NOT(T) THEN
+            RR = RR : S.RR
+            S.RR = ''
+         END ELSE
+            IF T > 1 THEN
+               RR = RR : S.RR[1,T-1]
+               S.RR = S.RR[T,BIG.STR]
+            END
+            BEGIN CASE
+               CASE S.RR[1,3] = '&lt'
+                  RR = RR : '<'
+                  S.RR = S.RR[4,BIG.STR]
+               CASE S.RR[1,3] = '&gt'
+                  RR = RR : '>'
+                  S.RR = S.RR[4,BIG.STR]
+               CASE S.RR[1,4] = '&amp'
+                  RR = RR : '&'
+                  S.RR = S.RR[5,BIG.STR]
+               CASE S.RR[1,5] = '&nbsp'
+                  RR = RR : ' '
+                  S.RR = S.RR[6,BIG.STR]
+               CASE YES
+                  RR = RR : '&'
+                  S.RR = S.RR[2,BIG.STR]
+            END CASE
+         END
+      REPEAT
+*
+      RRL = downcase(RR)
+*
+      RETURN
+   end

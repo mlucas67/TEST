@@ -1,0 +1,15 @@
+$debug
+match1 = "~'*'1A0X'='0X"
+str1 = "* abc = 123"
+str2 = "abc = 123"
+str3 = "  abc   =    'x'"
+call matchfld( retval, str2, match1, 1 )
+display retval
+call matchfld( retval, str2, match1, 2 )
+display retval
+call matchfld( retval, str2, match1, 3 )
+display retval
+call matchfld( retval, str2, match1, 4 )
+display retval
+call matchfld( retval, str2, match1, 5 )
+display retval

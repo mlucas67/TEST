@@ -1,0 +1,51 @@
+QUOTES = "'":'"':'\'
+STATEMENTS = "0X';'0X"
+indent = 0
+loop
+    input line
+while (line)
+    loop
+    while (line)
+        begin case
+            case (line matches STATEMENTS)
+                stmt = ''
+                inquotes = @false
+                i = 1
+                loop
+                while (inquotes or line)
+                    ch = line[i,1]
+                    begin case
+                        case (ch = inquotes)
+                            inquotes = @false
+                            stmt := ch
+                        case (index( QUOTES, ch, 1 ))
+                            if not( inquotes ) then inquotes = ch
+                            stmt := ch
+                        case (inquotes)
+                            stmt := ch
+                        case (ch = ';')
+                            line = line[i+1,len(line)-i+1]
+                            exit
+                        case 1
+                            stmt := ch
+                    end case
+                    i += 1
+                repeat
+                if (line) then
+                    crt space(indent*4) : "STATEMENTS"
+                    indent += 1
+                end
+                crt space(indent*4) : "STATEMENT"
+                indent += 1
+                crt space(indent*4) : stmt
+                indent -= 1
+            case 1
+                crt space(indent*4) : "STATEMENT"
+                indent += 1
+                crt space(indent*4) : line
+                indent -= 1
+                line = ''
+        end case
+    repeat
+    indent -= 1
+repeat

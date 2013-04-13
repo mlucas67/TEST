@@ -1,0 +1,57 @@
+rules = ''
+rules<-1> = "1A0X' '0Xý0X' '0Xýidentüwsüline"
+*
+oprules = ''
+oprules<-1> = "'*'0Xýkwücomment"
+oprules<-1> = "'!'0Xýkwücomment"
+oprules<-1> = "'remark '0Xýkwücomment"
+oprules<-1> = "'rem '0Xýkwücomment"
+oprules<-1> = "0X'+='0Xýidentüopüident"
+oprules<-1> = "0X'-='0Xýidentüopüident"
+oprules<-1> = "0X'*='0Xýidentüopüident"
+oprules<-1> = "0X'/='0Xýidentüopüident"
+oprules<-1> = "0X'-='0Xýidentüopüident"
+oprules<-1> = "0X':='0Xýidentüopüident"
+oprules<-1> = "0X'&='0Xýidentüopüident"
+oprules<-1> = "0X'!='0Xýidentüopüident"
+oprules<-1> = "0X'->'0Xýidentüopüident"
+oprules<-1> = "0X'='0Xýidentüopüident"
+!
+binoprules = ''
+binoprules<-1> = "0X'=='0Xýidentübinopüident"
+binoprules<-1> = "0X'>='0Xýidentübinopüident"
+binoprules<-1> = "0X'<='0Xýidentübinopüident"
+binoprules<-1> = "0X'<>'0Xýidentübinopüident"
+binoprules<-1> = "0X'><'0Xýidentübinopüident"
+binoprules<-1> = "0X'=<'0Xýidentübinopüident"
+binoprules<-1> = "0X'=>'0Xýidentübinopüident"
+binoprules<-1> = "0X'#>'0Xýidentübinopüident"
+binoprules<-1> = "0X'#<'0Xýidentübinopüident"
+binoprules<-1> = "0X'.&'0Xýidentübinopüident"
+binoprules<-1> = "0X'.!'0Xýidentübinopüident"
+binoprules<-1> = "0X' lt '0Xýidentübinopüident"
+binoprules<-1> = "0X' gt '0Xýidentübinopüident"
+binoprules<-1> = "0X' le '0Xýidentübinopüident"
+binoprules<-1> = "0X' ge '0Xýidentübinopüident"
+binoprules<-1> = "0X' eq '0Xýidentübinopüident"
+binoprules<-1> = "0X' ne '0Xýidentübinopüident"
+binoprules<-1> = "0X'>'0Xýidentübinopüident"
+binoprules<-1> = "0X'<'0Xýidentübinopüident"
+binoprules<-1> = "0X'&'0Xýcondübinopücond"
+binoprules<-1> = "0X'!'0Xýcondübinopücond"
+binoprules<-1> = "0X'#'0Xýidentübinopüident"
+binoprules<-1> = "0X' matches '0Xýidentübinopüident"
+binoprules<-1> = "0X' match '0Xýidentübinopüident"
+binoprules<-1> = "0X' and '0Xýcondübinopücond"
+binoprules<-1> = "0X' or '0Xýcondübinopücond"
+binoprules<-1> = "'not''('0X')'ýbinopülparenücondürparen"
+binoprules<-1> = "0Xýident"
+*
+open "bp" to f.bp else stop 201, "bp"
+read src from f.bp, "parser2" else stop 202, "parser2"
+*
+lineCount = dcount( src, @fm )
+*
+for l = 1 to lineCount
+    line = lines<l>
+next l

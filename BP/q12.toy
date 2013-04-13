@@ -1,0 +1,8 @@
+10: 7100   R[1] <- 0000
+11: 8FFF   read RF
+12: 9F15   mem[15] <- RF
+13: 82FF   read R2
+14: 1112   R1 = R1 + R2
+15: C016   pc <- 16
+16: 91FF   write R1
+17: 0000   halt

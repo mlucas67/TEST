@@ -1,0 +1,12 @@
+10: 7101   R[1] <- 1
+11: 7230   R[2] <- 30
+12: 8AFF      read R[A]
+13: CA17      if (R[A] == 0) goto 17
+14: BA02      mem[R[2]] <- R[A]
+15: 1221      R[2]++
+16: C012      goto 12
+17: 8AFF   read R[A]
+18: 8BFF   read R[B]
+19: FF30   R[F] <- pc; pc <- 30
+1A: 9CFF   write R[C]
+1B: 0000   halt 

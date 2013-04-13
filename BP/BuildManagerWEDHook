@@ -1,0 +1,75 @@
+$catalog !BuildManagerWEDHook global
+subroutine BuildManagerWEDHook( action, fname, id, record, client, errcd, errmsg )
+    **************************************************************************
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    **************************************************************************
+    *
+    * Module:  BuildManagerWEDHook
+    * Author:  Marshall Lucas (mdl)
+    * Version: 1.0.0.0
+    * Created: 1 Apr 2012
+    * Updated:
+    *
+    * Maintenance Record:
+    *
+    * 1.0.0.0
+    *  mdl 1 Apr 2012
+    *   Initial work to create an automated BuildManager for OpenQM.
+    *
+    **************************************************************************
+    *
+    * Input Interface:
+    *
+    *  action:  0 = initialize (no action required)
+    *           1 = read record
+    *           2 = update record
+    *           3 = delete record
+    *           4 = unlock record
+    *  fname:   file name being accessed. rcs may change this name for write, delete or unlock
+    *  id:      item-id being accessed
+    *  record:  item contents after read, before update. n/a for delete or unlock.
+    *  client:  name of client program (atwed32, etc.)
+    *
+    * Output Interface:
+    *
+    *  errcd:   0 if no error, else error number. use an arbitrary number that is not
+    *             likely to conflict with system error message numbers.
+    *  errmsg:  text error message to return to client upon failure
+    *  fname:   changed if rcs requires updates to a different file
+    *  record:  modified item (after read, before update)
+    *
+    * Required Configuration:
+    *
+    *  to enable this rcs hook subroutine, create an 'RCS' item in the
+    *  accutermctrl file. attribute 1 should be 'X' and attribute 2
+    *  should be the name of this subroutine.
+    *
+    **************************************************************************
+    *
+    errcd = 0
+    errmsg = ''
+    result = ''
+    *
+    * decode action
+    *
+    BuildManager = object( "!BuildManager", fname, id, record )
+    begin case
+        case action = 1
+            result = BuildManager->Read()
+        case action = 2
+            result = BuildManager->Update()
+        case action = 3
+            result = BuildManager->Delete()
+        case action = 4
+            result = BuildManager->Unlock()
+    end case
+    errcd = result<1>
+    errmsg = result<2>
+    return
+end

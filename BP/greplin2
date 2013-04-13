@@ -1,0 +1,41 @@
+deffun prime( n ) local
+
+fibo = 1
+lastf = 1
+crt fibo : ", " : 
+loop
+until ((fibo > 227000) and prime( fibo ))
+    crt fibo : ", " :
+    temp = fibo
+    fibo += lastf
+    lastf = temp
+repeat
+crt fibo
+crt
+n = fibo + 1
+s = 0
+for i = 2 to fibo
+    if not( mod( n, i ) ) then
+        if prime( i ) then 
+            crt i : ", " :
+            s += i
+        end
+    end
+next i
+crt
+crt s
+
+local function prime( n )
+    if (n <= 3) then return @true
+    if not( mod( n, 2 ) ) then return @false
+    if not( mod( n, 3 ) ) then return @false
+    if (n = 5) then return @true
+    if not( mod( n, 5 ) ) then return @false
+    if (n = 7) then return @true
+    if not( mod( n, 7 ) ) then return @false
+    if (n = 11) then return @true
+    if not( mod( n, 11 ) ) then return @false
+    return @true
+end 
+
+end    

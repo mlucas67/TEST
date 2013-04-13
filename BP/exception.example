@@ -1,0 +1,24 @@
+$define try loop
+$define catch while
+$define final 1
+$define endtry repeat
+
+program exception.example
+
+    e = object( "!Exception" )
+    
+    numToDivBy = 0
+    
+    try
+        if (numToDivBy = 0) then e->Throw( "BadNumber", "Cannot divide by zero!" )
+    catch (e->Exception( "BadNumber" ))
+        display e->Message()
+    catch (e->Exception( "NotDefined" ))
+        display "This better not happen!"
+    catch final
+        exit
+    endtry
+    
+    display "Out of try block"
+
+end

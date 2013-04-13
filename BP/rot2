@@ -1,0 +1,26 @@
+!
+! rotate text 2 characters right wrapping around, maintaining case
+!
+*
+!
+! define str1 as regular alphas, str2 as rot2 alphas
+!
+$define str1 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+$define str2 "CDEFGHIJKLMNOPQRSTUVWXYZABcdefghijklmnopqrstuvwxyzab"
+!
+$catalog rot2 local
+program rot2
+
+    outval = ''
+    inval = field( @sentence, ' ', 2, count( @sentence, ' ' ) )
+    inval.length = len( inval )
+    
+    for i = 1 to inval.length
+        c = inval[i,1]
+        p = index( str1, c, 1 )
+        outval := if (p) then str2[p,1] else c
+    next i
+    
+    display outval
+
+end

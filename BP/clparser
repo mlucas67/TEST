@@ -1,0 +1,65 @@
+$catalog clparser
+subroutine clparser( retArr, inString )
+    equ true to 1
+    equ false to 0
+
+    retArr = ''
+
+    open "MD" to fvMD else return
+
+    retArr.count = 0
+    inQuote = false
+    quoteChar = ''
+    lastFile = ''
+    work = trim( inString )
+    token.count = dcount( work, ' ' )
+
+    for i = 1 to token.count
+        token = field( work, ' ', i )
+        firstChar = token[1,1]
+        lastChar = token[len(token),1]
+        
+        begin case
+
+            case (inQuote and (lastChar = quoteChar))
+                retArr<retArr.count> := ' ' : token[1,len(token)-1]
+                retArr.count += 1 
+                inQuote = false 
+
+            case (inQuote)
+                retArr<retArr.count> := ' ' : token
+            
+            case ((firstChar = '"') or (firstChar = "'") or (firstChar = '/'))
+                inQuote = true
+                quoteChar = firstChar
+                retArr.count += 1
+                retArr<retArr.count> = token[2,len(token)-1]
+                
+            case (token matches "'/'0X'='0X")
+                retArr.count += 1
+                retArr<retArr.count> = token
+                tmp = field( token, '=', 2 )
+                if ((tmp[1,1] = '"') or (tmp[1,1] = "'") or (tmp[1,1] = '\')) then
+                    inQuote = true
+                    quoteChar = tmp[1,1]
+                end
+            
+            case 1
+                read mdrec from fvMD, token then
+                    begin case
+                        
+                        case (mdrec<1> = 'F')
+                            retArr.count += 1
+                            retArr<retArr.count> = token
+                            lastFile = token
+                            
+                        case (mdrec<1> = 'V')
+                            
+                    end case
+                end else
+                end
+        end case
+    next i
+
+    return
+end

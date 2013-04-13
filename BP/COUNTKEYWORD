@@ -1,0 +1,54 @@
+SUBROUTINE COUNTKEYWORD( CNT, KEYWORD, STATEMENT )
+    EQU TRUE TO 1
+    EQU FALSE TO 0
+    *
+    UKEYWORD = TRIM( OCONV( KEYWORD, "MCU" ) )
+    USTATEMENT = TRIM( OCONV( STATEMENT, "MCU" ) )
+    BEGIN CASE
+        CASE (USTATEMENT[1,7] = "REMARK ")
+            RETURN
+        CASE (USTATEMENT[1,4] = "REM ")
+            RETURN
+        CASE (USTATEMENT[1,1] = '*')
+            RETURN
+        CASE (USTATEMENT[1,1] = '!')
+            RETURN
+    END CASE
+    *
+    INQUOTE = FALSE
+    STATEMENT.LENGTH = LEN( USTATEMENT )
+    KEYWORD.LENGTH = LEN( UKEYWORD )
+    CNT = 0
+    QUOTECH = ''
+    *
+    FOR I = 1 TO STATEMENT.LENGTH
+        CH = USTATEMENT[I,1]
+        WORD = USTATEMENT[I,KEYWORD.LENGTH]
+        BEGIN CASE
+            CASE (INQUOTE AND (CH = QUOTECH))
+                INQUOTE = FALSE
+            CASE (INQUOTE)
+                NULL
+            CASE ((CH = "'") OR (CH = '"') OR (CH = '\'))
+                INQUOTE = TRUE
+            CASE (CH = ';')
+                IF (USTATEMENT[I+1,1] = ' ') THEN I += 2 ELSE I += 1
+                BEGIN CASE
+                    CASE (USTATEMENT[I,7] = "REMARK ")
+                        I = STATEMENT.LENGTH
+                    CASE (USTATEMENT[I,4] = "REM ")
+                        I = STATEMENT.LENGTH
+                    CASE (USTATEMENT[I,1] = '*')
+                        I = STATEMENT.LENGTH
+                    CASE (USTATEMENT[I,1] = '!')
+                        I = STATEMENT.LENGTH
+                END CASE
+            CASE (WORD = UKEYWORD)
+                IF ((I = 1) OR (USTATEMENT[I-1,1] = ' ')) THEN
+                    CNT += 1
+                END
+        END CASE
+    NEXT I
+    *
+    RETURN
+END

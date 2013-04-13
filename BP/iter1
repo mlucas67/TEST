@@ -1,0 +1,22 @@
+deffun fibonacci() local
+    dim fibs(100)
+    fib1 = 0
+    fib2 = 1
+    
+    for i = 1 to 100
+        myfib = fibonacci()
+        fibs(i) = myfib
+    next i
+    
+    for each fib in fibs()
+        crt fib : ', ' :
+    next fib
+            
+    local function fibonacci()
+        fib = fib1
+        fib1 = fib2
+        fib2 = fib + fib1
+        return fib
+    end
+
+end

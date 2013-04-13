@@ -1,0 +1,21 @@
+crt "Create initial instance and singleton"
+account1 = object( "!Account" )
+
+crt "Get singleton instance"
+account1 = account1->Instance()
+
+crt "Create new instance but not singleton"
+account2 = object( "!Account" )
+
+crt "Get singleton instance, destroy new instance"
+account2 = account2->Instance()
+
+
+crt "Set account2 = ''"
+account2 = ''
+
+crt "account1->Dispose"
+account1->Dispose
+
+crt "Set account1 = ''"
+account1 = ''

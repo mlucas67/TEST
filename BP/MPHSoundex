@@ -1,0 +1,147 @@
+$DEBUG
+$CATALOG
+SUBROUTINE MPHSOUNDEX( MPHSCODE, INNAME )
+    WORK = ''
+    LENGTH = LEN( INNAME )
+    *
+    * REMOVE DUPLICATED LETTERS EXCEPT FOR C.
+    *
+    FOR I = 1 TO LENGTH
+        C1 = INNAME[I,1]
+        C2 = INNAME[I+1,1]
+        IF ((C1 <> C2) OR (C1 = 'C')) THEN WORK := C1
+    NEXT I
+    *
+    * CHANGE ENDING -MB TO -M
+    *
+    LENGTH = LEN( WORK )
+    IF (WORK[LENGTH-1,2] = "MB") THEN
+        WORK = WORK[1,LENGTH-1]
+        LENGTH = LENGTH - 1
+    END
+    *
+    * TRANLATE BEGINNINGS:
+    *   KN- => N-
+    *   GN- => N-
+    *   PN- => N-
+    *   AE- => E-
+    *   WR- => R-
+    *
+    IF (WORK MATCHES "'KN'0Xý'GN'0Xý'PN'0Xý'AE'0Xý'WR'0X") THEN
+        WORK = WORK[2,LENGTH-1]
+        LENGTH = LENGTH - 1
+    END
+    IF (WORK[1,2] = "WH") THEN
+        WORK = WORK[3,LENGTH-2]
+        IF (WORK[1,1] MATCHES "'A'ý'E'ý'I'ý'O'ý'U'") THEN
+            WORK = 'W' : WORK
+            LENGTH = LENGTH - 1
+        END ELSE
+            LENGTH = LENGTH - 2
+        END
+    END
+    *
+    * TRANSLATE:
+    *   -CIA- => -XIA-
+    *   -SCH- => -SKH-
+    *   -CH-  => -XH-
+    *   -CI-  => -SI-
+    *   -CE-  => -SE-
+    *   -CY-  => -SY-
+    *   -C-   => -K-
+    *   -DGE- => -JGE-
+    *   -DGY- => -JGY-
+    *   -DGI- => -JGY-
+    *   -D-   => -T-
+    *   -GH-  => -H-, EXCEPT AT END OR BEFORE A VOWEL
+    *   -GI-  => -JI-
+    *   -GE-  => -JE-
+    *   -GY-  => -JY-
+    *   -G-   => -K-
+    *
+    FOR I = 1 TO LENGTH
+        BEGIN CASE
+            CASE (WORK[I,3] = "CIA")
+                WORK[I,1] = 'X'
+            CASE (WORK[I,3] = "SCH")
+                WORK[I+1,1] = 'K'
+            CASE (WORK[I,2] = "CH")
+                WORK[I,1] = 'X'
+            CASE (WORK[I,2] MATCHES "'CI'ý'CE'ý'CY'")
+                WORK[I,1] = 'S'
+            CASE (WORK[I,1] = 'C')
+                WORK[I,1] = 'K'
+            CASE (WORK[I,3] MATCHES "'DGE'ý'DGY'ý'DGI'")
+                WORK[I,1] = 'J'
+            CASE (WORK[I,1] = 'D')
+                WORK[I,1] = 'T'
+            CASE (WORK[I,2] = "GH")
+                IF (I < LENGTH-1) THEN
+                    IF NOT(WORK[I+2,1] MATCHES "'A'ý'E'ý'I'ý'O'ý'U'") THEN
+                        WORK = WORK[1,I-1] : WORK[I+1,LENGTH-I]
+                        LENGTH = LENGTH - 1
+                        I = I - 1
+                    END
+                END
+            CASE (WORK[I,2] MATCHES "'GI'ý'GE'ý'GY'")
+                IF (WORK[I-1,1] <> 'J') THEN
+                    WORK[I,1] = 'J'
+                END
+            CASE (WORK[I,1] = 'G')
+                WORK[I,1] = 'K'
+            CASE (WORK[I,2] MATCHES "'AH'ý'EH'ý'IH'ý'OH'ý'UH'")
+                WORK = WORK[1,I] : WORK[I+2,LENGTH-I]
+                LENGTH = LENGTH - 1
+                I = I - 1
+            CASE (WORK[I,2] = "CK")
+                WORK = WORK[1,I-1] : WORK[I+1,LENGTH-I]
+                LENGTH = LENGTH - 1
+                I = I - 1
+            CASE (WORK[I,2] = "PH")
+                WORK = WORK[1,I-1] : 'F' : WORK[I+2,LENGTH-I-1]
+                LENGTH = LENGTH - 1
+                I = I - 1
+            CASE (WORK[I,1] = 'Q')
+                WORK[I,1] = 'K'
+            CASE (WORK[I,1] = 'V')
+                WORK[I,1] = 'F'
+            CASE (WORK[I,1] = 'Z')
+                WORK[I,1] = 'S'
+            CASE (WORK[I,3] MATCHES "'SH'1Xý'SIO'ý'SIA'ýTIAýTIO")
+                WORK[I,1] = 'X'
+            CASE (WORK[I,2] = "TH")
+                WORK = WORK[1,I-1] : '0' : WORK[I+2,LENGTH-I-1]
+                LENGTH = LENGTH - 1
+                I = I - 1
+            CASE (WORK[I,3] = "TCH")
+                WORK = WORK[1,I-1] : WORK[I+1,LENGTH-I]
+                LENGTH = LENGTH - 1
+                I = I - 1
+            CASE (WORK[I,1] = 'X')
+                IF (I = 1) THEN 
+                    WORK[I,1] = 'S'
+                END ELSE
+                    WORK = WORK[1,I-1] : 'KS' : WORK[I+1,LENGTH-I]
+                    LENGTH = LENGTH + 1
+                END
+            CASE (WORK[I,1] = 'Y') 
+                IF NOT(WORK[I+1,1] MATCHES "'A'ý'E'ý'I'ý'O'ý'U'") THEN
+                    WORK = WORK[1,I-1] : WORK[I+1,LENGTH-I]
+                    LENGTH = LENGTH - 1
+                    I = I - 1
+                END
+        END CASE
+    NEXT I
+    FOR I = 1 TO LENGTH
+        BEGIN CASE
+            CASE (WORK[I,1] MATCHES "'A'ý'E'ý'I'ý'O'ý'U'")
+                IF (I > 1) THEN
+                    WORK = WORK[1,I-1] : WORK[I+1,LENGTH-I] 
+                    LENGTH = LENGTH - 1
+                    I = I - 1
+                END
+        END CASE
+    NEXT I
+    MPHSCODE = TRIM( WORK[1,4] )
+    RETURN
+END

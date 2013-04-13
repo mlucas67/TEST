@@ -1,0 +1,49 @@
+equ esc to char(27)
+equ stx to char(2)
+equ cr to char(13)
+
+open "bp" to file.bp else stop 201, "bp"
+read a from file.bp, "Diff.cs.v1" else stop 202, "Diff.cs.v1"
+read b from file.bp, "Diff.cs.v2" else stop 202, "Diff.cs.v2"
+DiffEngine = object( "!Diff" )
+Diffs = DiffEngine->DiffText( a, b )
+crt Diffs
+
+a.lines = dcount( a, @FM )
+b.lines = dcount( b, @FM )
+dc = dcount( Diffs, @FM )
+pos = 1
+for n = 1 to dc
+    it.StartA = Diffs<n,1>
+    it.StartB = Diffs<n,2>
+    it.DeletedA = Diffs<n,3>
+    it.InsertedB = Diffs<n,4>
+    loop
+    while ((pos < it.StartB) & (pos <= b.lines))
+        display pos'r%6' : '  ' : b<pos>
+        pos += 1
+    repeat
+    if (it.DeletedA > 0) then
+        display esc : stx : "B12" : cr :
+        for m = 0 to (it.DeletedA-1)
+            display (it.StartA+m)'r%6' : '- ' : a<it.StartA + m>
+        next m
+        display esc : stx : "B1" : cr :
+    end
+    if (pos < (it.StartB + it.InsertedB)) then
+        display esc : stx : "B10" : cr :
+        loop
+        while (pos < (it.StartB + it.InsertedB))
+            display pos'r%6' : '+ ' : b<pos>
+            pos += 1
+        repeat
+        display esc : stx : "B1" : cr :
+    end
+next n
+
+loop
+while (pos <= b.lines)
+    display pos'r%6' : '  ' : b<pos>
+    pos += 1
+repeat    
+display

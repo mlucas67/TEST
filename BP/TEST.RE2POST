@@ -1,0 +1,13 @@
+RE1 = "a(b|c)*d"
+CALL RE2POST( POST, RE1 )
+CRT POST
+RE2 = "(ab)|(cd)"
+CALL RE2POST( POST, RE2 )
+CRT POST
+RE3 = "ab(cd)?"
+CALL RE2POST( POST, RE3 )
+CRT POST
+RE4 = "ab(cd)?ef"
+CALL RE2POST( POST, RE4 )
+CRT POST
+END

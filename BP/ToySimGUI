@@ -1,0 +1,335 @@
+* AccuTerm GUI Application Skeleton
+*
+* Add your equates and code to open files here...
+OPEN 'forms' TO GUI.PROJECT.FILE ELSE PRINT "'forms' is not a file name."; STOP
+* Read the GUI template into TEMPLATE
+READ TEMPLATE FROM GUI.PROJECT.FILE,'ToyGUI' ELSE PRINT "'ToyGUI' is not on file."; STOP
+*
+*
+************************************************************
+*
+*
+*-->BEGIN GUI HEADER<--*
+$INCLUDE GUIBP ATGUIEQUATES
+CALL ATGUIINIT2(TEMPLATE<2,2>,'',GUIERRORS,GUISTATE)
+IF GUIERRORS<1> >= 3 THEN GOTO GUI.ERROR
+CALL ATGUIRUNMACRO(TEMPLATE,'',GUIERRORS,GUISTATE)
+IF GUIERRORS<1> >= 3 THEN GOTO GUI.ERROR
+*-->END GUI HEADER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN GUI STARTUP<--*
+CALL ATGUISHOW('TOYGUI','MAIN','','',GUIERRORS,GUISTATE)
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+ToySim = Object( "ToySim" )
+GUIAPP = "ToyGUI"
+GUIFRM = "Main"
+GOSUB UPDATE.MEMORYGRID
+GOSUB UPDATE.REGISTERGRID
+*-->END GUI STARTUP<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN EVENT LOOP<--*
+LOOP
+    CALL ATGUIWAITEVENT(GUIAPP,GUIFRM,GUICTL,GUIEVT,GUIARGS,GUIERRORS,GUISTATE)
+    IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+UNTIL GUIEVT = GEQUIT DO
+    GUIAPP=OCONV(GUIAPP,'MCU')
+    GUIFRM=OCONV(GUIFRM,'MCU')
+    GUICTL=OCONV(GUICTL,'MCU')
+    GOSUB GUI.DECODE.EVENT
+REPEAT
+*-->END EVENT LOOP<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN GUI TRAILER<--*
+CALL ATGUISHUTDOWN
+STOP
+*-->END GUI TRAILER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN EVENT DECODER<--*
+GUI.DECODE.EVENT: *
+IF NUM(GUIEVT) THEN
+    BEGIN CASE
+        CASE GUIAPP='TOYGUI'
+            BEGIN CASE
+                CASE GUIFRM='MAIN'
+                    BEGIN CASE
+                        CASE GUICTL=''
+                            BEGIN CASE
+                                CASE GUIEVT=GECLOSE
+                                    GOSUB GUI.TOYGUI.MAIN.CLOSE;GUIEVT=0
+                            END CASE
+                        CASE GUICTL='CMDEXIT'
+                            BEGIN CASE
+                                CASE GUIEVT=GECLICK
+                                    GOSUB GUI.TOYGUI.MAIN.CMDEXIT.CLICK;GUIEVT=0
+                            END CASE
+                        CASE GUICTL='CMDLOAD'
+                            BEGIN CASE
+                                CASE GUIEVT=GECLICK
+                                    GOSUB GUI.TOYGUI.MAIN.CMDLOAD.CLICK;GUIEVT=0
+                            END CASE
+                        CASE GUICTL='CMDRESET'
+                            BEGIN CASE
+                                CASE GUIEVT=GECLICK
+                                    GOSUB GUI.TOYGUI.MAIN.CMDRESET.CLICK;GUIEVT=0
+                            END CASE
+                        CASE GUICTL='CMDRUN'
+                            BEGIN CASE
+                                CASE GUIEVT=GECLICK
+                                    GOSUB GUI.TOYGUI.MAIN.CMDRUN.CLICK;GUIEVT=0
+                            END CASE
+                        CASE GUICTL='CMDSTEP'
+                            BEGIN CASE
+                                CASE GUIEVT=GECLICK
+                                    GOSUB GUI.TOYGUI.MAIN.CMDSTEP.CLICK;GUIEVT=0
+                            END CASE
+                    END CASE
+            END CASE
+    END CASE
+    IF GUIEVT THEN
+        * Unhandled event - may be dynamic
+        GOSUB GUI.DYNAMIC.EVENTS
+    END
+END ELSE
+    GOSUB GUI.CUSTOM.EVENTS
+END
+RETURN
+*-->END EVENT DECODER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN CLOSE EVENT HANDLER<--*
+GUI.TOYGUI.MAIN.CLOSE: *
+* Default form close event handler
+CALL ATGUIHIDE(GUIAPP,GUIFRM,'','',GUIERRORS,GUISTATE)
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUIGETPROP(GUIAPP,'','',GPSTATUS,0,0,NUM.FORMS,GUIERRORS,GUISTATE)
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+IF NUM.FORMS = 0 THEN
+    CALL ATGUIDELETE(GUIAPP,'','',GUIERRORS,GUISTATE)
+    IF GUIERRORS<1> >= 3 THEN GOTO GUI.ERROR
+END
+RETURN
+*-->END CLOSE EVENT HANDLER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN EVENT HANDLER<--*
+GUI.TOYGUI.MAIN.CMDEXIT.CLICK: *
+GOSUB GUI.TOYGUI.MAIN.CLOSE
+RETURN
+*-->END EVENT HANDLER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN EVENT HANDLER<--*
+GUI.TOYGUI.MAIN.CMDLOAD.CLICK: *
+CALL ATGUIGETPROP( GUIAPP, GUIFRM, "txtFilename", GPVALUE, 0, 0, Filename, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUIGETPROP( GUIAPP, GUIFRM, "txtItemname", GPVALUE, 0, 0, Itemname, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CodeData = ToySim->Load( Filename, Itemname )
+GOSUB TRIM.CODEDATA
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "grdCode", GPVALUE, 0, 0, CodeData, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "cmdStep", GPENABLED, 0, 0, @true, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "cmdRun", GPENABLED, 0, 0, @true, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+GOSUB UPDATE.MEMORYGRID
+GOSUB UPDATE.REGISTERGRID
+RETURN
+*-->END EVENT HANDLER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN EVENT HANDLER<--*
+GUI.TOYGUI.MAIN.CMDRESET.CLICK: *
+ToySim->reset()
+CodeData = ''
+GOSUB UPDATE.CODEGRID
+GOSUB UPDATE.REGISTERGRID
+GOSUB UPDATE.MEMORYGRID
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "txtFilename", GPVALUE, 0, 0, "BP", GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "txtItemname", GPVALUE, 0, 0, '', GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "cmdStep", GPENABLED, 0, 0, @false, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "cmdRun", GPENABLED, 0, 0, @false, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUICLEAR( GUIAPP, GUIFRM, "lstInputs", GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+CALL ATGUICLEAR( GUIAPP, GUIFRM, "lstOutputs", GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+RETURN
+*-->END EVENT HANDLER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN EVENT HANDLER<--*
+GUI.TOYGUI.MAIN.CMDRUN.CLICK: *
+LOOP
+WHILE (ToySim->running())
+    GOSUB GUI.TOYGUI.MAIN.CMDSTEP.CLICK
+REPEAT
+GOSUB UPDATE.CODEGRID
+GOSUB UPDATE.REGISTERGRID
+GOSUB UPDATE.MEMORYGRID
+RETURN
+*-->END EVENT HANDLER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN EVENT HANDLER<--*
+GUI.TOYGUI.MAIN.CMDSTEP.CLICK: *
+ToySim->Step()
+IF (ToySim->inputNeeded()) THEN
+    CALL ATGUIINPUTBOX( "Enter a 4 digit hex value", "Input Needed", '', '', STDIN, GUIERRORS, GUISTATE )
+    IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+    ToySim->stdin = STDIN
+    CALL ATGUIINSERTITEMS( GUIAPP, GUIFRM, "lstInputs", 0, STDIN, GUIERRORS, GUISTATE )
+    IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+    ToySim->Step()
+END
+IF (ToySim->stdout() # '') THEN
+    CALL ATGUIINSERTITEMS( GUIAPP, GUIFRM, "lstOutputs", 0, ToySim->stdout(), GUIERRORS, GUISTATE )
+    IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+END
+GOSUB UPDATE.CODEGRID
+IF NOT( ToySim->running() ) THEN
+    CALL ATGUISETPROP( GUIAPP, GUIFRM, "cmdStep", GPENABLED, 0, 0, @false, GUIERRORS, GUISTATE )
+    IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+    CALL ATGUISETPROP( GUIAPP, GUIFRM, "cmdRun", GPENABLED, 0, 0, @false, GUIERRORS, GUISTATE )
+    IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+END
+GOSUB UPDATE.MEMORYGRID
+GOSUB UPDATE.REGISTERGRID
+RETURN
+*-->END EVENT HANDLER<--*
+*
+*
+************************************************************
+*
+*
+*-->BEGIN DYNAMIC EVENTS<--*
+GUI.DYNAMIC.EVENTS: *
+* Add any dynamic event handling code here. The GUIEVT, GUIAPP, GUIFRM,
+* GUICTL and GUIARGS variables are valid and availble for your use.
+RETURN
+*-->END DYNAMIC EVENTS<--*
+*
+*
+************************************************************
+*
+**-->BEGIN CUSTOM EVENTS<--*
+GUI.CUSTOM.EVENTS: *
+* Add any custom event handling code here. The GUIEVT, GUIAPP, GUIFRM,
+* GUICTL and GUIARGS variables are valid and availble for your use.
+RETURN
+*-->END CUSTOM EVENTS<--*
+*
+*
+************************************************************
+*
+**-->BEGIN ERROR HANDLER<--*
+GUI.ERROR: *
+CALL ATGUISHUTDOWN
+PRINT 'The following errors have been reported by the GUI system:'
+NUMERRS=DCOUNT(GUIERRORS,CHAR(254))
+FOR EACHERR=2 TO NUMERRS
+    PRINT GUIERRORS<EACHERR,6>
+NEXT EACHERR
+STOP
+*-->END ERROR HANDLER<--*
+*
+*
+************************************************************
+*
+*
+UPDATE.MEMORYGRID:
+MEM = ToySim->mem()
+GRIDMEM = "0ý1ý2ý3ý4ý5ý6ý7ý8ý9ýAýBýCýDýEýF"
+ROW = 1
+COL = 1
+FOR EACH CELL IN MEM
+    GRIDMEM<1,ROW,COL+1> = ToySim->toHex( CELL )
+    IF (MOD(COL,16) = 0) THEN
+        ROW += 1
+        COL = 0
+    END
+    COL += 1
+NEXT CELL
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "grdMemory", GPVALUE, 0, 0, GRIDMEM, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+RETURN
+*
+UPDATE.REGISTERGRID:
+REGS = ToySim->R()
+GRIDREGS = "0ý1ý2ý3ý4ý5ý6ý7ý8ý9ýAýBýCýDýEýF"
+ROW = 1
+COL = 1
+FOR EACH CELL IN REGS
+    GRIDREGS<1,ROW,COL+1> = ToySim->toHex( CELL )
+    ROW += 1
+NEXT CELL
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "grdRegisters", GPVALUE, 0, 0, GRIDREGS, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+RETURN
+*
+UPDATE.CODEGRID:
+CodeData = ToySim->codeData()
+GOSUB TRIM.CODEDATA
+pc = ToySim->pc()
+pc = ToySim->toHex( pc )'r%2'
+ROW = 0
+DC = DCOUNT( CodeData<1>, @VM )
+FOR I = 1 TO DC
+    IF (CodeData<1,I,2> = pc) THEN
+        CodeData<1,I,1> = "->"
+        ROW = I
+    END ELSE
+        CodeData<1,I,1> = ''
+    END
+NEXT I
+CALL ATGUISETPROP( GUIAPP, GUIFRM, "grdCode", GPVALUE, 0, 0, CodeData, GUIERRORS, GUISTATE )
+IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+IF (ROW) THEN
+    CALL ATGUISETPROP( GUIAPP, GUIFRM, "grdCode", GPROW, 0, 0, ROW, GUIERRORS, GUISTATE )
+    IF GUIERRORS<1> >= 2 THEN GOTO GUI.ERROR
+END
+RETURN
+*
+TRIM.CODEDATA:
+DC = DCOUNT( CodeData<1>, @VM )
+FOR I = DC TO 1 STEP -1
+    IF ((CodeData<1,I> = '') ! (I > 255)) THEN DEL CodeData<1,I>
+NEXT I
+RETURN

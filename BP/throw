@@ -1,0 +1,23 @@
+!
+! Global subroutine !throw used to throw exceptions.  This is an attempt to
+! emulate the ability of other languages to throw and catch exceptions.
+! Throw is a wrapper to allow the syntax:
+!
+!   throw( MyException )
+!
+! in code, it then "raises" an exception via the raise method of the object
+! instantiated as MyException from an object call:
+!
+!   MyException = object( "MyException.class" )
+!
+! Any exception class must inherit the base Exception class.  The base class
+! defines methods "raise" and "caught" to be use be the wrapper subroutines
+! and functions.
+!
+$catalog !throw global
+subroutine throw( exception )
+    
+    exception->raise
+    
+    return
+end    

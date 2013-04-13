@@ -1,0 +1,10 @@
+program test.exceptions
+
+IOError = object( "IOError" )
+
+IOError->throw
+
+e = IOError->caught()
+display e
+
+end

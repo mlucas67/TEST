@@ -1,0 +1,14 @@
+a = 1
+b = -1
+loop
+    aa = oconv( bitand( a, 0xFFFF ), "MCDX" )
+    bb = oconv( bitand( b, 0xFFFF ), "MCDX" ) 
+until (aa = bb)
+    crt  aa: 
+    crt " " :
+    crt bb
+    a += 1
+    b -= 1
+repeat
+
+end

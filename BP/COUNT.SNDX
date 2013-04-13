@@ -1,0 +1,21 @@
+OPEN "SNDX" TO FILE.SNDX ELSE STOP 201, "SNDX"
+STATS = ''
+METHODS = "RCPF"
+SELECT FILE.SNDX
+LOOP
+    READNEXT ID ELSE EXIT
+    P = INDEX( METHODS, ID[1,1], 1 )
+    READ REC FROM FILE.SNDX, ID THEN
+        DC = DCOUNT( REC, @FM )
+        IF (STATS<P,DC> = '') THEN STATS<P,DC> = 0
+        STATS<P,DC> += 1
+    END
+REPEAT
+FOR I = 1 TO 4
+    DC = DCOUNT( STATS<I>, @VM )
+    FOR J = 1 TO DC
+        IF (STATS<I,J> # '') THEN
+            DISPLAY METHODS[I,1] : ',' : J : ',' : STATS<I,J>
+        END
+    NEXT J
+NEXT I

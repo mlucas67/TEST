@@ -1,0 +1,125 @@
+      SUBROUTINE PARSE.XML3(CTRL,DTA,RR)
+
+      * Copyright (c) 2005-2006 Doug Dumitru, All Rights Reserved
+      * 
+      * This program is free software; you can redistribute it and/or modify
+      * it under the terms of the GNU General Public License as published by
+      * the Free Software Foundation; either version 2, or (at your option)
+      * any later version.
+      * 
+      * This program is distributed in the hope that it will be useful,
+      * but WITHOUT ANY WARRANTY; without even the implied warranty of
+      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      * GNU General Public License for more details.
+      *
+      * See http://dougdumitru.openqm.com for more information
+      * and contact information.
+
+* Internal routine to expand inbound CTRL and DTA
+* elements.  This is needed to handle constants, translates
+* and multi-value constructs.
+
+$catalog local
+
+      equate yes to 1
+      equate no  to 0
+      equate am  to char(254)
+      equate vm  to char(253)
+      equate svm to char(252)
+
+      if system(31) <> '0' or system(32) = '' then
+         display 'This subroutine is licensed under the terms of the GPL.'
+         display 'Modification and distribution of this software for use'
+         display 'with a commercial MultiValue database is not permitted'
+         display 'under the derivative works definition of the GPL.'
+         stop
+      end
+
+      RR = ''
+      CUR.TAG = ''
+      CUR.N = 1000
+*
+*
+      N = 0
+      FOR I = 1 TO DCOUNT(CTRL,AM)
+         D1 = CTRL<I,1>
+         D2 = CTRL<I,2>
+         D3 = CTRL<I,3>
+         BEGIN CASE
+            CASE D2 = '/'
+               T = DCOUNT(CUR.TAG,' ')
+               IF T <= 1 THEN
+                  CUR.TAG = ''
+               END ELSE
+                  CUR.TAG = OCONV(CUR.TAG,'G0 ':T-1)
+               END
+               GOSUB 200
+            CASE D2 = 'C'
+               CTRL<I,2> = 'V'
+               CTRL<I,3> = CUR.N
+               DTA<CUR.N> = D3
+               CUR.N = CUR.N + 1
+               GOSUB 200
+            CASE D2 = 'T'
+               CTRL<I,2> = 'V'
+               CTRL<I,3> = CUR.N
+               T.FILE = FIELD(D3,':',1)
+               T.ID   = FIELD(D3,':',2)
+               DTA<CUR.N> = OCONV(T.ID,'T':T.FILE:';X;;1')
+               CUR.N = CUR.N + 1
+               GOSUB 200
+            CASE D2 = 'V'
+               X1 = FIELD(D3,',',1)
+               X2 = FIELD(D3,',',2)
+               X3 = FIELD(D3,',',3)
+               BEGIN CASE
+                  CASE X1[1,1] = 'M'
+                     X.N = DCOUNT(D1,SVM) - X1[2,99] + 1
+                     X.TAG = change(D1,SVM,' ')
+                     X.TAG = OCONV(X.TAG,'G0 ':X.N)
+                     IF X.TAG = OCONV(CUR.TAG,'G0 ':X.N) THEN
+                        GOSUB 100
+                     END ELSE
+                        GOSUB 200
+                     END
+                  CASE X2[1,1] = 'M'
+                     X.N = DCOUNT(D1,SVM) - X2[2,99] + 1
+                     X.TAG = change(D1,SVM,' ')
+                     X.TAG = OCONV(X.TAG,'G0 ':X.N)
+                     IF X.TAG = OCONV(CUR.TAG,'G0 ':X.N) THEN
+                        GOSUB 100
+                     END ELSE
+                        GOSUB 200
+                     END
+                  CASE X3[1,1] = 'M'
+                     X.N = DCOUNT(D1,SVM) - X3[2,99] + 1
+                     X.TAG = change(D1,SVM,' ')
+                     X.TAG = OCONV(X.TAG,'G0 ':X.N)
+                     IF X.TAG = OCONV(CUR.TAG,'G0 ':X.N) THEN
+                        GOSUB 100
+                     END ELSE
+                        GOSUB 200
+                     END
+                  CASE YES
+                     GOSUB 200
+               END CASE
+         END CASE
+      NEXT I
+*
+      RETURN
+*
+100   REM Place item in SVM list
+*
+      RR<1,N,-1> = I
+*
+      RETURN
+*
+200   REM Make new value
+*
+*
+      N = N + 1
+      RR<1,N> = I
+      CUR.TAG = change(D1,SVM,' ')
+*
+      RETURN
+   end

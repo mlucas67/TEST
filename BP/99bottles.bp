@@ -1,0 +1,2772 @@
+array = ''
+for i = 1 to 30000
+   array<i> = 0
+next i
+ptr = 1
+!!!!!!!!!!Start!!!!!!!!!!!!!!
+if (ptr < 30000) then ptr += 1
+if (array<ptr> < 256) then array<ptr> += 1
+if (array<ptr> < 256) then array<ptr> += 1
+if (array<ptr> < 256) then array<ptr> += 1
+if (array<ptr> < 256) then array<ptr> += 1
+if (array<ptr> < 256) then array<ptr> += 1
+if (array<ptr> < 256) then array<ptr> += 1
+if (array<ptr> < 256) then array<ptr> += 1
+if (array<ptr> < 256) then array<ptr> += 1
+if (array<ptr> < 256) then array<ptr> += 1
+loop
+while (array<ptr>)
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+repeat
+if (ptr > 1) then ptr -= 1
+loop
+while (array<ptr>)
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        loop
+        while (array<ptr>)
+            if (ptr < 30000) then ptr += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (ptr < 30000) then ptr += 1
+            loop
+            while (array<ptr>)
+                if (array<ptr> > 0) then array<ptr> -= 1
+            repeat
+            if (ptr > 1) then ptr -= 1
+            if (ptr > 1) then ptr -= 1
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr < 30000) then ptr += 1
+        loop
+        while (array<ptr>)
+            if (ptr > 1) then ptr -= 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (ptr < 30000) then ptr += 1
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr < 30000) then ptr += 1
+        loop
+        while (array<ptr>)
+            if (ptr > 1) then ptr -= 1
+            if (ptr > 1) then ptr -= 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (ptr < 30000) then ptr += 1
+            if (ptr < 30000) then ptr += 1
+            if (ptr < 30000) then ptr += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (ptr > 1) then ptr -= 1
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        loop
+        while (array<ptr>)
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        loop
+        while (array<ptr>)
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr > 1) then ptr -= 1
+        loop
+        while (array<ptr>)
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        loop
+        while (array<ptr>)
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        crt char( array<ptr> ) :
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        crt char( array<ptr> ) :
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        crt char( array<ptr> ) :
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        crt char( array<ptr> ) :
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        loop
+        while (array<ptr>)
+            if (ptr < 30000) then ptr += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (ptr < 30000) then ptr += 1
+            loop
+            while (array<ptr>)
+                if (array<ptr> > 0) then array<ptr> -= 1
+            repeat
+            if (ptr > 1) then ptr -= 1
+            if (ptr > 1) then ptr -= 1
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr < 30000) then ptr += 1
+        loop
+        while (array<ptr>)
+            if (ptr > 1) then ptr -= 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (ptr < 30000) then ptr += 1
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr < 30000) then ptr += 1
+        loop
+        while (array<ptr>)
+            if (ptr > 1) then ptr -= 1
+            if (ptr > 1) then ptr -= 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (ptr < 30000) then ptr += 1
+            if (ptr < 30000) then ptr += 1
+            if (ptr < 30000) then ptr += 1
+            if (array<ptr> < 256) then array<ptr> += 1
+            if (ptr > 1) then ptr -= 1
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        loop
+        while (array<ptr>)
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        loop
+        while (array<ptr>)
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr > 1) then ptr -= 1
+        loop
+        while (array<ptr>)
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        loop
+        while (array<ptr>)
+            if (array<ptr> > 0) then array<ptr> -= 1
+        repeat
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        crt char( array<ptr> ) :
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    if (ptr < 30000) then ptr += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        crt char( array<ptr> ) :
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (array<ptr> < 256) then array<ptr> += 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    crt char( array<ptr> ) :
+    if (ptr < 30000) then ptr += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    loop
+    while (array<ptr>)
+        if (ptr > 1) then ptr -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+        if (ptr < 30000) then ptr += 1
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    if (array<ptr> < 256) then array<ptr> += 1
+    crt char( array<ptr> ) :
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    if (array<ptr> > 0) then array<ptr> -= 1
+    crt char( array<ptr> ) :
+    loop
+    while (array<ptr>)
+        if (array<ptr> > 0) then array<ptr> -= 1
+    repeat
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+    if (ptr > 1) then ptr -= 1
+repeat
+end

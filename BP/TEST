@@ -1,0 +1,55 @@
+
+
+      * Copyright (c) 2005-2006 Doug Dumitru, All Rights Reserved
+      * 
+      * This program is free software; you can redistribute it and/or modify
+      * it under the terms of the GNU General Public License as published by
+      * the Free Software Foundation; either version 2, or (at your option)
+      * any later version.
+      * 
+      * This program is distributed in the hope that it will be useful,
+      * but WITHOUT ANY WARRANTY; without even the implied warranty of
+      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      * GNU General Public License for more details.
+      *
+      * See http://dougdumitru.openqm.com for more information
+      * and contact information.
+
+      equate yes to 1
+      equate no  to 0
+      equate am  to char(254)
+      equate vm  to char(253)
+      equate svm to char(252)
+
+      dta = ''
+      dta<1> = 'Attr 1'
+      dta<2> = 'Attr 2'
+      dta<2,2> = 'Attr 2,2'
+
+      r.err = ''
+
+      call build.xml('TEST',dta,xml,r.err)
+
+      if r.err <> '' then
+         display 'r.err = ' : r.err
+         stop
+      end
+
+      display 'Resultant XML'
+      for i = 1 TO dcount(xml,am)
+         display i 'r%3' : ' ' : xml<I>
+      next i
+
+      call parse.xml(xml,'TEST',dta2,r.err)
+
+      if r.err <> '' then
+         display 'r.err = ' : r.err
+         stop
+      end
+
+      display 'Resultant data'
+      for i = 1 to dcount(dta2,am)
+         display i 'r%3' : ' ' : dta2<i>
+      next i
+
+   end

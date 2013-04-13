@@ -1,0 +1,39 @@
+qbh = object( "QBasicHeader.class" )
+osread obj from "C:\QMDB\TEST\CLASSLIB.OUT\QBASICHEADER.CLASS" else stop "read"
+qbh->parseHeader( obj )
+crt qbh->magic
+crt qbh->revision 
+crt oconv( qbh->id, "mx" )'r%8'
+crt oconv( qbh->startOffset, "mx" )'r%8'
+crt oconv( qbh->args, "mx" )'r%4'
+crt oconv( qbh->vars, "mx" )'r%4'
+crt oconv( qbh->stackDepth, "mx" )'r%4'
+crt oconv( qbh->symTabOffset, "mx" )'r%8'
+crt oconv( qbh->linTabOffset, "mx" )'r%8'
+crt oconv( qbh->objectSize, "mx" )'r%8'
+crt oconv( qbh->flags, "mx" )'r%4' : ' ' : qbh->flags2str()
+crt oconv( qbh->compileTime, "mx" )'r%8'
+crt oconv( qbh->refs, "mx" )'r%4'
+crt qbh->programName 
+crt qbh->programNameLen 
+crt qbh->objectHeaderSize
+crt qbh->fullPath
+obj = qbh->toString()
+qbh->parseHeader( obj )
+crt qbh->magic
+crt qbh->revision 
+crt oconv( qbh->id, "mx" )'r%8'
+crt oconv( qbh->startOffset, "mx" )'r%8'
+crt oconv( qbh->args, "mx" )'r%4'
+crt oconv( qbh->vars, "mx" )'r%4'
+crt oconv( qbh->stackDepth, "mx" )'r%4'
+crt oconv( qbh->symTabOffset, "mx" )'r%8'
+crt oconv( qbh->linTabOffset, "mx" )'r%8'
+crt oconv( qbh->objectSize, "mx" )'r%8'
+crt oconv( qbh->flags, "mx" )'r%4' : ' ' : qbh->flags2str()
+crt oconv( qbh->compileTime, "mx" )'r%8'
+crt oconv( qbh->refs, "mx" )'r%4'
+crt qbh->programName 
+crt qbh->programNameLen 
+crt qbh->objectHeaderSize
+crt qbh->fullPath

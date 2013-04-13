@@ -1,0 +1,128 @@
+$define MATCH_INDENT "~0A'*'0Xý~0A'!'0Xý~0A'$'0Xý~0A1A0X"
+$define MATCH_REMARKS "'!'0Xý'*'0Xý'REMARK '0Xý'REM '0X"
+$define MATCH_COND_STMT "'FOR '0Xý0X' WHILE '0Xý0X' UNTIL '0Xý'IF '0Xý'CASE '0X"
+$define MATCH_ASSIGN "0X'+='0Xý0X'-='0Xý0X'*='0Xý0X'/='0Xý0X':='0Xý0X'&='0Xý0X'!='0Xý0X'='0X"
+$define MATCH_LABEL "1A0X':'"
+
+$catalog parsecode
+program parsecode
+
+    prompt ''
+    
+    osread code from "C:\QMDB\TEST\bp\parsecode" then
+        convert char(10) to @FM in code
+        convert char(13) to '' in code
+        lines = dcount( code, @FM )
+        
+        for lineno = 1 to lines
+            line = code<lineno>
+            
+            gosub tokenize
+            output = fold( tokens, 79, @FM )
+            dc = dcount( output, @FM )
+
+            for t = 1 to dc
+                display output<t>
+            next t
+        next lineno    
+    end
+    stop
+    
+tokenize: ;* Match line against a set of rules and turn into a set of XML tokens.
+    indent = len( matchfield( line, MATCH_INDENT, 1 ) )
+    rest = matchfield( line, MATCH_INDENT, 2 ) : matchfield( line, MATCH_INDENT, 3 )
+    gosub getstmts
+    tokens = ''
+    
+    for i = 1 to stmt.count
+        stmt = stmts<i>
+        
+        begin case
+        
+            case (upCase( stmt ) matches MATCH_REMARKS)
+                tokens := "<COMMENT lineno='" : lineno : "', indent='" : indent : "'>" : stmt : "</COMMENT>"
+            
+            case (stmt[1,1] = '$')
+                tokens := "<DIRECTIVE lineno='" : lineno : "', indent='" : indent : "'>" : stmt : "</DIRECTIVE>"
+            
+            case (upCase( stmt ) matches MATCH_COND_STMT)
+                tokens := "<STMT lineno='" : lineno : "', indent='" : indent : "'>" : stmt : "</STMT>"
+                
+            case (stmt matches MATCH_ASSIGN)
+                stmt = parse( stmt, MATCH_ASSIGN, @FM )
+                ident1 = trim( stmt<1>, ' ', 'B' )
+                binop = trim( stmt<2>, ' ', 'B' )
+                ident2 = trim( stmt<3>, ' ', 'B' )
+                stmt = "<IDENT>" : ident1 : "</IDENT>"
+                stmt := "<BINOP>" : binop : "</BINOP>"
+                stmt := "<IDENT>" : ident2 : "</IDENT>"
+                tokens := "<ASSIGNMENT lineno='" : lineno : "', indent='" : indent : "'>" : stmt : "</ASSIGNMENT>"
+            
+            case (stmt matches MATCH_LABEL)
+                tokens := "<LABEL lineno='" : lineno : "', indent='" : indent : "'>" : stmt : "</LABEL>"
+            
+            case 1
+                tokens := "<STMT lineno='" : lineno : "', indent='" : indent : "'>" : stmt : "</STMT>"
+        end case
+    next i
+    
+    return
+    
+getstmts:
+    stmt = ''
+    stmts = ''
+    stmt.count = 0
+    rest.length = len( rest )
+    in.quote = @false
+    in.comment = @false
+    quote.char = ''
+    c = ' '
+
+    for j = 1 to rest.length
+        last.c = c
+        c = rest[j,1]
+
+        begin case
+        
+            case (in.comment)
+                stmt := c
+
+            case (in.quote and (c = quote.char))
+                stmt := c 
+                in.quote = @false
+                quote.char = ''
+
+            case (in.quote)
+                stmt := c
+
+            case (upCase( stmt ) matches MATCH_REMARKS)
+                in.quote = @false
+                in.comment = @true
+                stmt := c
+                
+            case ((c = "'") or (c = '"') or (c = '\'))
+                stmt := c
+                in.quote = @true
+                quote.char = c
+                
+            case (c = ';')
+                stmt.count += 1
+                stmts<stmt.count> = trim( stmt, ' ', 'B' )
+                stmt = ''
+
+            case ((last.c = ' ') and (c = ' ')) ;* Catches only non-comment
+                null                            ;* lines, compresses multiple
+                                                ;* spaces into singe space
+
+            case 1
+                stmt := c
+        end case
+    next j
+    
+    if (stmt # '') then 
+        stmt.count += 1
+        stmts<stmt.count> = stmt
+    end
+    return    
+        
+end

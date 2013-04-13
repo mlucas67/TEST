@@ -1,0 +1,8 @@
+$include util:include join.h
+
+array = ''
+array<1> = "aıbüc"
+array<2> = "düeıf"
+
+crt join( array )
+end

@@ -1,0 +1,7 @@
+sndx = object( "Soundex.class" )
+names = "ANASTHAýDAVISCARTERýESCARMANTýMCCALLýMCCROREYýMERSEALýPIEURISSAINTýROTMANýSCHEVELýSCHROMýSEALýSPARRýSTARLEPERýTHRASHýDUMB"
+for each name in names
+    crt name : ' ' :
+    crt sndx->Metaphone( name ) 
+next name
+end

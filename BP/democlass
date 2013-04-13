@@ -1,0 +1,29 @@
+$debug
+dim parameters(99)
+*myObj = object( "myClass" )
+call object( myObj, "myClass" )
+
+*crt myObj->myData1()
+mat parameters = ''
+returnVal = ''
+call myClass( returnVal, myObj, "GET.MYDATA1", 1, mat parameters )
+crt returnVal
+
+*myObj->myData1( 5 )
+mat parameters = ''
+parameters(1) = 5
+returnVal = ''
+call myClass( returnVal, myObj, "SET.MYDATA1", 0, mat parameters )
+
+*crt myObj->myData1()
+mat parameters = ''
+returnVal = ''
+call myClass( returnVal, myObj, "GET.MYDATA1", 1, mat parameters )
+crt returnVal
+
+! auto-generated
+mat parameters = ''
+returnVal = ''
+call myClass( returnVal, myObj, "DESTROY.OBJECT", 0, mat parameters )
+
+end

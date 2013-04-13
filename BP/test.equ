@@ -1,0 +1,5 @@
+equ throw literally "call throw"
+
+throw( exception )
+
+end

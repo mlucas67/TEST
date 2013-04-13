@@ -1,0 +1,54 @@
+program parseclass
+
+    open "classlib" to f.classlib else stop
+    
+    read source from f.classlib, "Integer.class" else stop
+    
+    matchPub = ''
+    matchPub<1,1> = "0X'PUBLIC '0X"
+    matchPub<1,2> = "0X'public '0X"
+    matchPub<1,3> = "0X'Public '0X"
+    
+    matchFun = ''
+    matchFun<1,1> = "0X'FUNCTION '0X'('0X"
+    matchFun<1,2> = "0X'function '0X'('0X"
+    matchFun<1,3> = "0X'Function '0X'('0X"
+    
+    matchGet = ''
+    matchGet<1,1> = "0X'GET '0X'('0X"
+    matchGet<1,2> = "0X'get '0X'('0X"
+    matchGet<1,3> = "0X'Get '0X'('0X"
+    
+    matchSub = ''
+    matchSub<1,1> = "0X'SUB '0X'('0X"
+    matchSub<1,2> = "0X'sub '0X'('0X"
+    matchSub<1,3> = "0X'Sub '0X'('0X"
+    matchSub<1,4> = "0X'SUBROUTINE '0X'('0X"
+    matchSub<1,5> = "0X'subroutine '0X'('0X"
+    matchSub<1,6> = "0X'Subroutine '0X'('0X"
+    
+    matchSet = ''
+    matchSet<1,1> = "0X'SET '0X'('0X"
+    matchSet<1,2> = "0X'set '0X'('0X"
+    matchSet<1,3> = "0X'Set '0X'('0X"
+    
+    publics = matchfields( source, matchPub, 3 )
+    
+    functions = trims( trim( matchfields( publics, matchFun, 3 ), @FM, 'C' ) )
+    subs = trims( trim( matchfields( publics, matchSub, 3 ), @FM, 'C' ) )
+    gets = trims( trim( matchfields( source, matchGet, 3 ), @FM, 'C' ) )
+    sets = trims( trim( matchfields( source, matchSet, 3 ), @FM, 'C' ) )
+    
+    display "Functions: "
+    display functions
+    display
+    display "Subroutines: "
+    display subs
+    display
+    display "Gets: "
+    display gets
+    display
+    display "Sets: "
+    display sets
+
+end

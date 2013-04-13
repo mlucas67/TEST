@@ -1,0 +1,144 @@
+      SUBROUTINE PARSE.XML(SRC.DOC,CTRL.ID,RES,R.ERR)
+
+      * Copyright (c) 2005-2006 Doug Dumitru, All Rights Reserved
+      * 
+      * This program is free software; you can redistribute it and/or modify
+      * it under the terms of the GNU General Public License as published by
+      * the Free Software Foundation; either version 2, or (at your option)
+      * any later version.
+      * 
+      * This program is distributed in the hope that it will be useful,
+      * but WITHOUT ANY WARRANTY; without even the implied warranty of
+      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      * GNU General Public License for more details.
+      *
+      * See http://dougdumitru.openqm.com for more information
+      * and contact information.
+
+* PARSE.XML - Convert an XML string into a dynamic array
+*
+* PARAMETERS:  SRC.DOC - Inbound XML document
+*              CTRL.ID - Item-id of the template in XML.LAYOUTS
+*              RES     - Resulting dynamic array
+*              R.ERR   - Chained error variable
+
+$catalog local
+
+      equate yes to 1
+      equate no  to 0
+      equate am  to char(254)
+      equate vm  to char(253)
+      equate svm to char(252)
+
+      EQUATE BIG.STR TO 999999999
+
+      if system(31) <> '0' or system(32) = '' then
+         display 'This subroutine is licensed under the terms of the GPL.'
+         display 'Modification and distribution of this software for use'
+         display 'with a commercial MultiValue database is not permitted'
+         display 'under the derivative works definition of the GPL.'
+         stop
+      end
+*
+      RES = ''
+      MAX.N = ''
+*
+      CALL PARSE.XML1(SRC.DOC,S.RES,R.ERR)
+      IF R.ERR <> '' THEN RETURN
+
+      CALL PARSE.XML2(CTRL.ID,CTRL,R.ERR)
+      IF R.ERR <> '' THEN RETURN
+
+      FOR I = 1 TO DCOUNT(CTRL,AM)
+         W1 = CTRL<I,1>
+         TP = CTRL<I,2>
+         W2 = CTRL<I,3>
+         J1 = FIELD(W2,',',1)
+         J2 = FIELD(W2,',',2)
+         J3 = FIELD(W2,',',3)
+         IF J1 = '' THEN J1 = 1
+         IF J2 = '' THEN J2 = 1
+         IF J3 = '' THEN J3 = 1
+         PP = ''
+         FOR J = 1 TO DCOUNT(W1,SVM)
+            PP<J> = 1
+         NEXT J
+         BEGIN CASE
+            CASE TP = 'V'
+               GOSUB 100
+            CASE TP = 'C'
+         END CASE
+      NEXT I
+*
+      RETURN
+*
+10    REM Find max multi-value
+*
+      IF MAX.N = '' THEN
+         FOR J = 1 TO 999999 WHILE MAX.N = ''
+            IF NOT(INDEX(S.RES<1>,'*':J,1)) THEN
+               MAX.N = J-1
+            END
+         NEXT J
+      END
+*
+      RETURN
+*
+100   REM
+*
+      IF J1[1,1] = 'M' THEN
+         GOSUB 10
+         FOR X1 = 1 TO MAX.N
+            PP<DCOUNT(PP,AM)-J1[2,99]+1> = X1
+            GOSUB 200
+         NEXT X1
+      END ELSE
+         X1 = J1
+         GOSUB 200
+      END
+*
+      RETURN
+*
+200   REM
+*
+      IF J2[1,1] = 'M' THEN
+         GOSUB 10
+         FOR X2 = 1 TO MAX.N
+            PP<DCOUNT(PP,AM)-J2[2,99]+1> = X2
+            GOSUB 300
+         NEXT X2
+      END ELSE
+         X2 = J2
+         GOSUB 300
+      END
+*
+      RETURN
+*
+300   REM
+*
+      IF J3[1,1] = 'M' THEN
+         GOSUB 10
+         FOR X3 = 1 TO MAX.N
+            PP<DCOUNT(PP,AM)-J3[2,99]+1> = X3
+            GOSUB 400
+         NEXT X3
+      END ELSE
+         X3 = J3
+         GOSUB 400
+      END
+*
+      RETURN
+*
+400   REM
+*
+      T = ''
+      FOR J = 1 TO DCOUNT(PP,AM)
+         T<1,1,-1> = W1<1,1,J> : '*' : PP<J>
+      NEXT J
+*
+      LOCATE(T,S.RES,1;L) THEN
+         RES<X1,X2,X3> = S.RES<2,L>
+      END
+*
+      RETURN
+   end

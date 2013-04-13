@@ -1,0 +1,71 @@
+equ fm to char(254)
+equ vm to char(253)
+equ svm to char(252)
+equ tm to char(251)
+equ tab to char(9)
+equ true to 1
+equ false to 0
+equ default to 1
+*
+open "bp" to f.bp else stop 201, "bp"
+read src from f.bp, "parser" else stop 202, "parser"
+*
+nodecnt = 0
+tree = ''
+*
+src.lines = dcount( src, fm )
+for l = 1 to src.lines
+    line = src<l>
+    ws = ''
+    keyword = ''
+    comment = ''
+    string = ''
+    intrinsic = ''
+    ident = ''
+    gosub parseline
+next l
+stop
+*
+parseline:
+    incomment = false
+    inquote = false
+    quotech = ''
+    line.length = len( line )
+    for i = 1 to line.length
+        ch = line[i,1]
+        nextch = line[i+1,1]
+        begin case
+            case (index( "'\":'"', ch, 1 ))
+                string := ch
+                begin case
+                    case (inquote and (ch = quotech))
+                        nodetype = 's'
+                        gosub writeast
+                        inquote = false
+                        quotech = ''
+                    case (quotech = '')
+                        inquote = true
+                        quotech = ch
+                end case
+            case (inquote)
+                string := ch
+            case ((ch = tab) or (ch = ' '))
+                ws := ch
+            
+        end case
+    next i
+    return
+    
+writeast:
+    node = ''
+    node<1,1> = nodetype
+    begin case
+        case (nodetype = 's')
+            node<1,2> = string
+            string = ''
+    end case
+    nodecnt += 1
+    tree<nodecnt> = node
+    return
+    
+end

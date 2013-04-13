@@ -1,0 +1,10 @@
+class Iterator.interface
+    get hasNext()
+        return @false
+    end
+    get next()
+        return ''
+    end
+    public sub remove()
+    end
+end

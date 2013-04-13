@@ -1,0 +1,6 @@
+$include util:include arrays.h
+
+arr = split( "a,b,c,d,e,f", ',' )
+crt join( arr )
+arr = split( "a,b,c,d,e,f", ',', 3 )
+crt join( arr )

@@ -1,0 +1,22 @@
+$catalog StdoutLogger.class local
+class stdoutlogger.class
+   private mask, nextLogger
+    
+    public sub create.object( newMask )
+        mask = newMask
+    end
+    
+    public sub writeMessage( msg )
+        display "Writing to Stdout: " : msg
+    end
+    
+   public function setNext( log )
+       nextLogger = log
+       return log
+   end
+   public sub message( msg, priority )
+       if (priority <= mask) then me->writeMessage( msg )
+       if (assigned( nextLogger )) then nextLogger->message( msg, priority )
+   end
+
+end

@@ -1,0 +1,6 @@
+mystr = object( "String" )
+
+mystr->value = "abc"
+crt mystr->Value()
+
+end

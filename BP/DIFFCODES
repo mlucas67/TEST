@@ -1,0 +1,28 @@
+SUBROUTINE DIFFCODES( CODES, ATEXT, H, TRIMSPACE, IGNORESPACE, IGNORECASE )
+
+    LINES = ""
+    CODES = ""
+    LASTUSEDCODE = DCOUNT( H, @FM )
+
+    LINES = ATEXT
+    DC = DCOUNT( LINES, @FM )
+    FOR I = 1 TO DC
+        S = LINES<I>
+        IF (TRIMSPACE) THEN S = TRIM( S, " ", "B" )
+        IF (IGNORESPACE) THEN
+            S = TRIM( S )
+            S = CHANGE( S, CHAR(9), " " )
+        END
+        IF (IGNORECASE) THEN S = DOWNCASE( S )
+        LOCATE S IN H<1> SETTING POS THEN
+            CODES<I> = POS
+        END ELSE
+            LASTUSEDCODE += 1
+            H = INSERT( H, LASTUSEDCODE; S )
+            CODES<I> = LASTUSEDCODE
+        END
+    NEXT I
+
+    RETURN
+
+END ;* DIFFCODESA

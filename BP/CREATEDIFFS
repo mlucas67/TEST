@@ -1,0 +1,50 @@
+SUBROUTINE CREATEDIFFS( A, DATAA, DATAB )
+
+    A = ""
+    DATAA.LENGTH = DATAA<1>
+    DATAA.MODIFIED = RAISE( DATAA<2> )
+    DATAA.DATA = RAISE( DATAA<3> )
+    DATAB.LENGTH = DATAB<1>
+    DATAB.MODIFIED = RAISE( DATAB<2> )
+    DATAB.DATA = RAISE( DATAB<3> )
+    LINEA = 1
+    LINEB = 1
+    LOOP
+    WHILE ((LINEA < DATAA.LENGTH) ! (LINEB < DATAB.LENGTH))
+        IF ((LINEA < DATAA.LENGTH) & NOT(DATAA.MODIFIED<LINEA>) & (LINEB < DATAB.LENGTH) & NOT(DATAB.MODIFIED<LINEB>)) THEN
+            LINEA += 1
+            LINEB += 1
+        END ELSE
+            STARTA = LINEA
+            STARTB = LINEB
+            LOOP
+            WHILE ((LINEA < DATAA.LENGTH) & ((LINEB >= DATAB.LENGTH) ! DATAA.MODIFIED<LINEA>))
+                LINEA += 1
+            REPEAT
+            LOOP
+            WHILE ((LINEB < DATAB.LENGTH) & ((LINEA >= DATAA.LENGTH) ! DATAB.MODIFIED<LINEB>))
+                LINEB += 1
+            REPEAT
+            IF ((STARTA < LINEA) ! (STARTB < LINEB)) THEN
+                ***
+                *** AITEM RETURNS A SET OF STRUCTURED ITEMS WITH:
+                ***   <N,1> STARTA - STARTING POS IN DATAA
+                ***   <N,2> STARTB - STARTING POS IN DATAB
+                ***   <N,3> DELETEDA - NUMBER OF CHANGES IN A AS DELETIONS
+                ***   <N,4> INSERTEDB - NUMBER OF CHANGES FROM B AS INSERTIONS
+                ***
+                *** CHASING THIS RABBIT TRAIL WILL TRANSFORM DATAA INTO DATAB.
+                ***
+                AITEM = ""
+                AITEM<1> = STARTA
+                AITEM<2> = STARTB
+                AITEM<3> = LINEA - STARTA
+                AITEM<4> = LINEB - STARTB
+                A<-1> = LOWER( AITEM )
+            END
+        END
+    REPEAT
+
+    RETURN
+
+END ;* CREATEDIFFS

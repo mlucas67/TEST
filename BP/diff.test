@@ -1,0 +1,63 @@
+deffun TestHelper( f ) local
+deffun Assert( b, msg ) local
+
+Diff = object( "!Diff" )
+
+a = raise( "aýbýcýdýeýfýgýhýiýjýkýl" )
+b = raise( "0ý1ý2ý3ý4ý5ý6ý7ý8ý9" )
+test1 = TestHelper( Diff->DiffText( a, b ) )
+display test1 : " -> " : Assert( test1 = "11.9.1.1*", "all-changes test" )
+
+a = raise( "aýbýcýdýeýfýgýhýiýjýkýl" )
+b = a 
+test2 = TestHelper( Diff->DiffText( a, b ) )
+display test2 : " -> " : Assert( test2 = "", "all-same test" )
+
+a = raise( "aýbýcýdýeýf" )
+b = raise( "býcýdýeýfýx" )
+test3 = TestHelper( Diff->DiffText( a, b ) )
+display test3 : " -> " : Assert( test3 = "1.0.1.1*0.1.6.5*", "snake test" )
+
+a = convert( ',', @FM, "c1,a,c2,b,c,d,e,g,h,i,j,c3,k,l" )
+b = convert( ',', @FM, "C1,a,C2,b,c,d,e,I1,e,g,h,i,j,C3,k,I2,l" )
+test4 = TestHelper( Diff->DiffText( a, b ) )
+display test4 : " -> " : Assert( test4 = "1.1.1.1*1.1.3.3*0.2.8.8*1.1.12.14*0.1.14.16*", "repro20020920 test" )
+
+a = convert( ',', @FM, "F" )
+b = convert( ',', @FM, "0,F,1,2,3,4,5,6,7" )
+test5 = TestHelper( Diff->DiffText( a, b ) )
+display test5 : " -> " : Assert( test5 = "0.1.1.1*0.6.2.3*", "repro20030207 test" )
+
+a = convert( ',', @FM, "HELLO,WORLD" )
+b = convert( ',', @FM, ",,hello,,,,world," )
+test6 = TestHelper( Diff->DiffText( a, b ) )
+display test6 : " -> " : Assert( test6 = "1.7.1.1*", "repro20030409 test" )
+
+a = convert( ',', @FM, "a,b,-,c,d,e,f,f" )
+b = convert( ',', @FM, "a,b,x,c,e,f" )
+test7 = TestHelper( Diff->DiffText( a, b ) )
+display test7 : " -> " : Assert( test7 = "1.1.3.3*1.0.5.5*1.0.7.6*", "some-changes test" )
+
+a = convert( ',', @FM, "a,a,a,a,a,a,a,a,a,a" )
+b = convert( ',', @FM, "a,a,a,a,-,a,a,a,a,a" )
+test8 = TestHelper( Diff->DiffText( a, b ) )
+display test8 : " -> " : Assert( test8 = "0.1.5.5*1.0.9.10*", "long chain of repeats test" )
+
+stop
+
+local function TestHelper( f )
+    ret = ''
+    dc = dcount( f, @FM )
+    for i = 1 to dc
+        ret := f<i,3> : "." : f<i,4> : "." : f<i,1> : "." : f<i,2> : "*"
+    next i
+    return ret
+end
+
+local function Assert( b, msg )
+    ret = msg
+    ret := if (b) then " passed!" else " failed!"
+    return ret
+end
+
+end

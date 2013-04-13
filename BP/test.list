@@ -1,0 +1,35 @@
+$debug
+list = object( "List.class" )
+list->Extend( "66.25ý333ý333ý1ý1234.5" )
+output = list->ToString()
+crt output
+output = list->Count( "333" ) : ' ' : list->Count( "66.25" ) : ' ' : list->Count( 'x' )
+crt output
+list->Insert( 3, "-1" )
+list->Append( "333" )
+output = list->ToString()
+crt output
+output = list->Index( "333" )
+crt output
+list->Remove( "333" )
+output = list->ToString()
+crt output
+list->Reverse()
+output = list->ToString()
+crt output
+list->Sort()
+output = list->ToString()
+crt output
+crt
+stack = object( "List.class" )
+stack->Extend( "3ý4ý5" )
+stack->Append( 6 )
+stack->APpend( 7 )
+crt stack->ToString()
+crt stack->Pop()
+crt stack->ToString()
+
+stack->Append( "333" )
+diff = list->minus( stack )
+crt diff->ToString
+end

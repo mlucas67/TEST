@@ -1,0 +1,5 @@
+$catalog simToy
+filename = field( @sentence, ' ', 2 )
+itemname = field( @sentence, ' ', 3 )
+toy = object( "Toy", filename, itemname )
+end

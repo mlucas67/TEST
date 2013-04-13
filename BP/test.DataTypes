@@ -1,0 +1,4 @@
+DataTypes = object( "!DataTypes" )
+array = DataTypes->AssocArray( "'name' => 'My Name','description' => 'My Description','Version' => '1.0.0.0'" )
+display array
+end

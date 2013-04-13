@@ -1,0 +1,97 @@
+$debug
+$catalog matchfld
+subroutine matchfld( retval, inString, inMatch, inField )
+    equ true to 1
+    equ false to 0
+    
+    retval = ''
+    !
+    * if it doesn't match, simply return the null value,
+    * otherwise, begin processing
+    !
+    if (inString matches inMatch) then
+        gosub parseMatch
+        gosub matchFlds
+    end
+   
+    return
+    
+!
+* Break down the pattern into individual atomic patterns
+!
+parseMatch:
+    matchArr = ''
+    quote.type = ''
+    in.quote = false
+    start.cnt = true
+    end.cnt  = false
+    inMatch.length = len( inMatch )
+    pos = 1
+    
+    for i = 1 to inMatch.length
+        c = inMatch[i,1]
+        
+        begin case
+        
+            case (in.quote and (c = quote.type))
+                in.quote = false
+                quote.type = ''
+                matchArr<1,pos> := c
+                pos += 1
+                
+            case ((c = '"') or (c = "'") or (c = '\'))
+                in.quote = true
+                quote.type = c
+                MatchArr<1,pos> := c
+                
+            case (in.quote)
+                matchArr<1,pos> := c
+                
+            case ((c = 'X') or (c = 'N') or (c = 'A'))
+                matchArr<1,pos> := c
+                pos += 1
+                
+            case 1
+                matchArr<1,pos> := c
+        end case
+    next i
+    return
+        
+!
+* Now match the atomic patterns one at a time until the
+* pattern number requested is matched
+!
+matchFlds:
+    pos = 1
+    maxArr = dcount( matchArr, @VM )
+    remaining = len( inString )
+    startPos = 1
+    length = 1
+
+    for i = 1 to maxArr
+        matchStr = matchArr<1,pos>
+        nextMatch = matchArr<1,pos+1>
+        
+        loop
+        while (remaining & (inString[startPos,length] matches matchStr))
+            
+            if (remaining & nextMatch) then
+                if (inString[startPos+length,1] matches nextMatch) then
+                    exit
+                end
+            end
+            length += 1
+            remaining -= 1
+        repeat
+        
+        if (pos = inField) then 
+            retval = inString[startPos,length]
+            exit
+        end
+        startPos += length
+        pos += 1
+    next i
+    
+    return        
+        
+end

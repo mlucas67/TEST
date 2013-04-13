@@ -1,0 +1,9 @@
+open "classlib" to fv else stop 201, "classlib"
+read source from fv, "Parser.class" else stop 202, "Parser.class"
+
+parser = object( "Parser.class", source )
+loop
+    token = parser->Token()
+while (token # "**EOS**")
+    crt token
+repeat

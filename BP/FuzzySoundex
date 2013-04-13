@@ -1,0 +1,96 @@
+SUBROUTINE FUZZYSOUNDEX( RETVAL, INSTRING )
+    
+    *
+    * N-GRAM REPLACEMENTS
+    *
+    ANY  = "CAýCCýCKýCEýCHLýCLýCHRýCRýCIýCOýCUýCYýDGýGHýMACýMCýNSTýPFýPHýSCHýTIOýTIAýTCH" : @FM
+    ANY := "KAýKKýKKýSEýKLýKLýKRýKRýSIýKOýKUýSYýGGýHHýMKýMKýNSSýFFýFFýSSSýSIOýSIOýCHH"
+    PREFIX  = "CSýCZýTSýTZýGNýHRýWRýWWýKNýKG" : @FM
+    PREFIX := "SSýSSýSSýSSýNNýRRýRRýWWýNNýNN"
+    SUFFIX  = "CHýNTýRTýRDT" : @FM
+    SUFFIX := "KKýTTýRRýRR"
+    WORKSTR = OCONV( INSTRING, "MCU" )
+    LENGTH = LEN( WORKSTR )
+    WORK = ''
+    FOR I = 1 TO LENGTH
+        C = WORKSTR[I,1]
+        BIGRAM = WORKSTR[I,2]
+        TRIGRAM = WORKSTR[I,3]
+        BEGIN CASE
+            CASE (I = 1)
+                LOCATE BIGRAM IN PREFIX<1,1> SETTING POS THEN
+                    WORK := PREFIX<2,POS>
+                    I += 1
+                END ELSE
+                    *LOCATE TRIGRAM IN ANY<1,1> SETTING POS THEN
+                        *WORK := ANY<2,POS>
+                        *I += 2
+                    *END ELSE
+                        *LOCATE BIGRAM IN ANY<1,1> SETTING POS THEN
+                            *WORK := ANY<2,POS>
+                            *I += 1
+                        *END ELSE
+                            WORK := C
+                        *END
+                    *END
+                END
+            CASE (I = LENGTH-1)
+                LOCATE BIGRAM IN SUFFIX<1,1> SETTING POS THEN
+                    WORK := SUFFIX<2,POS>
+                    I += 1
+                END ELSE
+                    WORK := C
+                END
+            CASE (I = LENGTH-2)
+                LOCATE TRIGRAM IN SUFFIX<1,1> SETTING POS THEN
+                    WORK := SUFFIX<2,POS>
+                    I += 2
+                END ELSE
+                    WORK := C
+                END
+            CASE 1
+                LOCATE TRIGRAM IN ANY<1,1> SETTING POS THEN
+                    WORK := ANY<2,POS>
+                    I += 2
+                END ELSE
+                    LOCATE BIGRAM IN ANY<1,1> SETTING POS THEN
+                        WORK := ANY<2,POS>
+                        I += 2
+                    END ELSE
+                        WORK := C
+                    END
+                END
+        END CASE
+    NEXT I
+    *
+    * CODE TRANSLATIONS
+    *
+    *          ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    RUSSELL = " 123 12  22455 12623 1 2 2"
+    CELKO   = "ABCTAFGHAJCLNNAPGRSTAVWXYS"
+    PFEIFER = " 123 72  22455 12683 7 8 8"
+    FUZZY   = " 193 17  77455 17693 1 7 9"
+    LENGTH = LEN( WORK )
+    LC = WORK[1,1]
+    RCODE = LC
+    IF (INDEX( "AEIOU", LC, 1 )) THEN CCODE = 'A' ELSE CCODE = LC
+    PCODE = LC
+    FCODE = LC
+    LC = SEQ( LC ) - 64
+    FOR I = 2 TO LENGTH
+        C = SEQ( WORK[I,1] ) - 64
+        IF (C # LC) THEN
+            IF (RUSSELL[C,1] # ' ') THEN RCODE := RUSSELL[C,1]
+            IF (CELKO[C,1] # 'A') THEN 
+                IF (((CELKO[C,1] = 'H') AND (LC = 1)) OR (CELKO[C,1] # 'H')) THEN
+                    CCODE := CELKO[C,1]
+                END
+            END
+            IF (PFEIFER[C,1] # ' ') THEN PCODE := PFEIFER[C,1]
+            IF (FUZZY[C,1] # ' ') THEN FCODE := FUZZY[C,1]
+        END
+        LC = C
+    NEXT I
+    RETVAL = RCODE : @FM : CCODE : @FM : PCODE : @FM : FCODE
+    RETURN
+END

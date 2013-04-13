@@ -1,0 +1,210 @@
+!
+* My code
+!
+open "bp" to f.bp else stop 201, "bp"                ;* Open the file
+read src from f.bp, "parser" else stop 202, "parser" ;* Read the source code
+*
+rules = ''
+rules<-1> = "'*'0Xýcomment"
+rules<-1> = "'!'0Xýcomment"
+rules<-1> = "'remark '0Xýcomment"
+rules<-1> = "'rem '0Xýcomment"
+rules<-1> = "'begin case'ýkw"
+rules<-1> = "'case'' '0Xýkwüwsücond"
+rules<-1> = "'crt'' '0Xýkwüwsüstmts"
+rules<-1> = "'deffun'' '0X'('0X')'' ''local'ýkwüwsüidentülparenüargsürparenüwsükw"
+rules<-1> = "'deffun'' '0X' ''local'ýkwüwsüidentüwsükw"
+rules<-1> = "'deffun'' '0X'('0X')'ýkwüwsüidentülparenüargsürparen"
+rules<-1> = "'deffun'' '0Xýkwüwsüident"
+rules<-1> = "'else'' '0Xýkwüwsüstmts"
+rules<-1> = "'end case'ýkw"
+rules<-1> = "'end else'ýkw"
+rules<-1> = "'end else'' '0Xýkwüwsüstmts"
+rules<-1> = "'end'ýkw"
+rules<-1> = "'for each'' '0X' ''in'' '0Xýkwüwsüidentüwsükwüwsüident"
+rules<-1> = "'for'' '0X'='0X' ''to'' '0Xýkwüwsüidentüopüidentüwsükwüwsüident"
+rules<-1> = "'local'' ''function'' '0X'('0X')'ýkwüwsükwüwsüidentülparenüargsürparen"
+rules<-1> = "'local'' ''function'' '0Xýkwüwsükwüwsüident"
+rules<-1> = "'function'' '0X'('0X')'ýkwüwsüidentülparenüargsürparen"
+rules<-1> = "'function'' '0Xýkwüwsüident"
+rules<-1> = "'gosub'' '0Xýkwüwsülabel"
+rules<-1> = "'if'' '0X' ''then'' '0X' ''else'' '0Xýkwüwsücondüwsükwüwsüstmtsüwsükwüwsüstmts"
+rules<-1> = "'if'' '0X' ''then'' '0Xýkwüwsücondüwsükwüwsüstmts"
+rules<-1> = "'if'' '0X' ''else'' '0Xýkwüwsücondüwsükwüwsüstmts"
+rules<-1> = "'if'' '0Xýkwüwsücond"
+rules<-1> = "'next'' '0Xýkwüwsüident"
+rules<-1> = "'open'' '0X' ''to'' '0X' ''then'' '0X' ''else'' '0Xýkwüwsüidentüwsükwüwsüidentüwsükwüwsüstmtsüwsükwüwsüstmts"
+rules<-1> = "'open'' '0X' ''to'' '0X' ''then'' '0Xýkwüwsüidentüwsükwüwsüidentüwsükwüwsüstmts"
+rules<-1> = "'open'' '0X' ''to'' '0X' ''else'' '0Xýkwüwsüidentüwsükwüwsüidentüwsükwüwsüstmts"
+rules<-1> = "'read'' '0X' ''from'' '0X' ''then'' '0X' ''else'' '0Xýkwüwsüidentüwsükwüwsüidentüwsükwüwsüstmtsüwsükwüwsüstmts"
+rules<-1> = "'read'' '0X' ''from'' '0X' ''then'' '0Xýkwüwsüidentüwsükwüwsüidentüwsükwüwsüstmts"
+rules<-1> = "'read'' '0X' ''from'' '0X' ''else'' '0Xýkwüwsüidentüwsükwüwsüidentüwsükwüwsüstmts"
+rules<-1> = "'stop'' '0Xýkwüwsüargs"
+rules<-1> = "'stop'ýkw"
+rules<-1> = "'then'' '0Xýkwüwsüstmts"
+rules<-1> = "0X'<'0X'>'ýidentülmopüargsürmop"
+rules<-1> = "0X'['0X']'ýidentülsopüargsürsop"
+rules<-1> = "0X'+='0Xýidentüopüident"
+rules<-1> = "0X'-='0Xýidentüopüident"
+rules<-1> = "0X'*='0Xýidentüopüident"
+rules<-1> = "0X'/='0Xýidentüopüident"
+rules<-1> = "0X':='0Xýidentüopüident"
+rules<-1> = "0X'='0Xýidentüopüident"
+rules<-1> = "0X'<>'0Xýidentübinopüident"
+rules<-1> = "0X'>='0Xýidentübinopüident"
+rules<-1> = "0X'<='0Xýidentübinopüident"
+rules<-1> = "0X'>'0Xýidentübinopüident"
+rules<-1> = "0X'<'0Xýidentübinopüident"
+rules<-1> = "0X'#'0Xýidentübinopüident"
+rules<-1> = "0N'.'0Nýdouble"
+rules<-1> = "0Nýint"
+rules<-1> = \'"'0X'"'ýstring\
+rules<-1> = \"'"0X"'"ýstring\
+rules<-1> = "'\'0X'\'ýstring"
+rules<-1> = "0X'('0X')'ýfnülparenüargsürparen"
+rules<-1> = "0Xýnomatch"
+rulecount = dcount( rules, @fm )
+*
+deffun parsestmts( stmts ) local
+deffun parseident( ident ) local
+deffun parseargs( args ) local
+deffun parseline( line ) local
+*
+lines = dcount( src, @fm )
+for l = 1 to lines
+    line = src<l>
+    crt parseline( line )
+next l
+stop
+*
+local function parseline( line )
+    private r, pos, tdline, token, tokens, rule, tokentype, tokentypes
+    tdline = trim( downcase( line ) )
+    for r = 1 to rulecount
+        rule = rules<r,1>
+        tokentypes = rules<r,2>
+    until (tdline matches rule)
+    next r
+    tokens = ''
+    ttcnt = dcount( tokentypes, @svm )
+    for pos = 1 to ttcnt
+        tokentype = tokentypes<1,1,pos>
+        token = matchfield( tdline, rule, pos )
+        if (pos > 1) then tokens := ", "
+        begin case
+            case (tokentype = "stmts") 
+                token = parsestmts( token )
+                tokens := tokentype : " (" : token : ")"
+            case (tokentype = "ident") 
+                tokens := parseident( token )
+            case (tokentype = "args")
+                token = parseargs( token )
+                tokens := tokentype : " (" : token : ")"
+            case 1
+                tokens := tokentype : " (" : token : ")"
+        end case
+    next pos
+    tokens := "."
+    return tokens
+end
+*
+local function parseident( ident )
+    private r, pos, token, tokens, rule, tokentype, tokentypes, ttcnt
+    ident = trim( ident, ' ', 'B' )
+    for r = 1 to rulecount
+        rule = rules<r,1>
+        tokentypes = rules<r,2>
+    until (ident matches rule)
+    next r
+    if (ident matches rule) then
+        tokens = ''
+        ttcnt = dcount( tokentypes, @svm )
+        if (ttcnt > 1) then
+            for pos = 1 to ttcnt
+                tokentype = tokentypes<1,1,pos>
+                token = matchfield( ident, rule, pos )
+                if (tokentype = "ident") then token = trim( token, ' ', 'B' )
+                if (pos > 1) then tokens := ", "
+                begin case
+                    case (tokentype = "args")
+                        token = parseargs( token )
+                        tokens := tokentype : " (" : token : ")"
+                    case 1
+                        tokens := tokentype : " (" : token : ")"
+                end case
+            next pos
+        end else
+            if (tokentypes = "nomatch") then tokentypes = "ident"
+            tokens := tokentypes : " (" : ident : ")"
+        end
+    end else
+        tokens = ident
+    end
+    return tokens
+end
+*
+local function parseargs( args )
+    private tokens, inquote, quotech, a
+    if (index( args, ',', 1 )) then
+        args.length = len( args )
+        inquote = @false
+        quotech = ''
+        for a = 1 to args.length
+            ch = args[a,1]
+            begin case
+                case (inquote)
+                    if (ch = quotech) then
+                        inquote = @false
+                        quotech = ''
+                    end
+                case (index( "'\":'"', ch, 1 ))
+                    inquote = @true
+                    quotech = ch
+                case (ch = ',')
+                    args[a,1] = @fm
+            end case
+        next a
+    end
+    tokens = ''
+    argcount = dcount( args, @fm )
+    for a = 1 to argcount
+        argi = trim( args<a>, ' ', 'B' )
+        if (tokens) then tokens := ", "
+        tokens := parseident( argi )
+    next a
+    return tokens
+end
+*
+local function parsestmts( stmts )
+    private tokens, inquote, quotech, i, s
+    if (index( stmts, ';', 1 )) then
+        stmts.length = len( stmts )
+        inquote = @false
+        quotech = ''
+        for i = 1 to stmts.length
+            ch = stmts[i,1]
+            begin case
+                case (inquote)
+                    if (ch = quotech) then
+                        inquote = @false
+                        quotech = ''
+                    end
+                case (index( "'\":'"', ch, 1 ))
+                    inquote = @true
+                    quotech = ch
+                case (ch = ';')
+                    stmts[i,1] = @fm
+            end case
+        next i
+    end
+    tokens = ''
+    stmtcount = dcount( stmts, @fm )
+    for s = 1 to stmtcount
+        stmt = stmts<s>
+        if (tokens) then tokens := ", "
+        tokens := parseline( stmt )
+    next s
+    return tokens
+end
+!
+end

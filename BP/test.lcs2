@@ -1,0 +1,3 @@
+deffun lcs2( xs, ys )
+
+crt lcs2( "HUMAN", "CHIMPANZEE" )

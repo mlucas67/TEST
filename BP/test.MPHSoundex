@@ -1,0 +1,79 @@
+$DEBUG
+TESTSET = "Mclean,Baxter,Haley,Patrick,Conrad,Peters,Baxter,Frye,Arnold,Garrison,Madden,"
+TESTSET := "Myers,Woodward,Stephens,Harrington,Bush,Bean,Norton,Osborn,Salas,Johnson,Meyer,"
+TESTSET := "Potter,Hogan,Hooper,Roman,Figueroa,Newman,Castillo,Silva,Sampson,Rice,Terry,"
+TESTSET := "Coleman,Jefferson,Boyle,Tucker,Lawson,Hendricks,Villarreal,Small,White,Mccoy,"
+TESTSET := "Sherman,Sharpe,Willis,Wiggins,Sweeney,Mullen,Nash,Owens,Caldwell,Fernandez,"
+TESTSET := "Holcomb,Marquez,Petersen,Daniel,Simpson,Hanson,Hamilton,Osborn,Conrad,Cantu,"
+TESTSET := "Mccullough,Haney,Mejia,Oconnor,Fitzpatrick,Campos,Bowman,Dalton,Wright,Bauer,"
+TESTSET := "Rutledge,Shannon,Sutton,Robles,Roy,Rivera,Holmes,Hunter,James,Massey,Pruitt,Tillman,"
+TESTSET := "Cain,Hutchinson,Burns,Wilson,Sims,King,Noble,Barron,Morgan,Durham,Hodge,Duke,"
+TESTSET := "Walters,Perez,Hart,Mcdonald,Graham,Byers,York,Davis,Barnett,Yates,Quinn,Wynn,"
+TESTSET := "Roman,Waller,Sosa,Salinas,Hale,Gardner,Shepard,Owen,Cantrell,Hanson,Houston,Wheeler,"
+TESTSET := "Reed,Brady,Rodriguez,Hull,Weaver,Patterson,Whitley,Walker,Mckay,Mitchell,"
+TESTSET := "Lawson,Weeks,Reeves,Lara,Cobb,Ross,Lancaster,Velez,Roman,Francis,Spence,Mosley,"
+TESTSET := "Bullock,Dickson,Willis,Webster,Wall,Burgess,Gill,Haney,Blankenship,Brady,Johns,"
+TESTSET := "Spears,Macdonald,Hogan,May,Lane,Greer,Christian,Carrillo,Swanson,Byrd,Travis,"
+TESTSET := "Hendricks,Frazier,Parker,Vazquez,Dickerson,Kelly,Day,Britt,Carey,Glenn,Glass,"
+TESTSET := "Burns,Foley,Farley,Dickerson,Moore,Nash,Fuentes,Porter,Campbell,Cleveland,Figueroa,"
+TESTSET := "Martinez,Raymond,Rush,Vincent,Velez,Watts,Santiago,Beck,Snow,David,Grimes,Malone,"
+TESTSET := "Carr,Dyer,Kerr,Copeland,Burch,Ochoa,Atkinson,Hart,Raymond,Avery,Madden,Lewis,"
+TESTSET := "Walls,Santos,Gentry,Cotton,Ayala,Melton,Morin,Cotton,Benjamin,Patrick,Kelley,"
+TESTSET := "Duncan,Guerrero,Acosta,Battle,Finley,Mcgee,Allison,Lyons,Baird,Estrada,Bass,Dejesus,"
+TESTSET := "Harrell,Pierce,Duffy,Rodgers,Jordan,Farmer,Gillespie,Andrews,Curry,Castillo,"
+TESTSET := "Gonzales,Hill,Coffey,Whitley,Berg,Harper,Avila,Rivera,Strong,Fernandez,Carey,"
+TESTSET := "Sullivan,Gay,Holden,Johnson,Glenn,Wolf,Knapp,Mendoza,Baker,Preston,Alexander,"
+TESTSET := "Reeves,Wynn,Rosa,Dickson,Espinoza,Calhoun,Duke,Kane,Fitzpatrick,Mclean,Turner,"
+TESTSET := "Jensen,Mathis,Williams,Spence,Mcgowan,Randall,Ramirez,Stone,Tanner,Mitchell,"
+TESTSET := "Crawford,Gamble,Bryan,Mack,Franco,Mendoza,Christensen,Gibson,Graham,Cleveland,"
+TESTSET := "Bradshaw,Gonzales,Wilkins"
+OPEN "SOUNDEX" TO F.SOUNDEX ELSE STOP 201, "SOUNDEX"
+CLEARFILE F.SOUNDEX
+MAX = 0
+AVG = 0
+UNIQ = 0
+DC = DCOUNT( TESTSET, ',' )
+FOR I = 1 TO DC
+    TEST = FIELD( TESTSET, ',', I )
+    TEST = OCONV( TEST, "MCU" )
+    CALL MPHSOUNDEX( MPHSCODE, TEST )
+    READ SNDX FROM F.SOUNDEX, MPHSCODE ELSE 
+        SNDX = ''
+        UNIQ += 1
+    END
+    LOCATE TEST IN SNDX<1> SETTING POS ELSE
+        IF (AVG > 0) THEN AVG = AVG - DCOUNT( SNDX, @FM )
+        SNDX<-1> = TEST
+        AVG += DCOUNT( SNDX, @FM )
+        IF (DCOUNT( SNDX, @FM ) > MAX) THEN MAX = DCOUNT( SNDX, @FM )
+        WRITE SNDX ON F.SOUNDEX, MPHSCODE
+    END
+NEXT I
+AVG = AVG / UNIQ
+DISPLAY "MAX COUNT = " : MAX
+DISPLAY "AVG COUNT = " : AVG
+*
+CLEARFILE F.SOUNDEX
+MAX = 0
+AVG = 0
+UNIQ = 0
+DC = DCOUNT( TESTSET, ',' )
+FOR I = 1 TO DC
+    TEST = FIELD( TESTSET, ',', I )
+    TEST = OCONV( TEST, "MCU" )
+    MPHSCODE = SOUNDEX( TEST )
+    READ SNDX FROM F.SOUNDEX, MPHSCODE ELSE 
+        SNDX = ''
+        UNIQ += 1
+    END
+    LOCATE TEST IN SNDX<1> SETTING POS ELSE
+        IF (AVG > 0) THEN AVG = AVG - DCOUNT( SNDX, @FM )
+        SNDX<-1> = TEST
+        AVG += DCOUNT( SNDX, @FM )
+        IF (DCOUNT( SNDX, @FM ) > MAX) THEN MAX = DCOUNT( SNDX, @FM )
+        WRITE SNDX ON F.SOUNDEX, MPHSCODE
+    END
+NEXT I
+AVG = AVG / UNIQ
+DISPLAY "MAX COUNT = " : MAX
+DISPLAY "AVG COUNT = " : AVG

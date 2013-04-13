@@ -1,0 +1,8 @@
+SUBROUTINE TESTHELPER( RET, F )
+    RET = ''
+    DC = DCOUNT( F, @FM )
+    FOR I = 1 TO DC
+        RET := F<I,3> : "." : F<I,4> : "." : F<I,1> : "." : F<I,2> : "*"
+    NEXT I
+    RETURN
+END

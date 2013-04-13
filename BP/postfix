@@ -1,0 +1,111 @@
+$debug
+function postfix( infix, OPERATORS, ASSOCIATIVITY, PRECEDENCE )
+    !
+    stack = ''
+    deffun pop() local
+    deffun peek() local
+    deffun prec( op ) local
+    deffun assoc( op ) local
+    !
+    postfix = ''
+    gosub init()
+    infix.length = len( infix )
+    for i = 1 to infix.length
+        token = infix[i,1]
+        begin case
+            case (token = ' ')
+                * ignore spaces
+            case (token = ',')
+                loop
+                    v = peek()
+                while ((v # '') and (v # '('))
+                    postfix := pop()
+                repeat
+            case (token = '(')
+                gosub push( token )
+            case (token = ')')
+                loop
+                    v = peek()
+                while ((v # '') and (v # '('))
+                    postfix := pop()
+                repeat
+                lparen = pop()
+            case (index( OPERATORS, token, 1 ))
+                loop
+                    v = peek()
+                while ((v # '') and (v # '('))
+                    if (assoc( token ) = 'L') then
+                        if (prec( token ) <= prec( v )) then
+                            postfix := pop()
+                        end else
+                            exit
+                        end
+                    end else
+                        if (prec( token ) < prec( v )) then
+                            postfix := pop()
+                        end else
+                            exit
+                        end
+                    end
+                repeat
+                gosub push( token )
+            case 1
+                v = peek()
+                if (v = '=') then
+                    gosub push( token )
+                end else
+                    postfix := token
+                end
+        end case
+    next i
+    loop
+        v = pop()
+    while (v # '') do
+        postfix := v
+    repeat
+    return postfix
+    
+    local sub init()
+        stack = ''
+        stack<1> = 0
+        stack<2> = ''
+        return
+    end
+    
+    local sub push( v )
+        top = stack<1>
+        top += 1
+        stack<2,top> = v
+        stack<1> = top
+        return
+    end
+    
+    local function pop()
+        top = stack<1>
+        if (top) then
+            v = stack<2,top>
+            del stack<2,top>
+            top -= 1
+            stack<1> = top
+        end else
+            v = ''
+        end
+        return v
+    end
+    
+    local function peek()
+        top = stack<1>
+        v = if (top) then stack<2,top> else ''
+        return v
+    end
+    
+    local function prec( op )
+        prec = ASSOCIATIVITY[index( OPERATORS, op, 1 ),1]
+        return prec
+    end
+    
+    local function assoc( op )
+        assoc = PRECEDENCE[index( OPERATORS, op, 1 ),1]
+        return assoc
+    end
+end

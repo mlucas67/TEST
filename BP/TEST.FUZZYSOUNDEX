@@ -1,0 +1,14 @@
+TEST1 = "Kristen"
+TEST2 = "Krissy"
+TEST3 = "Christen"
+CALL FUZZYSOUNDEX( SNDX1, TEST1 )
+CALL FUZZYSOUNDEX( SNDX2, TEST2 )
+CALL FUZZYSOUNDEX( SNDX3, TEST3 )
+DISPLAY "SOUNDEX"
+DISPLAY " TYPE    Kristen  Krissy  Christen"
+DISPLAY "-------  -------  ------  --------"
+DISPLAY "Fuzzy    " : SNDX1<4>'L#7' : "  " : SNDX2<4>'L#6' : "  " : SNDX3<4>
+DISPLAY "Celko    " : SNDX1<2>'L#7' : "  " : SNDX2<2>'L#6' : "  " : SNDX3<2>
+DISPLAY "Russell  " : SNDX1<1>'L#7' : "  " : SNDX2<1>'L#6' : "  " : SNDX3<1>
+DISPLAY "Pfeifer  " : SNDX1<3>'L#7' : "  " : SNDX2<3>'L#6' : "  " : SNDX3<3>
+END

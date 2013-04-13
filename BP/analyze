@@ -1,0 +1,157 @@
+program analyze
+    equ false to 0
+    equ true to 1
+    
+    filename = "bp"
+    open filename to source.file else stop 201, filename
+    select source.file
+    *execute "select bp creatediffs"
+    
+    crt "Measurements and Metrics for all code in file: " : filename
+    loop
+        readnext source.id else exit
+        read source from source.file, source.id then
+            gosub gather.measures
+            gosub calc.metrics
+            crt "   " : source.id
+            crt "                   Physical Lines: " : lines'R#6,'
+            crt "                    Logical Lines: " : llines'R#6,'
+            crt "            Logical Lines of Code: " : lloc'R#6,' : " (" : lloc.pct'6R2' : "%)"
+            crt "         Logical Lines of Comment: " : llor'R#6,' : " (" : llor.pct'6R2' : "%)"
+            crt "      Logical Lines of Whitespace: " : llow'R#6,' : " (" : llow.pct'6R2' : "%)"
+            crt "      Meaningful Comments/Density: " : mcomm'R#6,' : " (" : mcomm.pct'6R2' : "%)"
+            crt "                    Size (kbytes): " : kb'8R2,'
+            crt "             Number of Statements: " : stmt'R#6,'
+            crt "           Declarative Statements: " : stmtd'R#6,'
+            crt "            Executable Statements: " : stmtx'R#6,'
+            crt "                Control Statments: " : stmtc'R#6,'
+            crt "                    Executability: " : xqt'6R2' : '%'
+            crt "                  Control Density: " : ctrl'6R2' : '%'
+            crt "                Statement Density: " : sdens'6R2' : '%'
+            crt "            Cyclomatic Complexity: " : cc'6R2'
+            crt "                 Decision Density: " : decdens'6R2'
+        end else
+            crt "Unable to read source item " : source.id : " from file " : filename
+        end
+        crt
+        repeat
+    stop
+    
+    gather.measures:
+        lines = 0
+        llines = 0
+        lloc = 0
+        llor = 0
+        llow = 0
+        mcomm = 0
+        stmt = 0
+        stmtd = 0
+        stmtx = 0
+        stmtc = 0
+        cc = 1
+        kb = len( source ) / 1024
+        lines = dcount( source, @FM )
+        for i = 1 to lines
+            line = oconv( trim( source<i> ), "mcl" )
+            begin case
+                case ((line = '') or (line = ' '))
+                    llow += 1
+                case (line matches "'*'0Xý'!'0X")
+                    llor += 1
+                    if (len( line ) > 5) then mcomm += 1
+                case (line matches "'rem '0Xý'remark '0X")
+                    llor += 1
+                    mark = field( line, ' ', 2 )
+                    if (len( mark ) > 3) then mcomm += 1
+                case 1
+                    lloc += 1
+                    if (line matches "0X';'0X") then gosub break.stmts
+                    stmts = dcount( line, @FM )
+                    for s = 1 to stmts
+                        tmp = line<s>
+                        if (tmp matches "0X'for '0Xý0X'until '0Xý0X'while '0X") then
+                            stmtc += 1
+                            cc += 1
+                        end
+                        if (tmp matches "0X' then '0Xý0X' then'ý0X' else '0Xý0X' else'") then
+                            stmtc += 1
+                            cc += 1
+                        end
+                        if (tmp matches "0X' locked '0Xý0X' locked'") then
+                            stmtc += 1
+                            cc += 1
+                        end
+                        if (tmp matches "0X' on error '0Xý0X' on error'") then
+                            stmtc += 1
+                            cc += 1
+                        end
+                        if (tmp matches "0X' exit'ý'exit'") then
+                            stmtc += 1
+                        end
+                        if (tmp matches "0X' continue'ý'continue'") then
+                            stmtc += 1
+                        end
+                        if (tmp matches "0X' goto '0Xý'goto '0Xý0X' go '0Xý'go '0X") then
+                            stmtc += 1
+                        end
+                        if (tmp matches "0X' gosub '0Xý'gosub '0X") then
+                            stmtc += 1
+                        end
+                        if (tmp matches "0X' return'ý'return'") then
+                            stmtc += 1
+                        end
+                        if (tmp matches "0X' call '0Xý'call '0X") then
+                            stmtc += 1
+                        end
+                        if (tmp matches "'case '0X") then
+                            stmtc += 1
+                            cc += 1
+                        end
+                        if (tmp matches "'program '0Xý'sub '0Xý'subroutine '0Xý'function '0X") then
+                            stmtd += 1
+                        end else
+                            if (tmp matches "'end'ý'end case'ý'begin case'") else stmt += 1
+                        end
+                    next s
+            end case
+        next i
+        return
+
+    calc.metrics:
+        llines = lloc + llor + llow
+        lloc.pct = lloc / llines * 100
+        llor.pct = llor / llines * 100
+        llow.pct = llow / llines * 100
+        mcomm.pct = mcomm / lloc
+        stmtx = stmt - stmtd
+        stmtnc = stmtx - stmtc
+        xqt = stmtx / stmt * 100
+        ctrl = stmtc / stmtx * 100
+        sdens = stmt / lloc * 100
+        decdens = cc / lloc
+        return
+
+    break.stmts:
+        in.quote = false
+        quote.char = ''
+        l = len( line )
+        for s = 1 to l
+            c = line[s,1]
+            begin case
+                case (in.quote and (c = quote.char))
+                    in.quote = false
+                    quote.char = ''
+                case (in.quote)
+                    null
+                case ((c = '"') or (c = "'") or (c = '\'))
+                    in.quote = true
+                    quote.char = c
+                case (c = ';')
+                    line = line[1,s-1] : @FM : line[s+1,l-s]
+                case 1
+                    null
+            end case
+        next s
+        return
+
+end

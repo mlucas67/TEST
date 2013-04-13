@@ -1,0 +1,416 @@
+//
+// Fragments: a fragment is a state that needs to be linked to the other states in the NFA
+//            it is represented by a pair: a state index and a list (string actually) of pointers to be updated.
+//            the list of pointers is semi-colon separated list of pointers, which are a state index and output
+//            number (0 or 1) of the transition to be updated.
+//
+// e.g.: [2,2:0;3:1] -- state two is the fragment, when it is linked, 2's output 0 and 3's output 1 need to be updated.
+//
+
+// Push a new fragment onto the fragment stack
+list push_frag(list nfa_fragments, integer state_index, string pointer_list) {
+    return [state_index, pointer_list] + nfa_fragments;
+}
+
+// Get the ith element off the top of the stack (0 for top, 1 for second from top, etc.)
+list peek_frag(list nfa_fragments, integer i) {
+    integer frag_count = llGetListLength(nfa_fragments) / nfa_fragment_size;
+    integer start = i * nfa_fragment_size;
+    integer stop = start + nfa_fragment_size - 1;
+    if (frag_count > i) {
+        return llList2List(nfa_fragments, start, stop);    
+    } else {
+        return [];
+    }
+}
+
+// Pop count fragments off the stack
+list pop_frag(list nfa_fragments, integer count) {
+    integer start = count * nfa_fragment_size;
+    return llList2List(nfa_fragments, start, -1);
+}
+
+//
+// The NFA: an NFA is a list.
+//
+// NFA[0] - the index of the start state for the NFA
+// NFA[1] - the state type code for state #0
+// NFA[2] - the matching character (if any) for state #0
+// NFA[3] - the first output transition for state #0 (will be the state index of the target state)
+// NFA[4] - the second output transition for state #0
+// NFA[5] - the state type code for state #1
+// ...
+//
+// Note: state #0 is always the stopping or matching state.
+//
+
+// Create a blank NFA
+list new_nfa() {
+    return [1, state_type_match, "M", -1,-1];
+}
+
+// Given an NFA get the index of the last state
+integer get_last_state_index(list nfa) {
+    return (llGetListLength(nfa) - 1) / nfa_state_size - 1;
+}
+
+// Given an NFA, return its start state index
+integer get_start_state_index(list nfa) {
+    return llList2Integer(nfa, 0);
+}
+
+// Set the start state index of an NFA
+list set_start_state_index(list nfa, integer start_state_index) {
+    return [start_state_index] + llList2List(nfa, 1, -1);
+}
+
+// Return the components of state i from the state machine
+list get_state(list nfa, integer i) {
+    integer start = i * nfa_state_size + 1;
+    integer end = start + nfa_state_size - 1;
+    return llList2List(nfa, start, end);   
+}
+
+// Create a new state, return it's index
+list new_state(list nfa, integer state_type, string character, integer out1, integer out2) { 
+    list new_nfa = [get_start_state_index(nfa)] + llList2List(nfa, 1, -1) + [state_type, character, out1, out2];
+    return new_nfa;
+}
+ 
+//
+// Pointer list helper functions
+//
+
+// Return a reference to one of a state's out transitions
+string list1(integer state_index, integer pointer_index) {
+    return (string)state_index + ":" + (string)pointer_index;
+}
+
+string append(string list1, string list2) {
+    return list1 + ";" + list2;
+}
+
+// Update all the pointers in the list to transition to the indicated state
+list patch(list nfa, string pointer_list, integer state_index) {
+    integer i;
+    list pointers = llParseString2List(pointer_list, [";", ":"], []);
+    integer l = llGetListLength(pointers);
+    for (i = 0; i < l; i += 2) {
+        integer src_index = llList2Integer(pointers, i);
+        integer src_pointer_index = llList2Integer(pointers, i + 1);
+        
+        integer index = src_index * nfa_state_size + 3 + src_pointer_index;
+        nfa = llListReplaceList((nfa = []) + nfa, [state_index], index, index);
+    }
+    
+    return nfa;
+}
+
+//
+// Postfix to NFA compiler
+//
+
+// Convert a post-fix syntax regular expression to an non-deterministic finite state automaton (NFA)
+list post2nfa(string postfix) {
+    integer i;
+    integer len = llStringLength(postfix);
+    list nfa_fragments = [];
+    list nfa = new_nfa();
+    
+    for (i = 0; i < len; i++) {
+        string c = llGetSubString(postfix, i, i);
+        
+        if (c == ".") {
+            list e1 = peek_frag(nfa_fragments, 0);
+            list e2 = peek_frag(nfa_fragments, 1);
+            nfa_fragments = pop_frag(nfa_fragments, 2);
+            
+            integer e1_start = llList2Integer(e1, 0);
+            string e1_out = llList2String(e1, 1);
+            integer e2_start = llList2Integer(e2, 0);
+            string e2_out = llList2String(e2, 1);
+            
+            nfa = patch(nfa, e2_out, e1_start);
+            nfa_fragments = push_frag(nfa_fragments, e2_start, e1_out);
+            
+        } else if (c == "|") {
+            list e1 = peek_frag(nfa_fragments, 0);
+            list e2 = peek_frag(nfa_fragments, 1);
+            nfa_fragments = pop_frag(nfa_fragments, 2);
+            
+            integer e1_start = llList2Integer(e1, 0);
+            string e1_out = llList2String(e1, 1);
+            integer e2_start = llList2Integer(e2, 0);
+            string e2_out = llList2String(e2, 1);
+            
+            nfa = new_state(nfa, state_type_split, "S", e1_start, e2_start);
+            integer s = get_last_state_index(nfa);
+            nfa_fragments = push_frag(nfa_fragments, s, append(e1_out, e2_out));
+            
+        } else if (c == "?") {
+            list e1 = peek_frag(nfa_fragments, 0);
+            nfa_fragments = pop_frag(nfa_fragments, 1);
+            
+            integer e1_start = llList2Integer(e1, 0);
+            string e1_out = llList2String(e1, 1);
+            
+            nfa = new_state(nfa, state_type_split, "S", e1_start, -1);
+            integer s = get_last_state_index(nfa);
+            nfa_fragments = push_frag(nfa_fragments, s, append(e1_out, list1(s, 1)));
+            
+        } else if (c == "*") {
+            list e1 = peek_frag(nfa_fragments, 0);
+            nfa_fragments = pop_frag(nfa_fragments, 1);
+            
+            integer e1_start = llList2Integer(e1, 0);
+            string e1_out = llList2String(e1, 1);
+            
+            nfa = new_state(nfa, state_type_split, "S", e1_start, -1);
+            integer s = get_last_state_index(nfa);
+            nfa = patch(nfa, e1_out, s);
+            nfa_fragments = push_frag(nfa_fragments, s, list1(s, 1));
+            
+        } else if (c == "+") {       
+            list e1 = peek_frag(nfa_fragments, 0);
+            nfa_fragments = pop_frag(nfa_fragments, 1);
+            
+            integer e1_start = llList2Integer(e1, 0);
+            string e1_out = llList2String(e1, 1);
+            
+            nfa = new_state(nfa, state_type_split, "S", e1_start, -1);
+            integer s = get_last_state_index(nfa);
+            nfa = patch(nfa, e1_out, s);
+            nfa_fragments = push_frag(nfa_fragments, e1_start, list1(s, 1));
+                  
+        } else {
+            nfa = new_state(nfa, state_type_char, c, -1, -1);
+            integer s = get_last_state_index(nfa);
+            nfa_fragments = push_frag(nfa_fragments, s, list1(s, 0));
+        }
+    }
+    
+    list e = peek_frag(nfa_fragments, 0);
+    nfa_fragments = pop_frag(nfa_fragments, 1);
+    integer e_index = llList2Integer(e, 0);
+    string e_out = llList2String(e, 1);
+    nfa = patch(nfa, e_out, match_state_index);
+    nfa = set_start_state_index(nfa, e_index);
+    
+    return nfa; 
+}
+
+//
+// NFA runtime
+//
+
+// Add a state to the list of active states (next_states) the NFA will assume
+// If the state is a split state, add both the linked states instead.
+list add_state(list nfa, list next_states, integer state_index) {
+    integer index = llListFindList(next_states, [state_index]);
+
+    if (index < 0) {    
+        list s = get_state(nfa, state_index);
+        integer state_type = llList2Integer(s, 0);
+        string state_c = llList2String(s, 1);
+        integer state_out1 = llList2Integer(s, 2);
+        integer state_out2 = llList2Integer(s, 3);   
+        
+        if (state_type == state_type_split) {
+            list temp_states = add_state(nfa, next_states, state_out1);
+            list temp_states2 = add_state(nfa, temp_states, state_out2);
+            return temp_states2;
+        } else {
+            return next_states + [state_index];
+        }
+    } else {
+        return next_states;
+    }
+}
+ 
+// Given the current set of active states and the current character, calculate and return the new set of active states.
+list step(list nfa, list current_states, string c) {
+    list next_states = [];
+    integer i;
+    integer count = llGetListLength(current_states);
+    for (i = 0; i < count; i++) {
+        integer index = llList2Integer(current_states, i);
+        list current_state = get_state(nfa, index);
+        integer state_type = llList2Integer(current_state, 0);
+        string state_c = llList2String(current_state, 1);
+        integer state_out1 = llList2Integer(current_state, 2);
+        integer state_out2 = llList2Integer(current_state, 3);
+        
+        if (state_type == state_type_char) {
+            if (c == state_c) {
+                next_states = add_state(nfa, next_states, state_out1);
+            }
+        }
+        
+    }
+    
+    return next_states;
+}
+
+// Return true if the state machine match text
+integer match(list nfa, string text) {
+    integer start_state = get_start_state_index(nfa);
+    list current_states = add_state(nfa, [], start_state);
+    integer i;
+    integer length = llStringLength(text);
+    for (i = 0; i < length; i++) {
+        string c = llGetSubString(text, i, i);
+        current_states = step(nfa, current_states, c);
+    }
+    
+    integer index = llListFindList(current_states, [0]);
+    return (index >= 0);
+}
+
+//
+// Testing helpers
+//
+
+DEBUG_NFA(list nfa) {
+    llWhisper(0, "Start State: " + (string)get_start_state_index(nfa));
+    llWhisper(0, "States: " + states_to_string(nfa));
+}
+
+string states_to_string(list nfa) {
+    string buffer = "";
+    
+    integer count = (llGetListLength(nfa) - 1) / nfa_state_size;
+    integer i = 0;
+    for (i = 0; i < count; i++) {
+        list s = get_state(nfa, i);
+                
+        if (i > 0) {
+            buffer += " " + (string)i + ":[" + llList2CSV(s) + "]";
+        } else {
+            buffer += (string)i + ":[" + llList2CSV(s) + "]";
+        }
+    }
+    return buffer;
+}
+
+integer error_count = 0;
+integer test_count = 0;
+
+list compile_regexp(string pattern) {
+    string postfix = re2post(pattern);
+    // llWhisper(0, "/" + pattern + "/ --> " + postfix);
+    return post2nfa(postfix);
+}
+
+should_match(string pattern, list nfa, string tocheck) {
+    test_count++;
+    if (!match(nfa, tocheck)) {
+        llWhisper(0, "FAIL: '" + tocheck + "' should match /" + pattern + "/");
+        error_count++;
+    }
+}
+
+should_not_match(string pattern, list nfa, string tocheck) {
+    test_count++;
+    if (match(nfa, tocheck)) {
+        llWhisper(0, "FAIL: '" + tocheck + "' should not match /" + pattern + "/"); 
+        error_count++;
+    }
+}
+
+default {
+    state_entry() {
+        llWhisper(0, "Touch me to run my tests...");
+    }
+
+    touch_start(integer n) {
+        llWhisper(0, "Testing");
+
+        // Test a simple pattern /a/
+        string pattern1 = "a"; list nfa1 = compile_regexp(pattern1);
+        should_match(pattern1, nfa1, "a");
+        should_not_match(pattern1, nfa1, "aa");
+        should_not_match(pattern1, nfa1, "b");
+        should_not_match(pattern1, nfa1, "");
+        
+        // Test a concatenation /ab/
+        string pattern2 = "ab"; list nfa2 = compile_regexp(pattern2);
+        should_match(pattern2, nfa2, "ab");
+        should_not_match(pattern2, nfa2, "a");
+        should_not_match(pattern2, nfa2, "b");
+        should_not_match(pattern2, nfa2, "aa");
+        should_not_match(pattern2, nfa2, "");
+        
+        // Test a choice
+        string pattern3 = "a|b"; list nfa3 = compile_regexp(pattern3);
+        should_match(pattern3, nfa3, "a");
+        should_match(pattern3, nfa3, "b");
+        should_not_match(pattern3, nfa3, "c");
+        should_not_match(pattern3, nfa3, "ab");
+        should_not_match(pattern3, nfa3, "");
+        
+        // Test an optional character /a?/
+        string pattern4 = "a?"; list nfa4 = compile_regexp(pattern4);
+        should_match(pattern4, nfa4, "a");
+        should_match(pattern4, nfa4, "");
+        should_not_match(pattern4, nfa4, "ab");
+        should_not_match(pattern4, nfa4, "b");
+        
+        // Test an optional character with concatenation /ab?/
+        string pattern5 = "ab?"; list nfa5 = compile_regexp(pattern5);
+        should_match(pattern5, nfa5, "a");
+        should_match(pattern5, nfa5, "ab");
+        should_not_match(pattern5, nfa5, "abb");
+        should_not_match(pattern5, nfa5, ""); 
+           
+        // Test one or more /ab+/
+        string pattern6 = "ab+"; list nfa6 = compile_regexp(pattern6);
+        should_match(pattern6, nfa6, "ab");
+        should_match(pattern6, nfa6, "abb");
+        should_not_match(pattern6, nfa6, "a");
+        should_not_match(pattern6, nfa6, "");
+
+        // Test zero or more ab*
+        string pattern7 = "ab*"; list nfa7 = compile_regexp(pattern7);
+        should_match(pattern7, nfa7, "a");
+        should_match(pattern7, nfa7, "ab");
+        should_match(pattern7, nfa7, "abb");
+        should_not_match(pattern7, nfa7, "b");
+        should_not_match(pattern7, nfa7, "");
+        
+        // Test complex choice (ab)|(cd)
+        string pattern8 = "(ab)|(cd)"; list nfa8 = compile_regexp(pattern8);
+        should_match(pattern8, nfa8, "ab");
+        should_match(pattern8, nfa8, "cd");
+        should_not_match(pattern8, nfa8, "abcd");
+        should_not_match(pattern8, nfa8, "");
+        
+        // Test complex optional ab(cd)?
+        string pattern9 = "ab(cd)?"; list nfa9 = compile_regexp(pattern9);
+        should_match(pattern9, nfa9, "ab");
+        should_match(pattern9, nfa9, "abcd");
+        should_not_match(pattern9, nfa9, "abc");
+        should_not_match(pattern9, nfa9, "abcdcd");
+        should_not_match(pattern9, nfa9, "");
+        
+        // Test complex optional ab(cd)?ef
+        string pattern10 = "ab(cd)?ef"; list nfa10 = compile_regexp(pattern10);
+        should_match(pattern10, nfa10, "abef");
+        should_match(pattern10, nfa10, "abcdef");
+        should_not_match(pattern10, nfa10, "abcdcdef");
+        
+        // Test complex one or more ab(cd)+ef
+        string pattern11 = "ab(cd)+ef"; list nfa11 = compile_regexp(pattern11);
+        should_match(pattern11, nfa11, "abcdef");        
+        should_match(pattern11, nfa11, "abcdcdcdef");
+        should_not_match(pattern11, nfa11, "abef");
+        
+        // Test complex zero or more ab(cd)*ef
+        string pattern12 = "ab(cd)*ef"; list nfa12 = compile_regexp(pattern12);
+        should_match(pattern12, nfa12, "abcdef");        
+        should_match(pattern12, nfa12, "abcdcdcdef");
+        should_match(pattern12, nfa12, "abef");
+        should_not_match(pattern12, nfa12, "ab");
+        
+        llWhisper(0, "Done with " + (string)error_count + " failed tests out of " + (string)test_count);
+    }
+}

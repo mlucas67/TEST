@@ -1,0 +1,16 @@
+program ObjArr
+
+dim Objects(1)
+MyObject = object( "Integer", 1 )
+Objects(1) = MyObject
+
+dim Objects(2)
+MyObject = object( "Integer", 2 )
+Objects(2) = MyObject
+
+for i = 1 to 2
+    Instance = Objects(i)
+    display Instance->value()
+next i
+
+end

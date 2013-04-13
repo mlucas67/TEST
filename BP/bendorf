@@ -1,0 +1,194 @@
+$debug
+program bendorf
+
+deffun value( i, j ) local
+deffun bvalue( i, j ) local
+
+board = ''
+crt "  Enter initial board in lines of 16 characters"
+for i = 1 to 16
+    input line
+    for j = 1 to 16
+        ch = line[j,1]
+        board<i+1,j+1> = ch
+    next j
+next i
+
+antibendorf = 10
+round = 1
+cont = ''
+loop
+    gosub printboard
+    if (antibendorf) then
+        *
+        * Phase 1: Plant one square of Antibendorf
+        *
+        loop
+            crt round'R#2' : " Plant Antibendorf at " :; input plantat
+            i = seq( field( plantat, ',', 1 ) ) - 95
+            j = seq( field( plantat, ',', 2 ) ) - 95
+            val = value( i, j )
+        while (val and plantat and (val < 6))
+            crt "Can't plant there!"
+        repeat
+        if (plantat) then
+            board<i,j> = 69
+            antibendorf -= 1
+        end
+    end else
+        crt round'R#2' : " Continue " :; input cont
+    end
+    gosub updateboard
+    round += 1
+while (cont # 'n')
+repeat
+
+stop
+
+updateboard:
+    newboard = board
+    *
+    * Phase 2: Grow the Antibendorf first
+    *
+    for i = 2 to 17
+        for j = 2 to 17
+            if (value( i, j ) > 64) then
+                if (value( i, j ) < 69) then newboard<i,j> += 1
+            end else
+                if (value( i, j ) = 0) then
+                    neighbors = ''
+                    neighbors<1> = value(i-1,j-1)
+                    neighbors<2> = value(i-1,j)
+                    neighbors<3> = value(i-1,j+1)
+                    neighbors<4> = value(i,j+1)
+                    neighbors<5> = value(i+1,j+1)
+                    neighbors<6> = value(i+1,j)
+                    neighbors<7> = value(i+1,j-1)
+                    neighbors<8> = value(i,j-1)
+                    val = maximum( neighbors )
+                    if (val >= 65) then 
+                        newboard<i,j> = if (val > 65) then val - 1 else val
+                    end
+                end
+             end
+        next j
+    next i
+    board = newboard
+    *
+    * Phase 3: Reduce Bendorf affected by Antibendorf
+    *
+    for i = 2 to 17
+        for j = 2 to 17
+            if ((value( i, j ) >= 1) and (value( i, j ) <= 5)) then
+                neighbors = ''
+                neighbors<1> = value(i-1,j-1)
+                neighbors<2> = value(i-1,j)
+                neighbors<3> = value(i-1,j+1)
+                neighbors<4> = value(i,j+1)
+                neighbors<5> = value(i+1,j+1)
+                neighbors<6> = value(i+1,j)
+                neighbors<7> = value(i+1,j-1)
+                neighbors<8> = value(i,j-1)
+                val = maximum( neighbors )
+                if (val >= 65) then
+                    newboard<i,j> -= 2
+                    if (newboard<i,j> <= 0) then newboard<i,j> = '.'
+                    locate val in neighbors<1> setting pos then
+                        begin case
+                            case (pos = 1)
+                                ni = i - 1
+                                nj = j - 1
+                            case (pos = 2)
+                                ni = i - 1
+                                nj = j
+                            case (pos = 3)
+                                ni = i - 1
+                                nj = j + 1
+                            case (pos = 4)
+                                ni = i
+                                nj = j + 1
+                            case (pos = 5)
+                                ni = i + 1
+                                nj = j + 1
+                            case (pos = 6)
+                                ni = i + 1
+                                nj = j
+                            case (pos = 7)
+                                ni = i + 1
+                                nj = j - 1
+                            case (pos = 8)
+                                ni = i
+                                nj = j - 1
+                        end case
+                        if (newboard<ni,nj> > 65) then
+                            newboard<ni,nj> -= 1
+                        end else
+                            newboard<ni,nj> = '.'
+                        end
+                    end
+                end
+            end
+        next j
+    next i
+    board = newboard
+    *
+    * Phase 4: Grow remaining Bendorf
+    *
+    for i = 2 to 17
+        for j = 2 to 17
+            if (value( i, j )) then
+                if (newboard<i,j> < 5) then newboard<i,j> += 1
+            end else
+                neighbors = ''
+                neighbors<1> = bvalue(i-1,j-1)
+                neighbors<2> = bvalue(i-1,j)
+                neighbors<3> = bvalue(i-1,j+1)
+                neighbors<4> = bvalue(i,j+1)
+                neighbors<5> = bvalue(i+1,j+1)
+                neighbors<6> = bvalue(i+1,j)
+                neighbors<7> = bvalue(i+1,j-1)
+                neighbors<8> = bvalue(i,j-1)
+                val = maximum( neighbors )
+                if ((val >= 1) and (val <= 5)) then 
+                    newboard<i,j> = if (val > 1) then val - 1 else val
+                end
+             end
+        next j
+    next i
+    board = newboard
+return
+
+printboard:
+    for i = 1 to 17
+        for j = 1 to 17
+            if (j = 1) then
+                if (i = 1) then
+                    crt '  ' :
+                end else
+                    crt char( i + 95 )'L#2' :
+                end
+            end else
+                if (i = 1) then
+                    crt char( j + 95 )'L#2' :
+                end else
+                    if (value( i, j ) <= 5) then
+                        crt board<i,j>'L#2' :
+                    end else
+                        crt char( board<i,j> )'L#2' :
+                    end
+                end
+            end
+        next j
+        crt
+    next i
+return
+
+local function value( i, j )
+    if num( board<i,j> ) then return board<i,j> else return 0
+end ;* function
+
+local function bvalue( i, j )
+    if (num( board<i,j> ) and (board<i,j> <= 5)) then return board<i,j> else return 0
+end ;* function
+
+end

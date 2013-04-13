@@ -1,0 +1,198 @@
+array = ''
+for i = 1 to 30000
+   array<i> = 0
+next i
+ptr = 1
+!!!!!!!!!!Start!!!!!!!!!!!!!!
+ptr += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+loop
+while (array<ptr>)
+    ptr -= 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    ptr += 1
+    array<ptr> -= 1
+repeat
+ptr -= 1
+crt char( array<ptr> ) :
+ptr += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+loop
+while (array<ptr>)
+    ptr -= 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    ptr += 1
+    array<ptr> -= 1
+repeat
+ptr -= 1
+array<ptr> += 1
+crt char( array<ptr> ) :
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+crt char( array<ptr> ) :
+crt char( array<ptr> ) :
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+crt char( array<ptr> ) :
+loop
+while (array<ptr>)
+    array<ptr> -= 1
+repeat
+ptr += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+loop
+while (array<ptr>)
+    ptr -= 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    ptr += 1
+    array<ptr> -= 1
+repeat
+ptr -= 1
+crt char( array<ptr> ) :
+ptr += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+loop
+while (array<ptr>)
+    ptr -= 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    ptr += 1
+    array<ptr> -= 1
+repeat
+ptr -= 1
+crt char( array<ptr> ) :
+ptr += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+loop
+while (array<ptr>)
+    ptr -= 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    ptr += 1
+    array<ptr> -= 1
+repeat
+ptr -= 1
+crt char( array<ptr> ) :
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+crt char( array<ptr> ) :
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+crt char( array<ptr> ) :
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+array<ptr> -= 1
+crt char( array<ptr> ) :
+loop
+while (array<ptr>)
+    array<ptr> -= 1
+repeat
+ptr += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+loop
+while (array<ptr>)
+    ptr -= 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    array<ptr> += 1
+    ptr += 1
+    array<ptr> -= 1
+repeat
+ptr -= 1
+array<ptr> += 1
+crt char( array<ptr> ) :
+loop
+while (array<ptr>)
+    array<ptr> -= 1
+repeat
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+array<ptr> += 1
+crt char( array<ptr> ) :
+end
