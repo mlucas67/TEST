@@ -1,0 +1,11 @@
+child = object("Child")
+
+crt "--------------------------"
+
+child->childDemo()
+child->parentDemo()
+child->dispose()
+
+crt "--------------------------"
+
+end

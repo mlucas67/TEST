@@ -1,0 +1,13 @@
+$catalog FileEntry global
+class FileEntry
+    
+    public itemName, itemType, fileMode, modTime
+    
+    public sub create.object(name='', type='', mode='', time='') var.args
+        itemName = name
+        itemType = type
+        fileMode = mode
+        modTime = time
+    end
+    
+end

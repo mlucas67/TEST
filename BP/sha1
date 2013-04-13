@@ -1,0 +1,100 @@
+$catalog sha1 global
+function sha1(string)
+    deffun rotl(x, n) local
+    deffun f(s, x, y, z) local
+
+    !! constants [s4.2.1]
+    K = 0x5a827999 : @fm : 0x6ed9eba1 : @fm : 0x8f1bbcdc : @fm : 0xca62c1d6
+    
+    !! PREPROCESSING
+    string := char(0x80);       !! add trailing '1' bit (+ '0' padding) to string [s5.1.1]
+    
+    !! convert string into 512-bit/16-integer blocks arrays of ints [s5.2.1]
+    l = len(string) // 4 + 2;   !! length (in 32-bit integers) of string + '1' + appended length
+    N = l // 16 + 1;            !! number of 16-integer-blocks required to hold 'l' ints
+    M = ''
+    
+    for i = 0 to N-1
+        M<i+1> = ''
+        for j = 0 to 15
+            word = string[i*64+j*4+1, 4]
+            word := str(char(0), 4-len(word))
+            c1 = shift(seq(word[1, 1]), -24)
+            c2 = shift(seq(word[2, 1]), -16)
+            c3 = shift(seq(word[3, 1]), -8)
+            c4 = seq(word[4, 1])
+            M<i+1, j+1> = bitor(bitor(bitor(c1, c2), c3), c4)
+        next j
+    next i
+    !! add length (in bits) into final pair of 32-bit integers (big-endian) [s5.1.1]
+    !! note: simulating shift right 32 using arithmetic operators
+    M<N,15> = int(((len(string) - 1) * 8) / (2 ^ 32))
+    M<N,16> = ((len(string) - 1) * 8)
+    
+    !! set initial hash value [s5.3.1]
+    h0 = 0x67452301
+    h1 = 0xEFCDAB89
+    h2 = 0x98BADCFE
+    h3 = 0x10325476
+    h4 = 0xC3D2E1F0
+    
+    !! HASH COMPUTATION [s6.1.2]
+    
+    !! 1 - prepare message schedule 'W'    
+    for i = 1 to N
+        W = ''
+        W = raise(M<i>)
+
+        for t = 17 to 80
+            W<t> = rotl(bitxor(bitxor(bitxor(W<t-3>, W<t-8>), W<t-14>), W<t-16>), 1)
+        next t
+
+        !! 2 - initialize five working variables a, b, c, d, e with previous hash value
+        a = h0
+        b = h1
+        c = h2
+        d = h3
+        e = h4
+
+        !! 3 - main loop
+        for t = 1 to 80
+            s = int((t - 1) / 20);  !! seq for blocks of 'f' functions and 'K' constants
+            T1 = (rotl(a, 5) + f(s, b, c, d) + e + K<s+1> + W<t>)
+            e = d
+            d = c
+            c = rotl(b, 30)
+            b = a
+            a = oconv(oconv(T1, "MCDX"), "MCXD")
+        next t
+        
+        !! 4 - compute the new intermediate hash values
+        h0 = oconv(oconv((h0 + a), "MCDX"), "MCXD")
+        h1 = oconv(oconv((h1 + b), "MCDX"), "MCXD")
+        h2 = oconv(oconv((h2 + c), "MCDX"), "MCXD")
+        h3 = oconv(oconv((h3 + d), "MCDX"), "MCXD")
+        h4 = oconv(oconv((h4 + e), "MCDX"), "MCXD")
+    next i
+    
+    digest = oconv(h0, "MCDX")'r%8' : oconv(h1, "MCDX")'r%8' : oconv(h2, "MCDX")'r%8' : oconv(h3, "MCDX")'r%8' : oconv(h4, "MCDX")'r%8'
+    return digest
+
+    local function f(s, b, c, d)
+        begin case
+            case (s = 0)
+                return bitor(bitand(b, c), bitand(bitnot(b), d));                   !! Ch()
+            case (s = 1)
+                return bitxor(bitxor(b, c), d);                                     !! Parity()
+            case (s = 2)
+                return bitor(bitor(bitand(b, c), bitand(b, d)), bitand(c, d));      !! Maj()
+            case 1
+                return bitxor(bitxor(b, c), d);                                     !! Parity()
+        end case
+    end
+    
+    local function rotl(x, n)
+        ls = shift(x, -n)
+        rs = shift(x, (32 - n))
+        return bitor(ls, rs)
+    end
+    
+end

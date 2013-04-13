@@ -1,0 +1,9 @@
+$catalog Error local
+class Error inherits Throwable
+
+    public sub create.object(message='') var.args
+        Throwable->setClass(me)
+        Throwable->setMessage(message)
+    end
+    
+end

@@ -1,0 +1,29 @@
+$catalog Parent local
+class Parent
+
+    private this
+    
+    public sub setThis(newThis)
+        this = newThis
+    end
+
+    public sub create.object()
+        crt "Parent->create.object()"
+    end
+
+    public sub parentDemo()
+        crt "Parent->parentDemo()"
+        crt objinfo(me, 2)
+        this->childDemo()
+    end
+    
+    public sub dispose()
+        crt "Parent->dispose()"
+        this = ''
+    end
+    
+    public sub destroy.object()
+        crt "Parent->destroy.object()"
+    end
+
+end

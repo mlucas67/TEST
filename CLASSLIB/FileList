@@ -1,0 +1,54 @@
+$catalog FileList global
+class FileList
+
+    deffun sha1(string)
+
+    private keys1, keys2, values, indent
+    
+    public sub create.object(startPath='') var.args
+        indent = 0
+        keys1 = ''
+        keys2 = ''
+        values = ''
+        if (startPath # '') then me->walk(startPath)
+        return
+    end
+    
+    public sub walk(startPath)
+        fileList = dir(startPath)
+        loop
+            remove itemName from fileList setting more
+        while more
+            remove itemType from fileList setting nothing
+            remove fileMode from fileList setting nothing
+            remove dateTime from fileList setting nothing
+            if ((itemName = ".git") and (itemType = 'D')) then continue
+            begin case
+                case (itemType = 'F') 
+                    osread item from startPath:'\':itemName then
+                        size = len(item)+1
+                        key = "blob ":size:char(0):item:char(10)
+                        key1 = sha1(key)
+                    end else
+                        key1 = '*item not read*'
+                    end
+                case (itemType = 'D')
+                    key1 = sha1("100644":char(0):"blob":char(0):itemName)
+                case 1
+                    key1 = sha1(itemName)
+            end case
+            item = startPath : @fm : itemName : @fm : itemType : @fm : fileMode : @fm : dateTime
+            locate key1 in keys1<1> by 'ar' setting pos else null
+            keys1 = insert(keys1, pos; key1)
+            values = insert(values, pos; item)
+            crt space(indent*4) : itemName : " (" : key1'r%40' : ")"
+            if (itemType = 'D') then 
+                indent += 1
+                me->walk(startPath:'\':itemName)
+                indent -= 1
+            end
+        repeat
+        return
+    end
+
+end

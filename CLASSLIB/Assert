@@ -1,0 +1,126 @@
+$catalog Assert local
+
+$define new object
+deffun isObject(obj) local
+deffun className(obj) local
+deffun hasMethod(obj, method) local
+deffun isEquals(expected, actual) local
+
+class Assert
+    
+    public sub assertTrue(condition, message='') var.args
+        if not(condition) then me->fail(message)
+    end
+    
+    public sub assertFalse(condition, message='') var.args
+        me->assertTrue(not(condition), message)
+    end
+    
+    public sub fail(message='') var.args
+        call !setvar("@EXCEPTION.DATA", message)
+        throw "AssertionError"
+    end
+    
+    public sub failEquals(actual, message='') var.args
+        formatted = "Values should be different. "
+        if (message # '') then formatted := message : ". "
+        formatted := "Actual: "
+        if (isObject(actual)) then
+            if (hasMethod(actual, "TOSTRING")) then
+                formatted := actual->toString()
+            end else
+                formatted := className(actual)
+            end
+        end else
+            formatted := actual
+        end
+        me->fail(formatted)
+    end
+    
+    public sub assertEquals(expected, actual, message='') var.args
+        if not(isEquals(expected, actual)) then me->fail(message)
+    end
+    
+    public sub assertNotEquals(expected, actual, message='') var.args
+        if (isEquals(expected, actual)) then me->failEquals(actual, message)
+    end
+    
+    public sub assertArrayEquals(expecteds, actuals, message='') var.args
+        values = eqs(expecteds, actuals)
+        if (index(values, '0', 1)) then me->fail(message)
+    end
+    
+    public sub assertNotNull(obj, message='') var.args
+        if not(isObject(obj)) then
+            if not(assigned(obj)) then me->fail(message)
+            if (obj == '') then me->fail(message)
+        end
+    end
+    
+    public sub assertNull(obj, message='') var.args
+        if (isObject(obj)) then me->failNotNull(obj, message)
+        if (assigned(obj)) then
+            if (obj # '') then me->failNotNull(obj, message)
+        end
+    end
+    
+    public sub failNotNull(actual, message)
+        formatted = message : " expected null, but was: <"
+        if (isObject(actual)) then
+            if (hasMethod(actual, "TOSTRING")) then
+                formatted := actual->toString()
+            end else
+                formatted := className(actual)
+            end
+        end else
+            formatted := actual
+        end
+        formatted := ">"
+        me->fail(trimf(formatted))
+    end
+
+    local function isObject(obj)
+        return objinfo(obj, 0)
+    end
+    
+    local function className(obj)
+        return objinfo(obj, 1)
+    end
+    
+    local function hasMethod(obj, method)
+        names = objinfo(obj, 2)
+        cc = dcount(names, @fm)
+        for c = 1 to cc
+            methods = names<c,2> : @svm : names<c,3>
+            locate method in methods<1,1,1> setting pos then return @true
+        next c
+        return @false
+    end
+        
+    local function isEquals(expected, actual)
+        begin case
+            case (isObject(expected) & isObject(actual))
+                if (hasMethod(expected, "EQUALS")) then
+                    return (expected->equals(actual))
+                end else if (hasMethod(actual, "EQUALS")) then
+                    return (actual->equals(expected))
+                end else
+                    return @false
+                end
+            case (isObject(expected))
+                if (hasMethod(expected, "EQUALS")) then
+                    return (expected->equals(actual))
+                end else
+                    return @false
+                end
+            case (isObject(actual))
+                if (hasMethod(actual, "EQUALS")) then
+                    return (actual->equals(expected))
+                end else
+                    return (actual->equals(expected))
+                end
+            case 1
+                return (actual == expected)
+        end case
+    end
+end

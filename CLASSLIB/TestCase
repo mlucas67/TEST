@@ -1,0 +1,42 @@
+$catalog TestCase local
+$include qm.lang objects.h
+class TestCase
+
+    private label, reporter, observers, shouldSkip
+    
+    public sub create.object(newLabel='') var.args
+        label = newLabel
+        shouldSkip = @false
+    end
+    
+    public function getLabel() var.args
+        return if (label) then label else className(this)
+    end
+    
+    public sub skip(this='') var.args
+        if isObject(this) then this->skip()
+    end
+    
+    public sub skipIf(this='', newShouldSkip=false, message='') var.args
+        if (newShouldSkip & not(shouldSkip)) then
+            shouldSkip = @true
+            message = "Skipping [" : className(this) : "]"
+            reporter->paintSkip(message : me->getAssertionLine())
+        end
+    end
+    
+    public function shouldSkip()
+        return shouldSkip
+    end
+    
+    public sub skipUnless(this='', shouldntSkip='', message='') var.args
+        me->skipIf(this, not(shouldntSkip), message)
+    end
+
+    public function createInvoker(this='') var.args
+        return new("ErrorTrappingInvoker", new("ExceptionTrappingInvoker", new("Invoker", this)))
+    end
+
+    $include qm.lang objects_locals.h
+
+end

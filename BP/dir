@@ -1,0 +1,13 @@
+$catalog ls global
+program ls
+    root = @path
+    dirlist = dir(root)
+    loop
+        remove itemName from dirlist setting more
+    while more
+        remove itemType from dirlist setting nothing
+        remove fileMode from dirlist setting nothing
+        remove dateTime from dirlist setting nothing
+        crt itemName'l#30' : "   " : itemType : "   " : fileMode'l#6' : "   " : oconv(dateTime, 'EA')
+    repeat
+end
