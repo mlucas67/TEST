@@ -1,0 +1,138 @@
+$catalog GetOpt global
+class GetOpt
+
+    equ SHORT_OPTS to 1
+    equ REQUIRED to 2
+    equ OPT_VALUES to 3
+    equ OPT_VALUE to 4
+    equ LONG_OPTS to 5
+    
+    private subcommand, options, errors
+    
+    public sub create.object()
+        subcommand = ''
+        options = ''
+        errors = ''
+    end
+    
+    public sub addOption(shortOpt, require='', values='', default='', longOpt='') var.args
+        locate shortOpt in options<1,1> by 'al' setting optPos then
+            throw "DuplicateOption"
+        end
+        options = insert(options, SHORT_OPTS, optPos; shortOpt)
+        options = insert(options, REQUIRED, optPos; require)
+        options = insert(options, OPT_VALUES, optPos; convert(',', @svm, values))
+        options = insert(options, OPT_VALUE, optPos; default)
+        options = insert(options, LONG_OPTS, optPos; longOpt)
+    end
+    
+    public function parse(cmdline)
+        command = parse(cmdline, "0X' '0X' '0Xý0X' '0X", @fm)
+        subcommand = command<3>
+        cmdoptions = command<5>
+        if (subcommand[1,1] = '-') then
+            cmdoptions = subcommand : ' ' : cmdoptions
+            subcommand = ''
+        end
+        loop
+        while (cmdoptions # '')
+            cmdoptions = parse(cmdoptions, "0X' '0Xý0X", @fm)
+            cmdoption = cmdoptions<1>
+            begin case
+                case (cmdoption[1,2] = "--")
+                    cmdoption = field(cmdoption, '-', 3)
+                    cmdvalue = field(cmdoption, '=', 2)
+                    cmdoption = field(cmdoption, '=', 1)
+                    locate cmdoption in options<LONG_OPTS,1> setting optind else
+                        errors<-1> = "Invalid command line option " : squote(cmdoption)
+                        return @false
+                    end
+                    if (options<OPT_VALUES,optind> # '') then
+                        if (cmdvalue = '') then
+                            errors<-1> = "Value required for command line option " : squote(cmdoption)
+                            return @false
+                        end
+                        if (cmdvalue[1,1] = '"') then
+                            if (upcase(options<OPT_VALUES,optind>) # "STRING") then
+                                errors<-1> = "String value " : squote(cmdvalue) : " supplied for non-string option " : squote(cmdoption)
+                                return @false
+                            end
+                            options<OPT_VALUE,optind> = field(cmdvalue, '"', 2)
+                        end else
+                            locate cmdvalue in options<OPT_VALUES,optind,1> setting valind else
+                                errors<-1> = "Invalid value " : squote(cmdvalue) : " for command line option " : squote(cmdoption)
+                                return @false
+                            end
+                            begin case
+                                case (downcase(cmdvalue) matches "'true'ý't'")
+                                    options<OPT_VALUE,optind> = @true
+                                case (downcase(cmdvalue) matches "'false'ý'f'")
+                                    options<OPT_VALUE,optind> = @false
+                                case 1
+                                    options<OPT_VALUE,optind> = cmdvalue
+                            end case
+                        end
+                    end else
+                        options<OPT_VALUE,optind> = @true
+                    end
+                case (cmdoption[1,1] = '-')
+                    for i = 2 to len(cmdoption)
+                        chopt = cmdoption[i,1]
+                        locate chopt in options<SHORT_OPTS,1> setting optind else
+                            errors<-1> = "Invalid command line option " : squote(chopt)
+                            return @false
+                        end
+                        if (options<OPT_VALUES,optind> # '') then
+                            if (i < len(cmdoption)) then
+                                errors<-1> = "Options that take values must be at the end of the list"
+                                return @false
+                            end
+                            cmdoptions = parse(cmdoptions, \'"'0X'"'' '0Xý0X' '0X\, @fm)
+                            if (cmdoptions<1> = '"') then
+                                cmdvalue = cmdoptions<2>
+                                del cmdoptions<1>
+                                del cmdoptions<1>
+                                if (upcase(options<OPT_VALUES,optind>) # "STRING") then
+                                    errors<-1> = "String value " : squote(cmdvalue) : " supplied for non-string option " : squote(cmdoption)
+                                    return @false
+                                end
+                                options<OPT_VALUE,optind> = cmdvalue
+                            end else
+                                cmdvalue = cmdoptions<1>
+                                locate cmdvalue in options<OPT_VALUES,optind,1> setting valind else
+                                    errors<-1> = "Invalid value " : squote(cmdvalue) : " for command line option " : squote(cmdoption)
+                                    return @false
+                                end
+                                begin case
+                                    case (downcase(cmdvalue) matches "'true'ý't'")
+                                        options<OPT_VALUE,optind> = @true
+                                    case (downcase(cmdvalue) matches "'false'ý'f'")
+                                        options<OPT_VALUE,optind> = @false
+                                    case 1
+                                        options<OPT_VALUE,optind> = cmdvalue
+                                end case
+                            end
+                        end else
+                            options<OPT_VALUE,optind> = @true
+                        end
+                    next i
+                case (cmdoption[1,1] = '/')
+                case (cmdoption[1,1] = '(')
+                case 1
+                    errors<-1> = "Invalid command line option " : squote(cmdoption)
+                    return @false
+            end case
+            cmdoptions = cmdoptions<3>
+        repeat
+        return @true
+    end
+    
+    get errors()
+        return errors
+    end
+    
+    get options()
+        return options
+    end
+    
+end

@@ -1,0 +1,18 @@
+program test.getopt
+
+    getopt = object("GetOpt")
+    getopt->addOption('b')
+    getopt->addOption('c')
+    getopt->addOption('d')
+    getopt->addOption('h', '', '', '', "help")
+    getopt->addOption('o', @true, "STRING", '', "outputdir")
+    getopt->addOption('m', '', "add,sub,mul", "add", "math")
+    
+    cmdline = 'cmd subcmd -bcd -h --math=sub --outputdir="c:/temp"'
+    if (getopt->parse(cmdline)) then 
+        crt getopt->options()
+    end else
+        crt getopt->errors()
+    end
+
+end

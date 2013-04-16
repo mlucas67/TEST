@@ -1,0 +1,23 @@
+$catalog LongOpt global
+class LongOpt
+
+    private name, has_arg, flag, val
+    
+    public NO_ARGUMENT, REQUIRED_ARGUMENT, OPTIONAL_ARGUMENT
+    
+    public sub create.object(optName, optHas_Arg, optFlag, optVal)
+        NO_ARGUMENT = 0
+        REQUIRED_ARGUMENT = 1
+        OPTIONAL_ARGUMENT = 2
+        name = optName
+        has_arg = optHas_Arg
+        flag = optFlag
+        val = optVal
+    end
+    
+    get getName();      return name;    end;
+    get getHasArg();    return has_arg; end;
+    get getFlag();      return flag;    end;
+    get getVal();       return val;     end;
+
+end

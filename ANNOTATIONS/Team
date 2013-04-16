@@ -1,0 +1,75 @@
+$catalog Team local
+class Team
+
+    private teamId, teamName, teamLead, writeDate
+    
+    public sub create.object(id='', name='', lead='', date='') var.args
+        if (id[1,6] = "teamId") then me->parseParams(id, name, lead, date)
+        teamId = id
+        teamName = name
+        teamLead = lead
+        teamDate = date
+    end
+    
+    public sub parseParams(id, name, lead, date)
+        params = id
+        id = ''
+        loop
+        while (params)
+            param = trim(params['=', 1, 1])
+            params = trimf(params['=', 2, *])
+            if (params[1,1] = '"') then
+                value = trim(params['"', 2, 1])
+                params = trimf(params['"', 3, *])
+            end else
+                value = trim(params[',', 1, 1])
+            end
+            params = trimf(params[',', 2, *])
+            begin case
+                case (param = "teamId")
+                    id = value
+                case (param = "teamName")
+                    name = value
+                case (param = "teamLead")
+                    lead = value
+                case (param = "writeDate")
+                    date = value
+            end case
+        repeat
+        if (date = '') then date = "[unimplemented]"
+        if (lead = '') then lead = "[unassigned]"
+    end
+
+    get teamId()
+        return teamId
+    end
+    
+    set teamId(id)
+        teadId = id
+    end
+    
+    get teamName()
+        return teamName
+    end
+    
+    set teamName(name)
+        teamName = name
+    end
+    
+    get teamLead()
+        return teamLead
+    end
+    
+    set teamLead(lead)
+        teamLead = lead
+    end
+    
+    get writeDate()
+        return oconv(writeDate, "d4-")
+    end
+    
+    set writeDate(date)
+        writeDate = iconv(writeDate, 'D')
+    end
+
+end
