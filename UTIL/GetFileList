@@ -1,0 +1,21 @@
+$catalog GetFileList local
+subroutine GetFileList(list)
+    list = ''
+    open "VOC" to voc else return
+    cmd = "select voc with type = 'F'"
+    execute cmd capturing output rtnlist filelist
+    loop
+        readnext filename from filelist else exit
+        read item from voc, filename then
+            begin case
+                case (item<4> # '')
+                    for each subfilename in item<4>
+                        list<-1> = filename : ',' : subfilename
+                    next subfilename
+                case 1
+                    list<-1> = filename
+            end case
+        end
+    repeat
+    return
+end

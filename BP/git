@@ -10,6 +10,8 @@ program git
             gosub add()
         case (command = "status")
             gosub status()
+        case 1
+            gosub default()
     end case
     
     stop
@@ -24,6 +26,14 @@ program git
 
     local subroutine status()
         cmd = bang : git.program.path : git.program.name : " status"
+        execute cmd capturing output
+        gosub display()
+        return
+    end
+    
+    local subroutine default()
+        params = @sentence[' ', 3, *]
+        cmd = bang : git.program.path : git.program.name : ' ' : command : ' ' : params
         execute cmd capturing output
         gosub display()
         return

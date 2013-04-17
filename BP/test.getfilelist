@@ -1,0 +1,10 @@
+program test.getfilelist
+    open "VOC" to voc else stop 201, "VOC"
+    read ignorelist from voc, "gitignore" else ignorelist = ''
+    convert @fm to @vm in ignorelist
+    call GetFileList(list)
+    for each filename in list
+        if filename matches ignorelist then continue
+        crt filename
+    next filename
+end
